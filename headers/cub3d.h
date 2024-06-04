@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/04/08 19:08:47 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:24:15 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,5 @@
 
 # include "../libft/libft.h"
 # include <stdio.h>
-
-void    ft_print();
-
 
 #endif

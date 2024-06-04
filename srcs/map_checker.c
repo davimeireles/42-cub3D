@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:22:33 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/04/08 19:09:55 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:24:11 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void    ft_print()
 {
-    printf("FOLLEEN\n");
+  
 }

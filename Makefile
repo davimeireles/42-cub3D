@@ -217,6 +217,7 @@ all: header setup $(NAME)
 
 header:
 	@printf "%b" "$(OK_COLOR)"
+	@echo 
 	@echo " ███    ███  █████  ██   ██ ███████ ███████ ██ ██      ███████ "
 	@echo " ████  ████ ██   ██ ██  ██  ██      ██      ██ ██      ██      "
 	@echo " ██ ████ ██ ███████ █████   █████   █████   ██ ██      █████   "
@@ -242,9 +243,13 @@ endif
 	@printf "%b" "$(OBJ_COLOR)Flags: 	$(WARN_COLOR)$(CFLAGS)\n\033[m"
 	@echo
 
-$(NAME): ${OBJS} ${OBJ_MAIN}
+$(NAME): ${LIBFT} ${OBJS} ${OBJ_MAIN}
 			@$(call display_progress_bar)
-			@$(call run_and_test,$(CC) $(CFLAGS) $(DFLAGS) -I$(INCLUDE_PATH) -o $@ ${OBJS} ${OBJ_MAIN})
+			@$(call run_and_test,$(CC) $(CFLAGS) $(DFLAGS) -I$(INCLUDE_PATH) -o $@ ${LIBFT} ${OBJS} ${OBJ_MAIN})
+			@echo
+
+$(LIBFT):
+			@${MAKE} --no-print-directory -C ${LIBFT_DIR}
 
 setup:
 			@$(call save_files_changed)
@@ -256,6 +261,7 @@ objs/%.o: $(SRCS_PATH)/%$(FILE_EXTENSION)
 
 clean:
 			@rm -rf objs
+			@${MAKE} --no-print-directory clean -C ${LIBFT_DIR}
 			@printf "%-53b%b" "$(COM_COLOR)clean:" "$(OK_COLOR)[✓]$(NO_COLOR)\n"
 
 fclean:		clean
