@@ -10,9 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "cub3d.h"
 
-int main()
+int main(int argc, char **argv)
 {
-	ft_print();
+	if (argc == 2)
+	{
+		check_map_name(argv[1]);
+	}
+	else
+		p_error(N_ARGS);
 }

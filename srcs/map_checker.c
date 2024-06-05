@@ -1,18 +1,31 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 17:22:33 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/06/04 15:24:11 by dmeirele         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "cub3d.h"
 
-void    ft_print()
+void	check_map_name(char *input)
 {
-  
+	size_t	i;
+
+	i = ft_strlen(input);
+	if (!(input[i - 1] == 'b' && input[i - 2] == 'u'
+		  && input[i - 3] == 'c' && input[i - 4] == '.'
+		  && input[i - 5]))
+		p_error(MAP_NAME);
+}
+
+void	check_file(char *input)
+{
+	int	fd;
+
+	fd = open(input, O_RDONLY);
+	if (fd == -1)
+		p_error(OPEN_ERROR);
+}
+
+void	check_map_config(int fd)
+{
+	char	*line;
+	int 	configs;
+
+	line = get_next_line(fd);
+	
 }
