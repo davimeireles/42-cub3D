@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: txisto-d <txisto-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 15:22:57 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/06/05 20:33:44 by txisto-d         ###   ########.fr       */
+/*   Created: 2024/06/05 20:07:25 by txisto-d          #+#    #+#             */
+/*   Updated: 2024/06/05 20:38:09 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+void	initialize_cub(t_cub3d *cub3d)
 {
-	(void) argc;
-	(void) argv;
-	t_cub3d	*cub3d;
-
-	cub3d = NULL;
-	initialize_cub(cub3d);
-	/* if (argc == 2)
-	{
-		check_map_name(argv[1]);
-		initialize_cub(cub3d);
-	}
-	else
-		p_error(N_ARGS);
-	return (0); */
+	cub3d = ft_calloc(sizeof(t_cub3d), 1);
+	cub3d->map = ft_calloc(sizeof(t_map), 1);
+	cub3d->connection = mlx_init();
+	cub3d->window = mlx_new_window(cub3d->connection, 1920, 1080, "cub3D");
+	sleep(10);
 }
