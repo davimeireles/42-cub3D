@@ -16,16 +16,19 @@ int main(int argc, char **argv)
 {
 	(void) argc;
 	(void) argv;
-	t_cub3d	*cub3d;
+	t_textures textures;
+/*	t_cub3d	*cub3d;
 
 	cub3d = NULL;
-	initialize_cub(cub3d);
-	/* if (argc == 2)
+	initialize_cub(cub3d);*/
+	 if (argc == 2)
 	{
+		init_stack(&textures);
 		check_map_name(argv[1]);
-		initialize_cub(cub3d);
+		check_file(argv[1], &textures);
+//		initialize_cub(cub3d);
 	}
 	else
 		p_error(N_ARGS);
-	return (0); */
+	return (0);
 }

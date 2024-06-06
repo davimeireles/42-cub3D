@@ -1,13 +1,15 @@
 
 # include "cub3d.h"
 
-void	p_error(e_error type)
+void	p_error(t_error type)
 {
 	if (type == N_ARGS)
-		write(2, "Invalid number of arguments.\n", 29);
+		ft_printf("Invalid number of arguments.\n");
 	else if (type == MAP_NAME)
-		write(2, "Invalid file name.\n", 19);
+		ft_printf("Invalid file name.\n");
 	else if (type == OPEN_ERROR)
-		write (2, "Error trying to open the file.\n", 31);
+		ft_printf("Error trying to open the file.\n");
+	else if (type == CONFIGS)
+		ft_printf("Missing/Wrong configuration in the file.\n");
 	exit (EXIT_FAILURE);
 }
