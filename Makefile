@@ -8,7 +8,7 @@ OBJ_DIR = objs
 #	====================		Files      		====================
 
 NAME = cub3d
-FILES = main.c error.c map_checker.c
+FILES = main.c cub3d.c #error.c map_checker.c
 
 OBJ = $(FILES:.c=.o)
 TARGET = $(addprefix $(OBJ_DIR)/, $(OBJ))
@@ -26,6 +26,7 @@ I = -I $(INC)
 WBLOCK = --no-print-directory
 
 LIBFT = -L ./libft -lft
+MLX = -L ./minilibx-linux -lmlx -lXext -lX11
 
 #	====================		Colors     		====================
 
@@ -52,16 +53,17 @@ all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(TARGET)
 	@make $(WBLOCK) -C ./libft
-	@$(CC) $(W) $(TARGET) $(LIBFT) -o $(NAME)
+	@make $(WBLOCK) -C ./minilibx-linux
+	@$(CC) $(W) $(TARGET) $(LIBFT) $(MLX) -o $(NAME)
 	@echo "$(B_GREEN)$(NAME) created$(RESET)"
 	@clear
 	@echo "\e[38;2;255;0;0m==================================================================="
-	@echo "███╗   ███╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██╗     ██╗     "
-	@echo "████╗ ████║██║████╗  ██║██║██╔════╝██║  ██║██╔════╝██║     ██║     "
-	@echo "██╔████╔██║██║██╔██╗ ██║██║███████╗███████║█████╗  ██║     ██║     "
-	@echo "██║╚██╔╝██║██║██║╚██╗██║██║╚════██║██╔══██║██╔══╝  ██║     ██║     "
-	@echo "██║ ╚═╝ ██║██║██║ ╚████║██║███████║██║  ██║███████╗███████╗███████╗"
-	@echo "╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝"
+	@echo " ██████╗██╗   ██╗██████╗ ██████╗ ██████╗ "
+	@echo "██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗"
+	@echo "██║     ██║   ██║██████╔╝ █████╔╝██║  ██║"
+	@echo "██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║"
+	@echo "╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝"
+	@echo " ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝"
 	@echo "==================================================================="
 	@echo "\e[0mThales Xisto (txisto-d) - Davi Meireles (dmeirele)"
 	@echo "$(COLOR_RESET)"
@@ -80,6 +82,7 @@ $(OBJ_DIR):
 
 clean:
 	@make $(WBLOCK) clean -C ./libft
+	@make $(WBLOCK) fclean -C ./minilibx-linux
 	@$(RM) -rf $(OBJ_DIR)
 	@echo "$(B_YELLOW)$(NAME)$(RESET):$(YELLOW) binary files deleted$(RESET)"
 
@@ -99,3 +102,17 @@ norm:
 
 leak: all
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+
+display:
+	@clear
+	@echo "\e[38;2;255;0;0m==================================================================="
+	@echo "\e[5m             ██████╗██╗   ██╗██████╗   ██████╗ ██████╗ "
+	@echo "            ██╔════╝██║   ██║██╔══██╗  ╚════██╗██╔══██╗"
+	@echo "            ██║     ██║   ██║██████╔╝   █████╔╝██║  ██║"
+	@echo "            ██║     ██║   ██║██╔══██╗   ╚═══██╗██║  ██║"
+	@echo "            ╚██████╗╚██████╔╝██████╔╝  ██████╔╝██████╔╝"
+	@echo "             ╚═════╝ ╚═════╝ ╚═════╝   ╚═════╝ ╚═════╝\e[0;38;2;255;0;0m"
+	@echo "==================================================================="
+	@echo "\e[0m        Thales Xisto (txisto-d) - Davi Meireles (dmeirele)"
+	@echo "$(COLOR_RESET)"
+	@echo "\e[?25h"

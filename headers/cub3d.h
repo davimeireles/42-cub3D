@@ -3,18 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/06/04 15:24:15 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/06/05 20:35:04 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
+
+# ifndef FOV
+#  define FOV 90
+# endif
 
 # include "libft.h"
+# include "mlx.h"
 # include <stdio.h>
+# include <sys/wait.h>
 
 /*******          STRUCTS          *******/
 
@@ -25,11 +31,6 @@ typedef enum e_error
 	OPEN_ERROR
 }	t_error;
 
-typedef struct s_configs
-{
-
-}	t_configs;
-
 /*
  * NO -> North Texture
  * SO -> South Texture
@@ -39,7 +40,7 @@ typedef struct s_configs
  * C -> Ceiling color
 */
 
-typedef enum e_textures
+typedef enum e_view
 {
 	NO,
 	SO,
@@ -47,33 +48,55 @@ typedef enum e_textures
 	EA,
 	F,
 	C
-}	e_textures;
+}	t_view;
 
 typedef struct s_textures
 {
-	int NO;
-	int SO;
-	int WE;
-	int EA;
-	int	F;
-	int C;
+	int	no;
+	int	so;
+	int	we;
+	int	ea;
+	int	f;
+	int	c;
 }	t_textures;
 
+typedef struct s_map
+{
+	void	*north;
+	void	*south;
+	void	*east;
+	void	*west;
+	void	*floor;
+	void	*ceiling;
+	char	*map;
+}	t_map;
+
+typedef struct s_cub3d
+{
+	void		*connection;
+	void		*window;
+	t_map		*map;
+}	t_cub3d;
 
 /*******          FUNCTIONS          *******/
 
-/* main.c */
+//	====================				main.c				====================
 
-int main(int argc, char **argv);
+int		main(int argc, char **argv);
 
-/* error.c */
+//	====================				error.c				====================
 
-void	p_error(e_error type);
+void	p_error(t_error type);
 
-/* map_checker.c */
+//	====================			map_checker.c			====================
 
 void	check_map_name(char *input);
 void	check_file(char *input);
 void	check_map_config(int fd);
+
+
+//	====================				cub3d.c				====================
+
+void	initialize_cub(t_cub3d *cub3d);
 
 #endif
