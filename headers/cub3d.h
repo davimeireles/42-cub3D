@@ -28,7 +28,8 @@ typedef enum e_error
 {
 	N_ARGS,
 	MAP_NAME,
-	OPEN_ERROR
+	OPEN_ERROR,
+	CONFIGS
 }	t_error;
 
 /*
@@ -91,12 +92,16 @@ void	p_error(t_error type);
 //	====================			map_checker.c			====================
 
 void	check_map_name(char *input);
-void	check_file(char *input);
-void	check_map_config(int fd);
+void	check_file(char *input, t_textures *textures);
+void	check_map_config(int fd, t_textures *textures);
 
 
 //	====================				cub3d.c				====================
 
 void	initialize_cub(t_cub3d *cub3d);
+
+/* TO MOVE */
+void	init_stack(t_textures *textures);
+int	ft_strcmp(char *s1, char *s2);
 
 #endif
