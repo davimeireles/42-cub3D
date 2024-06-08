@@ -1,9 +1,9 @@
-NO s
+NO ./sprites/wall.xpm
 SO ./sprites/wall.xpm
 WE ./sprites/wall.xpm
 EA ./sprites/wall.xpm
-F 125,200,10
 C 140,125,10
+F 125,200,10
 
 11111111
 10000001
