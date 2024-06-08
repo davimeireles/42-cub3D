@@ -12,7 +12,8 @@
 
 #include "cub3d.h"
 
-void	free_splits(char **split);
+static void	loop_checker_config(int fd, t_textures *textures);
+static void	check_if_configs_above(char *line, char *t_line, char **split_line, t_textures *textures);
 
 void	check_map_name(char *input)
 {
@@ -20,8 +21,8 @@ void	check_map_name(char *input)
 
 	i = ft_strlen(input);
 	if (!(input[i - 1] == 'b' && input[i - 2] == 'u'
-		  && input[i - 3] == 'c' && input[i - 4] == '.'
-		  && input[i - 5]))
+			&& input[i - 3] == 'c' && input[i - 4] == '.'
+			&& input[i - 5]))
 		p_error(MAP_NAME);
 }
 
@@ -33,82 +34,57 @@ void	check_file(char *input, t_textures *textures)
 	if (fd == -1)
 		p_error(OPEN_ERROR);
 	check_map_config(fd, textures);
+	close(fd);
 }
 
 void	check_map_config(int fd, t_textures *textures)
 {
+	loop_checker_config(fd, textures);
+}
+
+static void	loop_checker_config(int fd, t_textures *textures)
+{
+	char	*t_line;
 	char	*line;
 	char	**split_line;
 
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("%c", line[ft_strlen(line) - 1]);
-		split_line = ft_split(line, ' ');
-		if (!ft_strcmp(split_line[0], "NO") && split_line[1] && !split_line[2]) {
+		t_line = ft_strtrim(line, " ");
+		split_line = ft_split(t_line, ' ');
+		if (!ft_strcmp(split_line[0], "NO") && (split_line[1] && split_line[1][0] != '\n') && (!split_line[2] || split_line[2][0] == '\n'))
 			textures->no++;
-		}
-		else if (!ft_strcmp(split_line[0], "SO") && split_line[1] && !split_line[2]) {
+		else if (!ft_strcmp(split_line[0], "SO") && (split_line[1] && split_line[1][0] != '\n') && (!split_line[2] || split_line[2][0] == '\n'))
 			textures->so++;
-		}
-		else if (!ft_strcmp(split_line[0], "WE") && split_line[1] && !split_line[2]) {
+		else if (!ft_strcmp(split_line[0], "WE") && (split_line[1] && split_line[1][0] != '\n') && (!split_line[2] || split_line[2][0] == '\n'))
 			textures->we++;
-		}
-		else if (!ft_strcmp(split_line[0], "EA") && split_line[1] && !split_line[2])
+		else if (!ft_strcmp(split_line[0], "EA") && (split_line[1] && split_line[1][0] != '\n') && (!split_line[2] || split_line[2][0] == '\n'))
 			textures->ea++;
-		else if (!ft_strcmp(split_line[0], "F") && split_line[1] && !split_line[2])
+		else if (!ft_strcmp(split_line[0], "F") && (split_line[1] && split_line[1][0] != '\n') && (!split_line[2] || split_line[2][0] == '\n'))
 			textures->f++;
-		else if (!ft_strcmp(split_line[0], "C") && split_line[1] && !split_line[2])
+		else if (!ft_strcmp(split_line[0], "C") && (split_line[1] && split_line[1][0] != '\n') && (!split_line[2] || split_line[2][0] == '\n'))
 			textures->c++;
-		free(line);
-		free_splits(split_line);
+		check_if_configs_above(line, t_line, split_line, textures);
+		free_splits(split_line, line);
+		free(t_line);
 		line = get_next_line(fd);
 	}
-	if (textures->no != 1 || textures->so != 1 || textures->we != 1
-		|| textures->ea != 1 || textures->f != 1 || textures->c != 1)
-		p_error(CONFIGS);
 }
 
-/* Functions to move to other files. \/ */
-
-int	ft_strcmp(char *s1, char *s2)
+static void	check_if_configs_above(char *line, char *t_line, char **split_line, t_textures *textures)
 {
-	if (!s1 && !s2)
-		return (0);
-	if (!s1 || !s2)
-		return (1);
-	while (*s1 == *s2 && *s1 && *s2)
-	{
-		s1++;
-		s2++;
-	}
-	if ((!*s1) && (!*s2))
-		return (0);
-	if (*s1 > *s2)
-		return (*s1 - *s2);
-	else if (*s1 < *s2)
-		return (*s1 - *s2);
-	return (0);
-}
-
-void	free_splits(char **split)
-{
-	int i = 0;
-
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free (split);
-}
-
-void	init_stack(t_textures *textures)
-{
-	textures->we = 0;
-	textures->no = 0;
-	textures->c = 0;
-	textures->ea = 0;
-	textures->f = 0;
-	textures->so = 0;
+		if ((ft_strcmp(split_line[0], "NO") && ft_strcmp(split_line[0], "SO")
+			 && ft_strcmp(split_line[0], "WE") && ft_strcmp(split_line[0], "EA")
+			 && ft_strcmp(split_line[0], "F") && ft_strcmp(split_line[0], "C")
+			 && split_line[0][0] != '\n'))
+		{
+			if (textures->no != 1 || textures->so != 1 || textures->we != 1
+			|| textures->ea != 1 || textures->f != 1 || textures->c != 1)
+			{
+				free_splits(split_line, line);
+				free(t_line);
+				p_error(CONFIGS);
+			}
+		}
 }
