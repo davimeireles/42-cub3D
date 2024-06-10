@@ -8,7 +8,8 @@ OBJ_DIR = objs
 #	====================		Files      		====================
 
 NAME = cub3d
-FILES = main.c cub3d.c error.c map_checker.c utils.c
+FILES = main.c cub3d.c file_checker.c map_checker.c \
+		utils.c error.c
 
 OBJ = $(FILES:.c=.o)
 TARGET = $(addprefix $(OBJ_DIR)/, $(OBJ))
