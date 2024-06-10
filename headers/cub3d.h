@@ -21,6 +21,8 @@
 # include "mlx.h"
 # include <stdio.h>
 # include <sys/wait.h>
+# define MAX_ROWS 100
+# define MAX_COLS 100
 
 /*******          STRUCTS          *******/
 
@@ -30,6 +32,7 @@ typedef enum e_error
 	MAP_NAME,
 	OPEN_ERROR,
 	CONFIGS,
+	MEMORY
 }	t_error;
 
 /*
@@ -69,7 +72,7 @@ typedef struct s_map
 	void	*west;
 	void	*floor;
 	void	*ceiling;
-	char	*map;
+	char	**map;
 }	t_map;
 
 typedef struct s_cub3d
@@ -89,11 +92,14 @@ int		main(int argc, char **argv);
 
 void	p_error(t_error type);
 
-//	====================			map_checker.c			====================
+//	====================			file_checker.c			====================
 
-void	check_map_name(char *input);
 void	check_file(char *input, t_textures *textures);
 void	check_map_config(int fd, t_textures *textures);
+
+//	====================			map_checker.c			====================
+
+void	check_map(char *input);
 
 //	====================				cub3d.c				====================
 

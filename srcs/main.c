@@ -24,8 +24,8 @@ int main(int argc, char **argv)
 	 if (argc == 2)
 	{
 		init_stack(&textures);
-		check_map_name(argv[1]);
 		check_file(argv[1], &textures);
+		check_map(argv[1]);
 //		initialize_cub(cub3d);
 	}
 	else
