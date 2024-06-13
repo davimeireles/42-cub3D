@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 		initialize_cub(&cub3d);
 		init_stack(&textures);
 		check_file(argv[1], &textures);
-		cub3d->map->f_map = input_map(argv[1], &textures);
+		cub3d->map->f_map = input_map(argv[1], &textures, cub3d);
 		map_checker(cub3d);
 		print_colored_matrix(cub3d->map->f_map);
 		free_memory(cub3d);

@@ -14,7 +14,7 @@
 
 static int	count_lines(char *input, t_textures *textures);
 static void	fill_map(char *input, char **map, t_textures *textures);
-static char **final_map(char **map, int total_rows);
+static char **final_map(char **map, int total_rows, t_cub3d *cub3D);
 
 static int	count_lines(char *input, t_textures *textures)
 {
@@ -65,18 +65,19 @@ static void	fill_map(char *input, char **map, t_textures *textures)
 }
 
 
-char	**input_map(char *input, t_textures *textures)
+char	**input_map(char *input, t_textures *textures, t_cub3d *cub3D)
 {
 	int		total_rows;
 	char	**map = NULL;
 
+	(void) cub3D;
 	total_rows = count_lines(input, textures);
 	map = ft_calloc(sizeof(char *), total_rows);
 	fill_map(input, map, textures);
-	return (final_map(map, total_rows));
+	return (final_map(map, total_rows, cub3D));
 }
 
-static char **final_map(char **map, int total_rows)
+static char **final_map(char **map, int total_rows, t_cub3d *cub3D)
 {
 	int		i;
 	int 	j;
@@ -113,6 +114,7 @@ static char **final_map(char **map, int total_rows)
 		i--;
 	}
 	new_map = ft_calloc(sizeof(char *), (i - start + 2));
+	cub3D->map->rows = i - start + 2;
 	while(start <= i)
 		new_map[j++] = ft_strdup(map[start++]);
 	new_map[j] = NULL;
