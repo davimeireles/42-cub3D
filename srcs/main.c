@@ -14,19 +14,17 @@
 
 int main(int argc, char **argv)
 {
-	(void) argc;
-	(void) argv;
 	t_textures textures;
-/*	t_cub3d	*cub3d;
+	t_cub3d	*cub3d;
 
-	cub3d = NULL;
-	initialize_cub(cub3d);*/
 	 if (argc == 2)
 	{
+		initialize_cub(&cub3d);
 		init_stack(&textures);
 		check_file(argv[1], &textures);
-		check_map(argv[1]);
-//		initialize_cub(cub3d);
+		cub3d->map->f_map = input_map(argv[1], &textures);
+//		map_checker(cub3d);
+//		print_colored_matrix(cub3d->map->f_map);
 	}
 	else
 		p_error(N_ARGS);

@@ -5,75 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/10 18:03:06 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/06/10 18:03:06 by dmeirele         ###   ########.fr       */
+/*   Created: 2024/06/12 12:43:19 by dmeirele          #+#    #+#             */
+/*   Updated: 2024/06/12 12:43:19 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	count_lines(char *input);
-static char **fill_map(char *input, int rows);
+static void	map_padding(char **map, int	biggest_column);
+static int	find_biggest_column(char **map);
 
-static int	count_lines(char *input)
+static int find_biggest_column(char **map)
 {
-	int		fd;
-	int		rows;
-	char	*line;
-	char 	*t_line;
+	int i;
+	int c;
+	int big;
 
-	fd = open(input, O_RDONLY);
-	rows = 0;
-	line = get_next_line(fd);
-	while (line)
+	i = -1;
+	big = 0;
+	while (map[++i])
 	{
-		t_line = ft_strtrim(line, " ");
-		if (t_line[0] == '1')
-			rows++;
-		free(line);
-		free(t_line);
-		line = get_next_line(fd);
+		c = -1;
+		while(map[i][++c])
+		{
+			if (c >= big)
+				big = c;
+		}
 	}
-	close(fd);
-	return (rows);
+	return (big);
 }
 
-static char **fill_map(char *input, int rows) {
-	char **map;
-	char *line;
-	int fd;
-
-	map = ft_calloc(sizeof(char *), rows);
-	if (map)
-		p_error(MEMORY);
-	fd = open(input, O_RDONLY);
-	line = get_next_line(fd);
-	while (line) {
-	}
-}
-
-void	check_map(char *input)
+static void	map_padding(char **map, int biggest_column)
 {
-	int rows;
-	t_cub3d *cub3D;
+	int i;
+	int j;
+	char *new_line;
 
-	rows = 0;
-	rows = count_lines(input);
-	cub3D->map->map = fill_map(input, rows);
-}
-
-/*
-static void	parsing_map(int fd)
-{
-	void	flood_fill(char **map, int i, int j)
+	i = -1;
+	while (map[++i])
 	{
-		if (map[i][j] == '1' || map[i][j] == 'G')
-			return ;
-		map[i][j] = 'G';
-		flood_fill(map, i + 1, j);
-		flood_fill(map, i - 1, j);
-		flood_fill(map, i, j + 1);
-		flood_fill(map, i, j - 1);
+		new_line = ft_calloc(sizeof(char), biggest_column);
+		if (!new_line)
+			p_error(MEMORY);
+		j = -1;
+		while (++j <= biggest_column)
+		{
+			if (map[i][j] == ' ' || map[i][j] == '\t' || map[i][j] == '\n' || map[i][j] == '\0')
+				new_line[j] = 'x';
+			else if (j == biggest_column)
+				new_line[j] = '\n';
+			else
+				new_line[j] = map[i][j];
+		}
+		free(map[i]);
+		map[i] = ft_strdup(new_line);
+		free(new_line);
+	}
 }
 
+void	map_checker(t_cub3d *cub3D)
+{
+	int	biggest_column;
 
+	biggest_column = 0;
+	biggest_column = find_biggest_column(cub3D->map->f_map);
+	map_padding(cub3D->map->f_map, biggest_column);
+}

@@ -21,6 +21,7 @@
 # include "mlx.h"
 # include <stdio.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 # define MAX_ROWS 100
 # define MAX_COLS 100
 
@@ -62,6 +63,7 @@ typedef struct s_textures
 	int	ea;
 	int	f;
 	int	c;
+	int	start_map;
 }	t_textures;
 
 typedef struct s_map
@@ -72,7 +74,7 @@ typedef struct s_map
 	void	*west;
 	void	*floor;
 	void	*ceiling;
-	char	**map;
+	char	**f_map;
 }	t_map;
 
 typedef struct s_cub3d
@@ -97,17 +99,26 @@ void	p_error(t_error type);
 void	check_file(char *input, t_textures *textures);
 void	check_map_config(int fd, t_textures *textures);
 
+//	====================			map_input.c			====================
+
+char	**input_map(char *input, t_textures *textures);
+
 //	====================			map_checker.c			====================
 
-void	check_map(char *input);
+void	map_checker(t_cub3d *cub3D);
 
 //	====================				cub3d.c				====================
 
-void	initialize_cub(t_cub3d *cub3d);
+void	initialize_cub(t_cub3d **cub3d);
 
 //	====================				utils.c				====================
+
 void	free_splits(char **split, char *line);
 int		ft_strcmp(char *s1, char *s2);
 void	init_stack(t_textures *textures);
+void	print_colored_matrix(char *matrix[]);
+void	print_colored_char(char c);
+
+
 
 #endif

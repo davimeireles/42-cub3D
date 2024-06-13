@@ -43,6 +43,7 @@ static void	loop_checker_config(int fd, t_textures *textures)
 	char	*line;
 	char	**split_line;
 
+	textures->start_map = 0; // need to initialize inside the init cub.
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -61,6 +62,9 @@ static void	loop_checker_config(int fd, t_textures *textures)
 		else if (!ft_strcmp(split_line[0], "C") && (split_line[1] && split_line[1][0] != '\n') && (!split_line[2] || split_line[2][0] == '\n'))
 			textures->c++;
 		check_if_configs_above(line, t_line, split_line, textures);
+		if (textures->no != 1 || textures->so != 1 || textures->we != 1
+			|| textures->ea != 1 || textures->f != 1 || textures->c != 1)
+				textures->start_map++;
 		free_splits(split_line, line);
 		free(t_line);
 		line = get_next_line(fd);
@@ -69,6 +73,7 @@ static void	loop_checker_config(int fd, t_textures *textures)
 
 static void	check_if_configs_above(char *line, char *t_line, char **split_line, t_textures *textures)
 {
+
 		if ((ft_strcmp(split_line[0], "NO") && ft_strcmp(split_line[0], "SO")
 			 && ft_strcmp(split_line[0], "WE") && ft_strcmp(split_line[0], "EA")
 			 && ft_strcmp(split_line[0], "F") && ft_strcmp(split_line[0], "C")
