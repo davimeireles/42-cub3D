@@ -8,7 +8,7 @@ OBJ_DIR = objs
 #	====================		Files      		====================
 
 NAME = cub3d
-FILES = main.c cub3d.c file_checker.c map_checker.c \
+FILES = main.c cub3d.c file_checker.c map_input.c map_checker.c \
 		utils.c error.c
 
 OBJ = $(FILES:.c=.o)
@@ -21,7 +21,7 @@ RM = rm
 
 #	====================		Flags      		====================
 
-W = -Wall -Wextra -Werror
+W = -Wall -Wextra -Werror -g
 O = -c
 I = -I $(INC)
 WBLOCK = --no-print-directory

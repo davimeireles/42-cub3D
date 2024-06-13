@@ -54,3 +54,44 @@ int	ft_strcmp(char *s1, char *s2)
 		return (*s1 - *s2);
 	return (0);
 }
+
+void print_colored_char(char c)
+{
+	switch (c)
+	{
+		case '1':
+			ft_printf("\033[41m \033[0m");
+			break;
+		case '0':
+			ft_printf("\033[47m \033[0m");
+			break;
+		case 'x':
+			ft_printf("\033[41m \033[0m");
+			break;
+		case 'N':
+			ft_printf("\033[42m \033[0m");
+			break;
+		case 'S':
+			ft_printf("\033[42m \033[0m");
+			break;
+		case 'E':
+			ft_printf("\033[42m \033[0m");
+			break;
+		case 'W':
+			ft_printf("\033[42m \033[0m");
+			break;
+		default:
+			ft_printf(" ");
+			break;
+	}
+}
+
+void print_colored_matrix(char *matrix[])
+{
+	for (int i = 0; matrix[i]; i++)
+	{
+		for (char *p = matrix[i]; *p != '\0'; p++)
+			print_colored_char(*p);
+		ft_printf("\n");
+	}
+}

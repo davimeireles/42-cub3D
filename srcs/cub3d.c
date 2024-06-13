@@ -12,11 +12,11 @@
 
 #include "cub3d.h"
 
-void	initialize_cub(t_cub3d *cub3d)
+void	initialize_cub(t_cub3d **cub3d)
 {
-	cub3d = ft_calloc(sizeof(t_cub3d), 1);
-	cub3d->map = ft_calloc(sizeof(t_map), 1);
-	cub3d->connection = mlx_init();
-	cub3d->window = mlx_new_window(cub3d->connection, 1920, 1080, "cub3D");
-	sleep(10);
+	*cub3d = ft_calloc(sizeof(t_cub3d), 1);
+	(*cub3d)->map = ft_calloc(sizeof(t_map), 1);
+//	cub3d->connection = mlx_init();
+//	cub3d->window = mlx_new_window(cub3d->connection, 1920, 1080, "cub3D");
+//	sleep(10);
 }
