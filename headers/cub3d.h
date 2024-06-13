@@ -33,7 +33,8 @@ typedef enum e_error
 	MAP_NAME,
 	OPEN_ERROR,
 	CONFIGS,
-	MEMORY
+	MEMORY,
+	INVALID_MAP
 }	t_error;
 
 /*
@@ -75,6 +76,7 @@ typedef struct s_map
 	void	*floor;
 	void	*ceiling;
 	char	**f_map;
+	int 	p_position[2];
 }	t_map;
 
 typedef struct s_cub3d
@@ -118,6 +120,7 @@ int		ft_strcmp(char *s1, char *s2);
 void	init_stack(t_textures *textures);
 void	print_colored_matrix(char *matrix[]);
 void	print_colored_char(char c);
+void	free_memory(t_cub3d *cub3D);
 
 
 

@@ -23,8 +23,9 @@ int main(int argc, char **argv)
 		init_stack(&textures);
 		check_file(argv[1], &textures);
 		cub3d->map->f_map = input_map(argv[1], &textures);
-//		map_checker(cub3d);
-//		print_colored_matrix(cub3d->map->f_map);
+		map_checker(cub3d);
+		print_colored_matrix(cub3d->map->f_map);
+		free_memory(cub3d);
 	}
 	else
 		p_error(N_ARGS);

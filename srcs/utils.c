@@ -22,17 +22,35 @@ void	init_stack(t_textures *textures)
 	textures->so = 0;
 }
 
+void	free_memory(t_cub3d *cub3D)
+{
+	if (cub3D)
+	{
+		if (cub3D->map)
+		{
+			if (cub3D->map->f_map)
+				free_splits(cub3D->map->f_map, NULL);
+			free(cub3D->map);
+		}
+		free(cub3D);
+	}
+}
+
 void	free_splits(char **split, char *line)
 {
 	int i = 0;
 
-	free(line);
-	while (split[i])
+	if (line)
+		free(line);
+	if (split)
 	{
-		free(split[i]);
-		i++;
+		while (split[i])
+		{
+			free(split[i]);
+			i++;
+		}
+		free (split);
 	}
-	free (split);
 }
 
 int	ft_strcmp(char *s1, char *s2)

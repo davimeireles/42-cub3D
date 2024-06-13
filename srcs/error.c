@@ -12,6 +12,8 @@ void	p_error(t_error type)
 	else if (type == CONFIGS)
 		ft_printf("Error\nMissing/Wrong configuration in the file.\n");
 	else if (type == MEMORY)
-		ft_printf("Error\nBad Alloc Error\n");
+		ft_printf("Error\nBad alloc error.\n");
+	else if (type == INVALID_MAP)
+		ft_printf("Error\nInvalid map.\n");
 	exit (EXIT_FAILURE);
 }

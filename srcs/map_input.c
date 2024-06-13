@@ -90,14 +90,13 @@ static char **final_map(char **map, int total_rows)
 	while (map[i])
 	{
 		t_line = ft_strtrim(map[i], " ");
-		if (!ft_strcmp(t_line, "\n")) {
+		if (!ft_strcmp(t_line, "\n"))
 			start++;
+		else
+		{
+			free(t_line);
+			break ;
 		}
-			else
-			{
-				free(t_line);
-				break;
-			}
 		free(t_line);
 		i++;
 	}
@@ -110,26 +109,13 @@ static char **final_map(char **map, int total_rows)
 			free(t_line);
 			break;
 		}
+		free(t_line);
 		i--;
 	}
-	new_map = ft_calloc(sizeof(char *), (i - start + 1));
+	new_map = ft_calloc(sizeof(char *), (i - start + 2));
 	while(start <= i)
 		new_map[j++] = ft_strdup(map[start++]);
+	new_map[j] = NULL;
 	free_splits(map, NULL);
 	return (new_map);
 }
-
-/*
-static void	parsing_map(int fd)
-{
-	void	flood_fill(char **map, int i, int j)
-	{
-		if (map[i][j] == '1' || map[i][j] == 'G')
-			return ;
-		map[i][j] = 'G';
-		flood_fill(map, i + 1, j);
-		flood_fill(map, i - 1, j);
-		flood_fill(map, i, j + 1);
-		flood_fill(map, i, j - 1);
-}
-*/
