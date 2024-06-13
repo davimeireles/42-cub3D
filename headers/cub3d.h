@@ -22,6 +22,7 @@
 # include <stdio.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <stdbool.h>
 # define MAX_ROWS 100
 # define MAX_COLS 100
 
@@ -77,6 +78,8 @@ typedef struct s_map
 	void	*ceiling;
 	char	**f_map;
 	int 	p_position[2];
+	int 	rows;
+	int 	columns;
 }	t_map;
 
 typedef struct s_cub3d
@@ -103,7 +106,7 @@ void	check_map_config(int fd, t_textures *textures);
 
 //	====================			map_input.c			====================
 
-char	**input_map(char *input, t_textures *textures);
+char	**input_map(char *input, t_textures *textures, t_cub3d *cub3D);
 
 //	====================			map_checker.c			====================
 

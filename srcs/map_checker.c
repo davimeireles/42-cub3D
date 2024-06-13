@@ -12,9 +12,20 @@
 
 #include "cub3d.h"
 
-static void	map_padding(char **map, int	biggest_column);
 static int	find_biggest_column(char **map);
-static void find_player_position(t_cub3d *cub3D);
+static void	map_padding(char **map, int	biggest_column);
+static void	find_player_position(t_cub3d *cub3D);
+static bool	is_valid_map(t_cub3d *cub3D, int x, int y);
+
+void	map_checker(t_cub3d *cub3D)
+{
+	cub3D->map->columns = find_biggest_column(cub3D->map->f_map);
+	map_padding(cub3D->map->f_map,cub3D->map->columns);
+	find_player_position(cub3D);
+	// need to send a copy of the map to not change the main map
+	if(!is_valid_map(cub3D, cub3D->map->p_position[0], cub3D->map->p_position[1]))
+		p_error(INVALID_MAP);
+}
 
 static int find_biggest_column(char **map)
 {
@@ -77,16 +88,6 @@ static void	map_padding(char **map, int biggest_column)
 	}
 }
 
-void	map_checker(t_cub3d *cub3D)
-{
-	int	biggest_column;
-
-	biggest_column = 0;
-	biggest_column = find_biggest_column(cub3D->map->f_map);
-	map_padding(cub3D->map->f_map, biggest_column);
-	find_player_position(cub3D);
-}
-
 static void find_player_position(t_cub3d *cub3D)
 {
 	int i;
@@ -109,22 +110,30 @@ static void find_player_position(t_cub3d *cub3D)
 			}
 		}
 	}
-	if (count > 1)
+	if (count > 1 || count == 0)
 	{
 		free_memory(cub3D);
 		p_error(INVALID_MAP);
 	}
 }
 
-
-/*
-void	flood_fill(char **map, int i, int j)
+static bool	is_valid_map(t_cub3d *cub3D, int x, int y)
 {
-	if (map[i][j] == '1' || map[i][j] == 'G')
-		return ;
-	map[i][j] = 'G';
-	flood_fill(map, i + 1, j);
-	flood_fill(map, i - 1, j);
-	flood_fill(map, i, j + 1);
-	flood_fill(map, i, j - 1);
-}*/
+	bool	up;
+	bool	down;
+	bool	left;
+	bool	right;
+
+	if (x < 0 || x >= cub3D->map->rows - 1 || y < 0 || y >= cub3D->map->columns)
+		return false;
+	if (cub3D->map->f_map[x][y] == '1' || cub3D->map->f_map[x][y] == 'P')
+		return true;
+	if (x == 0 || x == cub3D->map->rows - 1 || y == 0 || y == cub3D->map->columns)
+		return false;
+	cub3D->map->f_map[x][y] = 'P';
+	up = is_valid_map(cub3D, x - 1, y);
+	down = is_valid_map(cub3D, x + 1, y);
+	left = is_valid_map(cub3D, x, y - 1);
+	right = is_valid_map(cub3D, x, y + 1);
+	return (up && down && left && right);
+}

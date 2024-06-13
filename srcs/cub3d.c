@@ -18,6 +18,8 @@ void	initialize_cub(t_cub3d **cub3d)
 	(*cub3d)->map = ft_calloc(sizeof(t_map), 1);
 	(*cub3d)->map->p_position[0] = 0;
 	(*cub3d)->map->p_position[0] = 0;
+	(*cub3d)->map->rows = 0;
+	(*cub3d)->map->columns = 0;
 //	cub3d->connection = mlx_init();
 //	cub3d->window = mlx_new_window(cub3d->connection, 1920, 1080, "cub3D");
 //	sleep(10);
