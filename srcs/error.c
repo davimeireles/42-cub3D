@@ -1,7 +1,7 @@
 
 # include "cub3d.h"
 
-void	p_error(t_error type)
+void	p_error(t_error type, t_cub3d *cub3d)
 {
 	if (type == N_ARGS)
 		ft_printf("Error\nInvalid number of arguments.\n");
@@ -15,5 +15,6 @@ void	p_error(t_error type)
 		ft_printf("Error\nBad alloc error.\n");
 	else if (type == INVALID_MAP)
 		ft_printf("Error\nInvalid map.\n");
-	exit (EXIT_FAILURE);
+	free_memory(cub3d);
+	exit(EXIT_FAILURE);
 }

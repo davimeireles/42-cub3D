@@ -47,16 +47,6 @@ typedef enum e_error
  * C -> Ceiling color
 */
 
-typedef enum e_view
-{
-	NO,
-	SO,
-	WE,
-	EA,
-	F,
-	C
-}	t_view;
-
 typedef struct s_textures
 {
 	int	no;
@@ -65,21 +55,24 @@ typedef struct s_textures
 	int	ea;
 	int	f;
 	int	c;
-	int	start_map;
+
+	int file_rows;
 }	t_textures;
 
 typedef struct s_map
 {
-	void	*north;
-	void	*south;
-	void	*east;
-	void	*west;
-	void	*floor;
-	void	*ceiling;
-	char	**f_map;
-	int 	p_position[2];
-	int 	rows;
-	int 	columns;
+	void		*north;
+	void		*south;
+	void		*east;
+	void		*west;
+	void		*floor;
+	void		*ceiling;
+	char		**f_map;
+	int 		p_position[2];
+	int 		rows;
+	int			columns;
+	int			start_map;
+	t_textures	*textures;
 }	t_map;
 
 typedef struct s_cub3d
@@ -97,20 +90,22 @@ int		main(int argc, char **argv);
 
 //	====================				error.c				====================
 
-void	p_error(t_error type);
+void	p_error(t_error type, t_cub3d *cub3d);
 
 //	====================			file_checker.c			====================
 
-void	check_file(char *input, t_textures *textures);
-void	check_map_config(int fd, t_textures *textures);
+void	file_checker(char *input, t_cub3d *cub3d);
+void	check_file_config(char *input, t_cub3d *cub3d);
+
+//	====================			map_checker.c			====================
+
+void	map_checker(char **data_file, t_cub3d *cub3D);
 
 //	====================			map_input.c			====================
 
 char	**input_map(char *input, t_textures *textures, t_cub3d *cub3D);
 
-//	====================			map_checker.c			====================
 
-void	map_checker(t_cub3d *cub3D);
 
 //	====================				cub3d.c				====================
 
@@ -118,13 +113,14 @@ void	initialize_cub(t_cub3d **cub3d);
 
 //	====================				utils.c				====================
 
-void	free_splits(char **split, char *line);
+void	free_splits(char **split);
 int		ft_strcmp(char *s1, char *s2);
-void	init_stack(t_textures *textures);
 void	print_colored_matrix(char *matrix[]);
 void	print_colored_char(char c);
 void	free_memory(t_cub3d *cub3D);
-
-
+int		count_words(char *row);
+void	count_file_rows(int fd, t_textures *textures);
+char	**pass_data_array(int fd, t_textures *textures);
+int		find_map_start(char **data_info);
 
 #endif

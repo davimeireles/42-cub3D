@@ -12,36 +12,26 @@
 
 #include "cub3d.h"
 
-void	init_stack(t_textures *textures)
-{
-	textures->we = 0;
-	textures->no = 0;
-	textures->c = 0;
-	textures->ea = 0;
-	textures->f = 0;
-	textures->so = 0;
-}
-
 void	free_memory(t_cub3d *cub3D)
 {
 	if (cub3D)
 	{
 		if (cub3D->map)
 		{
+			if (cub3D->map->textures)
+				free(cub3D->map->textures);
 			if (cub3D->map->f_map)
-				free_splits(cub3D->map->f_map, NULL);
+				free_splits(cub3D->map->f_map);
 			free(cub3D->map);
 		}
 		free(cub3D);
 	}
 }
 
-void	free_splits(char **split, char *line)
+void	free_splits(char **split)
 {
 	int i = 0;
 
-	if (line)
-		free(line);
 	if (split)
 	{
 		while (split[i])
@@ -91,4 +81,90 @@ void print_colored_matrix(char *matrix[])
 			print_colored_char(*p);
 		ft_printf("\n");
 	}
+}
+
+int count_words(char *row)
+{
+	int i;
+	int words;
+
+	i = 0;
+	words = 0;
+	while (row[i])
+	{
+		while (row[i] && (row[i] == ' ' || row[i] == '\t' || row[i] == '\n'))
+			i++;
+		if (row[i])
+			words++;
+		while (row[i] && row[i] != ' ' && row[i] != '\t')
+			i++;
+	}
+	return (words);
+}
+
+void	count_file_rows(int fd, t_textures *textures)
+{
+	char	*row;
+
+	row = get_next_line(fd);
+	while (row)
+	{
+		textures->file_rows++;
+		free(row);
+		row = get_next_line(fd);
+	}
+	free(row);
+}
+
+char	**pass_data_array(int fd, t_textures *textures)
+{
+	char	**data_file;
+	char 	*row;
+	int 	i;
+
+	i = 0;
+	data_file = ft_calloc(sizeof(char *), textures->file_rows + 1);
+	if (!data_file)
+		return (NULL);
+	row = get_next_line(fd);
+	while (row)
+	{
+		data_file[i] = ft_strdup(row);
+		if (!data_file[i])
+		{
+			free_splits(data_file);
+			return NULL;
+		}
+		free(row);
+		row = get_next_line(fd);
+		i++;
+	}
+	free(row);
+	return (data_file);
+}
+
+int	find_map_start(char **data_info)
+{
+	int		i;
+	char	**s_line;
+
+	i = -1;
+	while (data_info[++i])
+	{
+		s_line = ft_split(data_info[i], ' ');
+		if (!ft_strcmp(s_line[0], "NO") || !ft_strcmp(s_line[0], "SO")
+			|| !ft_strcmp(s_line[0], "WE") || !ft_strcmp(s_line[0], "EA")
+			|| !ft_strcmp(s_line[0], "F") || !ft_strcmp(s_line[0], "C")
+			|| !ft_strcmp(s_line[0], "\n"))
+		{
+			free_splits(s_line);
+			continue ;
+		}
+		else
+		{
+			free_splits(s_line);
+			return (i);
+		}
+	}
+	return (i);
 }

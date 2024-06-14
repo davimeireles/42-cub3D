@@ -102,7 +102,7 @@ norm:
 	norminette -R CheckForbiddenSourceHeader headers/*.h srcs/*.c srcs/**/*.c
 
 leak: all
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) maps/map1.cub
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) maps/map.cub
 
 display:
 	@clear
