@@ -12,23 +12,20 @@
 
 #include "cub3d.h"
 
-
-static char **padding_map(char **map, t_cub3d *cub3D);
-static void get_biggest_column(char **map, t_cub3d *cub3D);
+static char	**padding_map(char **map, t_cub3d *cub3D);
+static void	get_biggest_column(char **map, t_cub3d *cub3D);
 static void	count_map_rows(char **data_file, t_cub3d *cub3D);
 static char	*padding_aux(char *map, char *line, t_cub3d *cub3D);
 static void	check_invalid_character(char **map, t_cub3d *cub3D);
 static bool	is_valid_map(char **map, t_cub3d *cub3D, int x, int y);
-static void find_player_position(t_cub3d *cub3D, char **filled_map);
-static char **extract_map_from_file(char **data_file, t_cub3d *cub3D);
+static void	find_player_position(t_cub3d *cub3D, char **filled_map);
+static char	**extract_map_from_file(char **data_file, t_cub3d *cub3D);
 static char	**extract_map_to_struct(char **map, t_cub3d *cub3D);
-
 
 void	map_checker(char **data_file, t_cub3d *cub3D)
 {
-
 	char	**map;
-	char 	**filled_map;
+	char	**filled_map;
 
 	count_map_rows(data_file, cub3D);
 	map = extract_map_from_file(data_file, cub3D);
@@ -39,7 +36,8 @@ void	map_checker(char **data_file, t_cub3d *cub3D)
 	free_splits(map);
 	find_player_position(cub3D, filled_map);
 	cub3D->map->f_map = extract_map_to_struct(filled_map, cub3D);
-	if (!is_valid_map(filled_map, cub3D, cub3D->map->p_position[0], cub3D->map->p_position[1]))
+	if (is_valid_map(filled_map, cub3D,
+			cub3D->map->p_position[0], cub3D->map->p_position[1]))
 	{
 		free_splits(filled_map);
 		p_error(INVALID_MAP, cub3D);
@@ -49,7 +47,7 @@ void	map_checker(char **data_file, t_cub3d *cub3D)
 
 static void	count_map_rows(char **data_file, t_cub3d *cub3D)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (data_file[++i])
@@ -59,19 +57,17 @@ static void	count_map_rows(char **data_file, t_cub3d *cub3D)
 	}
 }
 
-static char **extract_map_from_file(char **data_file, t_cub3d *cub3D)
+static char	**extract_map_from_file(char **data_file, t_cub3d *cub3D)
 {
-	int 	i;
-	int 	row;
+	int		i;
+	int		row;
 	char	**map;
-
 
 	i = -1;
 	row = 0;
 	map = ft_calloc(sizeof(char *), cub3D->map->rows + 1);
-	if (!map) {
+	if (!map)
 		return (NULL);
-	}
 	while (data_file[++i])
 	{
 		if (i >= cub3D->map->start_map)
@@ -83,11 +79,11 @@ static char **extract_map_from_file(char **data_file, t_cub3d *cub3D)
 	return (map);
 }
 
-static void get_biggest_column(char **map, t_cub3d *cub3D)
+static void	get_biggest_column(char **map, t_cub3d *cub3D)
 {
-	int i;
-	int j;
-	int columns;
+	int	i;
+	int	j;
+	int	columns;
 
 	i = -1;
 	columns = 0;
@@ -105,8 +101,8 @@ static void get_biggest_column(char **map, t_cub3d *cub3D)
 
 static void	check_invalid_character(char **map, t_cub3d *cub3D)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (map[++i])
@@ -125,7 +121,7 @@ static void	check_invalid_character(char **map, t_cub3d *cub3D)
 	}
 }
 
-static char **padding_map(char **map, t_cub3d *cub3D)
+static char	**padding_map(char **map, t_cub3d *cub3D)
 {
 	int		i;
 	char	*new_line;
@@ -150,8 +146,8 @@ static char **padding_map(char **map, t_cub3d *cub3D)
 
 static char	*padding_aux(char *map, char *line, t_cub3d *cub3D)
 {
-	int j;
-	int i;
+	int	j;
+	int	i;
 
 	j = -1;
 	i = 0;
@@ -159,7 +155,8 @@ static char	*padding_aux(char *map, char *line, t_cub3d *cub3D)
 	{
 		if (map[j])
 		{
-			if (map[j] == ' ' || map[j] == '\t' || map[j] == '\n' || map[j] == '\0')
+			if (map[j] == ' ' || map[j] == '\t'
+				|| map[j] == '\n' || map[j] == '\0')
 				line[i] = 'x';
 			else
 				line[i] = map[j];
@@ -175,11 +172,11 @@ static char	*padding_aux(char *map, char *line, t_cub3d *cub3D)
 	return (line);
 }
 
-static void find_player_position(t_cub3d *cub3D, char **filled_map)
+static void	find_player_position(t_cub3d *cub3D, char **filled_map)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = -1;
 	count = 0;
@@ -204,10 +201,10 @@ static void find_player_position(t_cub3d *cub3D, char **filled_map)
 	}
 }
 
-static char **extract_map_to_struct(char **map, t_cub3d *cub3D)
+static char	**extract_map_to_struct(char **map, t_cub3d *cub3D)
 {
-	int i;
-	char **new_map;
+	int		i;
+	char	**new_map;
 
 	i = -1;
 	new_map = ft_calloc(sizeof(char *), cub3D->map->rows + 1);
@@ -226,11 +223,12 @@ static bool	is_valid_map(char **map, t_cub3d *cub3D, int x, int y)
 	bool	right;
 
 	if (x < 0 || x >= cub3D->map->rows - 1 || y < 0 || y >= cub3D->map->columns)
-		return false;
+		return (false);
 	if (map[x][y] == '1' || map[x][y] == 'P')
-		return true;
-	if (x == 0 || x == cub3D->map->rows - 1 || y == 0 || y == cub3D->map->columns)
-		return false;
+		return (true);
+	if (x == 0 || x == cub3D->map->rows - 1
+		|| y == 0 || y == cub3D->map->columns)
+		return (false);
 	map[x][y] = 'P';
 	up = is_valid_map(map, cub3D, x - 1, y);
 	down = is_valid_map(map, cub3D, x + 1, y);
