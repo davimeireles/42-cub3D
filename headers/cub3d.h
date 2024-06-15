@@ -55,21 +55,20 @@ typedef struct s_textures
 	int	ea;
 	int	f;
 	int	c;
-
-	int file_rows;
+	int	file_rows;
 }	t_textures;
 
 typedef struct s_map
 {
-	void		*north;
-	void		*south;
-	void		*east;
-	void		*west;
-	void		*floor;
-	void		*ceiling;
+	char		*north;
+	char		*south;
+	char		*east;
+	char		*west;
+	char		*floor;
+	char		*ceiling;
 	char		**f_map;
-	int 		p_position[2];
-	int 		rows;
+	int			p_position[2];
+	int			rows;
 	int			columns;
 	int			start_map;
 	t_textures	*textures;
@@ -100,12 +99,6 @@ void	check_file_config(char *input, t_cub3d *cub3d);
 //	====================			map_checker.c			====================
 
 void	map_checker(char **data_file, t_cub3d *cub3D);
-
-//	====================			map_input.c			====================
-
-char	**input_map(char *input, t_textures *textures, t_cub3d *cub3D);
-
-
 
 //	====================				cub3d.c				====================
 

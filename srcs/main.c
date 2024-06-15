@@ -12,11 +12,11 @@
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_cub3d	*cub3d;
 
-	 if (argc == 2)
+	if (argc == 2)
 	{
 		initialize_cub(&cub3d);
 		file_checker(argv[1], cub3d);

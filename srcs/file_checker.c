@@ -13,8 +13,9 @@
 #include "cub3d.h"
 
 static void	check_has_configs(char **data_file, t_cub3d *cub3d);
-static void	check_number_args_config(char **data_file, t_cub3d *cub3D, int i, int error);
-static void	check_if_configs_above(char **data_file , t_cub3d *cub3D);
+static void	check_number_args_config(char **data_file, t_cub3d *cub3D,
+				int i, int error);
+static void	check_if_configs_above(char **data_file, t_cub3d *cub3D);
 
 void	file_checker(char *input, t_cub3d *cub3d)
 {
@@ -23,8 +24,8 @@ void	file_checker(char *input, t_cub3d *cub3d)
 
 	i = ft_strlen(input);
 	if (!(input[i - 1] == 'b' && input[i - 2] == 'u'
-		  && input[i - 3] == 'c' && input[i - 4] == '.'
-		  && input[i - 5]))
+			&& input[i - 3] == 'c' && input[i - 4] == '.'
+			&& input[i - 5]))
 		p_error(MAP_NAME, cub3d);
 	fd = open(input, O_RDONLY);
 	if (fd == -1)
@@ -55,6 +56,9 @@ void	check_file_config(char *input, t_cub3d *cub3d)
 	check_number_args_config(data_file, cub3d, -1, 0);
 	check_if_configs_above(data_file, cub3d);
 	cub3d->map->start_map = find_map_start(data_file);
+	// create a new extract configs to struct
+	// fill info inside struct about configurations and make validation
+	// using the data_file array
 	map_checker(data_file, cub3d);
 }
 
@@ -83,7 +87,8 @@ static void	check_has_configs(char **data_file, t_cub3d *cub3d)
 	}
 }
 
-static void	check_number_args_config(char **data_file, t_cub3d *cub3D, int i, int error)
+static void	check_number_args_config(char **data_file, t_cub3d *cub3D,
+						int i, int error)
 {
 	char	**s_line;
 
@@ -111,7 +116,7 @@ static void	check_number_args_config(char **data_file, t_cub3d *cub3D, int i, in
 	}
 }
 
-static void	check_if_configs_above(char **data_file , t_cub3d *cub3D)
+static void	check_if_configs_above(char **data_file, t_cub3d *cub3D)
 {
 	int		i;
 	int		flag;
@@ -123,8 +128,8 @@ static void	check_if_configs_above(char **data_file , t_cub3d *cub3D)
 	{
 		s_line = ft_split(data_file[i], ' ');
 		if (!ft_strcmp(s_line[0], "NO") || !ft_strcmp(s_line[0], "SO")
-		|| !ft_strcmp(s_line[0], "WE") || !ft_strcmp(s_line[0], "EA")
-		|| !ft_strcmp(s_line[0], "F") || !ft_strcmp(s_line[0], "C"))
+			|| !ft_strcmp(s_line[0], "WE") || !ft_strcmp(s_line[0], "EA")
+			|| !ft_strcmp(s_line[0], "F") || !ft_strcmp(s_line[0], "C"))
 			flag++;
 		else
 		{
@@ -138,4 +143,3 @@ static void	check_if_configs_above(char **data_file , t_cub3d *cub3D)
 		free_splits(s_line);
 	}
 }
-

@@ -30,8 +30,9 @@ void	free_memory(t_cub3d *cub3D)
 
 void	free_splits(char **split)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	if (split)
 	{
 		while (split[i])
@@ -63,18 +64,19 @@ int	ft_strcmp(char *s1, char *s2)
 	return (0);
 }
 
-void print_colored_char(char c)
+void	print_colored_char(char c)
 {
-	 if (c == '0')
-		 ft_printf("\033[47m \033[0m");
-	 else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		 ft_printf("\033[42m \033[0m");
-	 else
-		 ft_printf("\033[41m \033[0m");
+	if (c == '0')
+		ft_printf("\033[47m \033[0m");
+	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		ft_printf("\033[42m \033[0m");
+	else
+		ft_printf("\033[41m \033[0m");
 }
 
-void print_colored_matrix(char *matrix[])
+void	print_colored_matrix(char *matrix[])
 {
+	/* change for while */
 	for (int i = 0; matrix[i]; i++)
 	{
 		for (char *p = matrix[i]; *p != '\0'; p++)
@@ -83,10 +85,10 @@ void print_colored_matrix(char *matrix[])
 	}
 }
 
-int count_words(char *row)
+int	count_words(char *row)
 {
-	int i;
-	int words;
+	int	i;
+	int	words;
 
 	i = 0;
 	words = 0;
@@ -119,8 +121,8 @@ void	count_file_rows(int fd, t_textures *textures)
 char	**pass_data_array(int fd, t_textures *textures)
 {
 	char	**data_file;
-	char 	*row;
-	int 	i;
+	char	*row;
+	int		i;
 
 	i = 0;
 	data_file = ft_calloc(sizeof(char *), textures->file_rows + 1);
@@ -133,7 +135,7 @@ char	**pass_data_array(int fd, t_textures *textures)
 		if (!data_file[i])
 		{
 			free_splits(data_file);
-			return NULL;
+			return (NULL);
 		}
 		free(row);
 		row = get_next_line(fd);

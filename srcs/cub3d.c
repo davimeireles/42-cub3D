@@ -35,7 +35,6 @@ static void	initialize_textures(t_cub3d **cub3d)
 	(*cub3d)->map->textures->ea = 0;
 	(*cub3d)->map->textures->f = 0;
 	(*cub3d)->map->textures->so = 0;
-
 	(*cub3d)->map->textures->file_rows = 0;
 }
 
@@ -46,4 +45,10 @@ static void	initialize_map(t_cub3d **cub3d)
 	(*cub3d)->map->start_map = 0;
 	(*cub3d)->map->rows = 0;
 	(*cub3d)->map->columns = 0;
+	(*cub3d)->map->north = NULL;
+	(*cub3d)->map->south = NULL;
+	(*cub3d)->map->west = NULL;
+	(*cub3d)->map->east = NULL;
+	(*cub3d)->map->ceiling = NULL;
+	(*cub3d)->map->floor = NULL;
 }
