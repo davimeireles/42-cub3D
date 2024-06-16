@@ -35,7 +35,8 @@ typedef enum e_error
 	OPEN_ERROR,
 	CONFIGS,
 	MEMORY,
-	INVALID_MAP
+	INVALID_MAP,
+	RGB
 }	t_error;
 
 /*
@@ -85,35 +86,186 @@ typedef struct s_cub3d
 
 //	====================				main.c				====================
 
+/**
+ * @brief Main function, will call other functions for execution of the program.
+ *
+ * @param argc Number of arguments passed.
+ * @param argv Arguments e.g(program name and map path).
+ * @return Return Success.
+ */
 int		main(int argc, char **argv);
 
 //	====================				error.c				====================
 
+/**
+ * @brief Will send a error message to file descriptor 2 and exit the program.
+ *
+ * @param type Enum type from the error to check what message need to print.
+ * @param cub3d Struct containing all the parameters for the program.
+ */
 void	p_error(t_error type, t_cub3d *cub3d);
 
 //	====================			file_checker.c			====================
 
-void	file_checker(char *input, t_cub3d *cub3d);
+/**
+ * @brief Checks if inside the file we have all the configurations needed
+ * by the program and if this configurations was above from the map struct.
+ *
+ * @param input Path to the map file.
+ * @param cub3d Struct containing all the parameters for the program.
+ */
 void	check_file_config(char *input, t_cub3d *cub3d);
 
-//	====================			map_checker.c			====================
+//	====================		map_checker.c		====================
 
+/**
+ * @brief Checks if map contain all that was need to make it a valid map
+ * and fill the struct with some information.
+ *
+ * @param data_file Array with the information extracted from opened input file.
+ * @param cub3D Struct containing all the parameters for the program.
+ */
 void	map_checker(char **data_file, t_cub3d *cub3D);
 
+//	====================		map_checker_2.c		====================
+
+/**
+ * @brief Checks if the extension map name is a valid one.
+ *
+ * @param input Path to the map file.
+ * @param cub3d Struct containing all the parameters for the program.
+ */
+void	check_map_name(char *input, t_cub3d *cub3d);
+
+/**
+ *
+ * @param map
+ * @param cub3D
+ * @return
+ */
+char	**extract_map_to_struct(char **map, t_cub3d *cub3D);
+
+/**
+ *
+ * @param cub3D
+ * @param filled_map
+ */
+void	find_player_position(t_cub3d *cub3D, char **filled_map);
+
+/**
+ *
+ * @param map
+ * @param cub3D
+ * @param x
+ * @param y
+ * @return
+ */
+bool	is_valid_map(char **map, t_cub3d *cub3D, int x, int y);
+
+/**
+ *
+ * @param map
+ * @param cub3D
+ * @return
+ */
+char	**padding_map(char **map, t_cub3d *cub3D);
 //	====================				cub3d.c				====================
 
+/**
+ * @brief Will initialize all the variables from the struct.
+ *
+ * @param cub3d Struct containing all the parameters for the program.
+ */
 void	initialize_cub(t_cub3d **cub3d);
 
 //	====================				utils.c				====================
 
-void	free_splits(char **split);
-int		ft_strcmp(char *s1, char *s2);
-void	print_colored_matrix(char *matrix[]);
-void	print_colored_char(char c);
+/**
+ * @brief Will freed the memory from the struct t_cub3d passed by parameter.
+ *
+ * @param cub3D Struct containing all the parameters for the program.
+ */
 void	free_memory(t_cub3d *cub3D);
+
+/**
+ * @brief Will split the *array[] passed by parameter.
+ *
+ * @param split *array[] with the info to be freed.
+ */
+void	free_splits(char **split);
+
+/**
+ * @brief Used to compare two strings.
+ *
+ * @param s1 First string to be compared with the second one.
+ * @param s2 Second string to be compared with the first one.
+ * @return Returns 1 if the string was different or 0 if its equal.
+ */
+int		ft_strcmp(char *s1, char *s2);
+
+/**
+ * @brief Will print on the terminal *array[] passed by parameter.
+ *
+ * @param matrix *array[] with the info to be printed.
+ */
+void	print_colored_matrix(char *matrix[]);
+
+//	====================		utils_2.c		====================
+
+/**
+ * @brief Will receive a row and will check how many words it have.
+ *
+ * @param row The row passed by parameter to check it.
+ * @return Returns the number of words inside the row.
+ */
 int		count_words(char *row);
+
+/**
+ * @brief Check how many rows the file passed by parameter has.
+ *
+ * @param fd The file opened.
+ * @param textures Struct containing all the textures for the program.
+ */
 void	count_file_rows(int fd, t_textures *textures);
+
+/**
+ * @brief Fill the file opened and creat a new *array[] with the information.
+ *
+ * @param fd The file opened.
+ * @param textures Struct containing all the textures for the program.
+ * @return Returns the new *array[] with the information extracted from the file.
+ */
 char	**pass_data_array(int fd, t_textures *textures);
+
+/**
+ * @brief Find the position where the configs finished and start the map.
+ *
+ * @param data_info Array with the information extracted from opened input file.
+ * @return Integer with the number of the line that starts the real map
+ * skipping the configuration.
+ */
 int		find_map_start(char **data_info);
+
+/**
+ * @brief Will freed the memory from the information
+ * passed by parameter.
+ *
+ * @param data_file Array with the information extracted from opened input file.
+ * @param s_line Line used to extract information
+ * splitted from the data_file array.
+ * @param cub3D Struct containing all the parameters for the program.
+ */
+void	free_arrays(char **data_file, char **s_line, t_cub3d *cub3D);
+
+//	====================		utils_3.c		====================
+
+/**
+ *
+ * @param map
+ * @param line
+ * @param cub3D
+ * @return
+ */
+char	*padding_aux(char *map, char *line, t_cub3d *cub3D);
 
 #endif
