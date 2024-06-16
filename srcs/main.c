@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		initialize_cub(&cub3d);
-		file_checker(argv[1], cub3d);
+		check_map_name(argv[1], cub3d);
 		check_file_config(argv[1], cub3d);
 		print_colored_matrix(cub3d->map->f_map);
 		free_memory(cub3d);

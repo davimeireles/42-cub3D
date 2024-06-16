@@ -16,23 +16,7 @@ static void	check_has_configs(char **data_file, t_cub3d *cub3d);
 static void	check_number_args_config(char **data_file, t_cub3d *cub3D,
 				int i, int error);
 static void	check_if_configs_above(char **data_file, t_cub3d *cub3D);
-
-void	file_checker(char *input, t_cub3d *cub3d)
-{
-	int		fd;
-	size_t	i;
-
-	i = ft_strlen(input);
-	if (!(input[i - 1] == 'b' && input[i - 2] == 'u'
-			&& input[i - 3] == 'c' && input[i - 4] == '.'
-			&& input[i - 5]))
-		p_error(MAP_NAME, cub3d);
-	fd = open(input, O_RDONLY);
-	if (fd == -1)
-		p_error(OPEN_ERROR, cub3d);
-	count_file_rows(fd, cub3d->map->textures);
-	close(fd);
-}
+static void	check_rgb_config(char **data_file, char **s_line, t_cub3d *cub3D);
 
 void	check_file_config(char *input, t_cub3d *cub3d)
 {
@@ -56,9 +40,6 @@ void	check_file_config(char *input, t_cub3d *cub3d)
 	check_number_args_config(data_file, cub3d, -1, 0);
 	check_if_configs_above(data_file, cub3d);
 	cub3d->map->start_map = find_map_start(data_file);
-	// create a new extract configs to struct
-	// fill info inside struct about configurations and make validation
-	// using the data_file array
 	map_checker(data_file, cub3d);
 }
 
@@ -107,6 +88,7 @@ static void	check_number_args_config(char **data_file, t_cub3d *cub3D,
 			error = 1;
 		else if (!ft_strcmp(s_line[0], "C") && count_words(data_file[i]) != 2)
 			error = 1;
+		check_rgb_config(data_file, s_line, cub3D);
 		free_splits(s_line);
 	}
 	if (error == 1)
@@ -141,5 +123,33 @@ static void	check_if_configs_above(char **data_file, t_cub3d *cub3D)
 			}
 		}
 		free_splits(s_line);
+	}
+}
+
+static void	check_rgb_config(char **data_file, char **s_line, t_cub3d *cub3D)
+{
+	int		i;
+	int		value;
+	int		flag;
+	int		v_flag;
+	char	**s_rgb;
+
+	i = -1;
+	flag = 0;
+	v_flag = 0;
+	if (!ft_strcmp(s_line[0], "F") || !ft_strcmp(s_line[0], "C"))
+	{
+		s_rgb = ft_split(s_line[1], ',');
+		while (s_rgb[++i])
+		{
+			value = ft_atoi(s_rgb[i]);
+			if (value > 255 || value < 0)
+				v_flag = 1;
+			if (s_rgb[i] && ft_strcmp(s_rgb[i], "\n"))
+				flag++;
+		}
+		free_splits(s_rgb);
+		if (flag != 3 || v_flag == 1)
+			free_arrays(data_file, s_line, cub3D);
 	}
 }

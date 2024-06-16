@@ -15,17 +15,19 @@
 void	p_error(t_error type, t_cub3d *cub3d)
 {
 	if (type == N_ARGS)
-		ft_printf("Error\nInvalid number of arguments.\n");
+		ft_putendl_fd("Error\nInvalid number of arguments.", 2);
 	else if (type == MAP_NAME)
-		ft_printf("Error\nInvalid file name.\n");
+		ft_putendl_fd("Error\nInvalid file name.", 2);
 	else if (type == OPEN_ERROR)
-		ft_printf("Error\nError trying to open the file.\n");
+		ft_putendl_fd("Error\nError trying to open the file.", 2);
 	else if (type == CONFIGS)
-		ft_printf("Error\nMissing/Wrong configuration in the file.\n");
+		ft_putendl_fd("Error\nMissing/Wrong configuration in the file.", 2);
 	else if (type == MEMORY)
-		ft_printf("Error\nBad alloc error.\n");
+		ft_putendl_fd("Error\nBad alloc error.", 2);
 	else if (type == INVALID_MAP)
-		ft_printf("Error\nInvalid map.\n");
+		ft_putendl_fd("Error\nInvalid map.", 2);
+	else if (type == RGB)
+		ft_putendl_fd("Error\nWrong RGB config.", 2);
 	free_memory(cub3d);
 	exit(EXIT_FAILURE);
 }
