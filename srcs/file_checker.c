@@ -140,6 +140,7 @@ static void	check_rgb_config(char **data_file, char **s_line, t_cub3d *cub3D)
 	if (!ft_strcmp(s_line[0], "F") || !ft_strcmp(s_line[0], "C"))
 	{
 		s_rgb = ft_split(s_line[1], ',');
+		check_rgb_character(data_file, s_line, cub3D, s_rgb);
 		while (s_rgb[++i])
 		{
 			value = ft_atoi(s_rgb[i]);

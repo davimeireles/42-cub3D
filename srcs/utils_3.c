@@ -39,3 +39,23 @@ char	*padding_aux(char *map, char *line, t_cub3d *cub3D)
 	}
 	return (line);
 }
+
+void	check_rgb_character(char **data_file, char **s_line, t_cub3d *cub3D, char **s_rgb)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (s_rgb[++i])
+	{
+		j = -1;
+		while (s_rgb[i][++j])
+		{
+			if (!ft_isdigit(s_rgb[i][j]) && s_rgb[i][j] != '\n')
+			{
+				free_splits(s_rgb);
+				free_arrays(data_file, s_line, cub3D);
+			}
+		}
+	}
+}

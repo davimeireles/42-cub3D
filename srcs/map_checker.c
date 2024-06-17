@@ -31,8 +31,7 @@ void	map_checker(char **data_file, t_cub3d *cub3D)
 	free_splits(map);
 	find_player_position(cub3D, filled_map);
 	cub3D->map->f_map = extract_map_to_struct(filled_map, cub3D);
-	if (!is_valid_map(filled_map, cub3D,
-			cub3D->map->p_position[0], cub3D->map->p_position[1]))
+	if (!initialize_visited(filled_map, cub3D))
 	{
 		free_splits(filled_map);
 		p_error(INVALID_MAP, cub3D);
@@ -80,16 +79,16 @@ static void	get_biggest_column(char **map, t_cub3d *cub3D)
 	int	j;
 	int	columns;
 
-	i = -1;
+	i = 0;
 	columns = 0;
-	while (map[++i])
+	while (map[i])
 	{
-		j = -1;
-		while (map[i][++j])
-		{
-			if (j >= columns)
-				columns = j;
-		}
+		j = 0;
+		while (map[i][j] && map[i][j] != '\n')
+			j++;
+		if (j >= columns)
+			columns = j;
+		i++;
 	}
 	cub3D->map->columns = columns;
 }

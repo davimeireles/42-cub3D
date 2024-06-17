@@ -12,6 +12,8 @@
 
 #include "cub3d.h"
 
+bool flood_fill(char **map, t_cub3d *cub3D, int x, int y);
+
 void	check_map_name(char *input, t_cub3d *cub3d)
 {
 	int		fd;
@@ -95,24 +97,80 @@ char	**extract_map_to_struct(char **map, t_cub3d *cub3D)
 	return (new_map);
 }
 
-bool	is_valid_map(char **map, t_cub3d *cub3D, int x, int y)
+bool	initialize_visited(char **map, t_cub3d *cub3D)
 {
-	bool	up;
-	bool	down;
-	bool	left;
-	bool	right;
+	int	i;
+	int j;
 
-	if (x < 0 || x >= cub3D->map->rows - 1 || y < 0 || y >= cub3D->map->columns)
+	i = -1;
+	cub3D->map->textures->flood->visited = ft_calloc(sizeof(bool *), cub3D->map->rows);
+	while (++i < cub3D->map->rows)
+	{
+		cub3D->map->textures->flood->visited[i] = ft_calloc(sizeof(bool), cub3D->map->columns);
+		j = -1;
+		while (++j < cub3D->map->columns)
+			cub3D->map->textures->flood->visited[i][j] = false;
+	}
+	return(is_valid_map(map, cub3D));
+}
+
+bool	is_valid_map(char **map, t_cub3d *cub3D)
+{
+	int x;
+	int y;
+	int i;
+
+	x = -1;
+	while (++x < cub3D->map->rows)
+	{
+		y = -1;
+		while (++y <= cub3D->map->columns)
+		{
+			if (map[x][y] == '0' || map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'E' || map[x][y] == 'W' || map[x][y] == 'x')
+			{
+				if (!flood_fill(map, cub3D, x, y))
+				{
+					i = -1;
+					while (++i < cub3D->map->rows)
+						free(cub3D->map->textures->flood->visited[i]);
+					free(cub3D->map->textures->flood->visited);
+					return (false);
+				}
+			}
+		}
+	}
+	i = -1;
+	while (++i < cub3D->map->rows)
+		free(cub3D->map->textures->flood->visited[i]);
+	free(cub3D->map->textures->flood->visited);
+	return (true);
+}
+
+bool flood_fill(char **map, t_cub3d *cub3D, int x, int y)
+{
+	if (x < 0 || x >= cub3D->map->rows || y < 0 || y >= cub3D->map->columns)
 		return (false);
-	if (map[x][y] == '1' || map[x][y] == 'P')
+	if (map[x][y] == '1' || cub3D->map->textures->flood->visited[x][y])
 		return (true);
-	if (x == 0 || x == cub3D->map->rows - 1
+	if (x == 0 || x == cub3D->map->rows
 		|| y == 0 || y == cub3D->map->columns)
 		return (false);
-	map[x][y] = 'P';
-	up = is_valid_map(map, cub3D, x - 1, y);
-	down = is_valid_map(map, cub3D, x + 1, y);
-	left = is_valid_map(map, cub3D, x, y - 1);
-	right = is_valid_map(map, cub3D, x, y + 1);
-	return (up && down && left && right);
+	cub3D->map->textures->flood->visited[x][y] = true;
+	cub3D->map->textures->flood->u = flood_fill(map, cub3D, x - 1, y);
+	cub3D->map->textures->flood->d = flood_fill(map, cub3D, x + 1, y);
+	cub3D->map->textures->flood->l = flood_fill(map, cub3D, x, y - 1);
+	cub3D->map->textures->flood->r = flood_fill(map, cub3D, x, y + 1);
+	cub3D->map->textures->flood->u_l = flood_fill(map, cub3D,
+													x - 1, y - 1);
+	cub3D->map->textures->flood->u_r = flood_fill(map, cub3D,
+													x - 1, y + 1);
+	cub3D->map->textures->flood->d_l = flood_fill(map, cub3D,
+													x + 1, y - 1);
+	cub3D->map->textures->flood->d_r = flood_fill(map, cub3D,
+													x + 1, y + 1);
+	return (cub3D->map->textures->flood->u && cub3D->map->textures->flood->d
+			&& cub3D->map->textures->flood->l && cub3D->map->textures->flood->r
+			&& cub3D->map->textures->flood->u_l && cub3D->map->textures->flood->u_r
+			&& cub3D->map->textures->flood->d_l
+			&& cub3D->map->textures->flood->d_r);
 }

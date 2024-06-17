@@ -20,6 +20,8 @@ void	free_memory(t_cub3d *cub3D)
 	{
 		if (cub3D->map)
 		{
+			if (cub3D->map->textures->flood)
+				free(cub3D->map->textures->flood);
 			if (cub3D->map->textures)
 				free(cub3D->map->textures);
 			if (cub3D->map->f_map)
@@ -68,7 +70,7 @@ int	ft_strcmp(char *s1, char *s2)
 
 static void	print_colored_char(char c)
 {
-	if (c == '0')
+	if (c == '0' || c == 'x')
 		ft_printf("\033[47m \033[0m");
 	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		ft_printf("\033[42m \033[0m");
@@ -78,11 +80,19 @@ static void	print_colored_char(char c)
 
 void	print_colored_matrix(char *matrix[])
 {
-	/* change for while */
-	for (int i = 0; matrix[i]; i++)
+	int		i;
+	char	*p;
+
+	i = 0;
+	while (matrix[i])
 	{
-		for (char *p = matrix[i]; *p != '\0'; p++)
+		p = matrix[i];
+		while (*p != '\0')
+		{
 			print_colored_char(*p);
+			p++;
+		}
 		ft_printf("\n");
+		i++;
 	}
 }

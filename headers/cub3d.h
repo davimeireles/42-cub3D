@@ -48,6 +48,19 @@ typedef enum e_error
  * C -> Ceiling color
 */
 
+typedef struct s_flood_aux
+{
+	bool	u;
+	bool	d;
+	bool	l;
+	bool	r;
+	bool	u_l;
+	bool	u_r;
+	bool	d_l;
+	bool	d_r;
+	bool	**visited;
+}	t_flood_aux;
+
 typedef struct s_textures
 {
 	int	no;
@@ -57,6 +70,7 @@ typedef struct s_textures
 	int	f;
 	int	c;
 	int	file_rows;
+	t_flood_aux *flood;
 }	t_textures;
 
 typedef struct s_map
@@ -68,6 +82,7 @@ typedef struct s_map
 	char		*floor;
 	char		*ceiling;
 	char		**f_map;
+
 	int			p_position[2];
 	int			rows;
 	int			columns;
@@ -81,6 +96,7 @@ typedef struct s_cub3d
 	void		*window;
 	t_map		*map;
 }	t_cub3d;
+
 
 /*******          FUNCTIONS          *******/
 
@@ -160,7 +176,7 @@ void	find_player_position(t_cub3d *cub3D, char **filled_map);
  * @param y
  * @return
  */
-bool	is_valid_map(char **map, t_cub3d *cub3D, int x, int y);
+bool	is_valid_map(char **map, t_cub3d *cub3D);
 
 /**
  *
@@ -260,6 +276,7 @@ void	free_arrays(char **data_file, char **s_line, t_cub3d *cub3D);
 //	====================		utils_3.c		====================
 
 /**
+ * @brief
  *
  * @param map
  * @param line
@@ -267,5 +284,15 @@ void	free_arrays(char **data_file, char **s_line, t_cub3d *cub3D);
  * @return
  */
 char	*padding_aux(char *map, char *line, t_cub3d *cub3D);
+/**
+ * @brief
+ *
+ * @param data_file
+ * @param s_line
+ * @param cub3D
+ * @param s_rgb
+ */
+void	check_rgb_character(char **data_file, char **s_line, t_cub3d *cub3D, char **s_rgb);
+bool	initialize_visited(char **map, t_cub3d *cub3D);
 
 #endif
