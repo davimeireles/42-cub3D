@@ -22,12 +22,11 @@ void	initialize_cub(t_cub3d **cub3d)
 	(*cub3d)->map = ft_calloc(sizeof(t_map), 1);
 	(*cub3d)->map->textures = ft_calloc(sizeof(t_textures), 1);
 	(*cub3d)->map->textures->flood = ft_calloc(sizeof(t_flood_aux), 1);
+	(*cub3d)->connection = NULL;
+	(*cub3d)->window = NULL;
 	initialize_map(cub3d);
 	initialize_textures(cub3d);
 	initialize_flood_aux(cub3d);
-//	cub3d->connection = mlx_init();
-//	cub3d->window = mlx_new_window(cub3d->connection, 1920, 1080, "cub3D");
-//	sleep(10);
 }
 
 static void	initialize_textures(t_cub3d **cub3d)
