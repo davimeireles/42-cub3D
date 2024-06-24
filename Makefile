@@ -10,7 +10,8 @@ OBJ_DIR = objs
 NAME = cub3d
 FILES = main.c cub3d.c \
 		file_checker.c map_checker.c map_checker_2.c \
-		utils.c utils_2.c utils_3.c error.c
+		utils.c utils_2.c utils_3.c error.c \
+		window_init.c
 
 OBJ = $(FILES:.c=.o)
 TARGET = $(addprefix $(OBJ_DIR)/, $(OBJ))
@@ -103,7 +104,7 @@ norm:
 	norminette -R CheckForbiddenSourceHeader headers/cub3d.h srcs/*.c
 
 leak: all
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) maps/valid/map.cub
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) maps/valid/map.cub
 
 display:
 	@clear

@@ -23,6 +23,7 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <signal.h>
 # define MAX_ROWS 100
 # define MAX_COLS 100
 
@@ -294,5 +295,30 @@ char	*padding_aux(char *map, char *line, t_cub3d *cub3D);
  */
 void	check_rgb_character(char **data_file, char **s_line, t_cub3d *cub3D, char **s_rgb);
 bool	initialize_visited(char **map, t_cub3d *cub3D);
+
+//	====================		window_init.c		====================
+
+/**
+ * @brief Initialize new window and process things to run the game.
+ * @param cub3D Struct containing all the parameters for the program.
+ */
+void	window_init(t_cub3d *cub3D);
+/**
+ * @brief Handle pressed buttons to do same action.
+ *
+ * @param keycode Value of the pressed button.
+ * @param cub3D Struct containing all the parameters for the program.
+ * @return Simples return 0.
+ */
+int	key_hook(int keycode, t_cub3d *cub3D);
+
+/**
+ * @brief Free memory from mlx scenes.
+ *
+ * @param cub3D Struct containing all the parameters for the program.
+ */
+void	free_mlx(t_cub3d *cub3D);
+
+
 
 #endif
