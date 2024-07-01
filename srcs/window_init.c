@@ -35,6 +35,14 @@ int	key_hook(int keycode, t_cub3d *cub3D)
 	return (0);
 }
 
+int	close_window_x(t_cub3d *cub3D)
+{
+	mlx_loop_end(cub3D->connection);
+	free_mlx(cub3D);
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
 void	window_init(t_cub3d *cub3D)
 {
 	cub3D->connection = mlx_init();
@@ -51,6 +59,7 @@ void	window_init(t_cub3d *cub3D)
 		exit(EXIT_FAILURE);
 	}
 	mlx_key_hook(cub3D->window, key_hook, cub3D);
+	mlx_hook(cub3D->window, 17, 0, (int (*)(void *))close_window_x, cub3D);
 	mlx_loop(cub3D->connection);
 	mlx_loop_end(cub3D->connection);
 }
