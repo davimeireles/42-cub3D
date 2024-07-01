@@ -9,7 +9,7 @@ OBJ_DIR = objs
 
 NAME = cub3d
 FILES = main.c cub3d.c \
-		file_checker.c map_checker.c map_checker_2.c \
+		file_checker.c map_checker.c map_checker_2.c map_checker_3.c \
 		utils.c utils_2.c utils_3.c error.c \
 		window_init.c
 

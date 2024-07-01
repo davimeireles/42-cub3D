@@ -26,6 +26,12 @@ void	free_memory(t_cub3d *cub3D)
 				free(cub3D->map->textures);
 			if (cub3D->map->f_map)
 				free_splits(cub3D->map->f_map);
+			free(cub3D->map->north);
+			free(cub3D->map->south);
+			free(cub3D->map->east);
+			free(cub3D->map->west);
+			free(cub3D->map->floor);
+			free(cub3D->map->ceiling);
 			free(cub3D->map);
 		}
 		free(cub3D);

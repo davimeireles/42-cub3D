@@ -22,6 +22,7 @@ void	map_checker(char **data_file, t_cub3d *cub3D)
 	char	**map;
 	char	**filled_map;
 
+	fill_textures_info(data_file, cub3D);
 	count_map_rows(data_file, cub3D);
 	map = extract_map_from_file(data_file, cub3D);
 	get_biggest_column(map, cub3D);

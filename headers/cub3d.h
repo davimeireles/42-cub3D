@@ -83,7 +83,6 @@ typedef struct s_map
 	char		*floor;
 	char		*ceiling;
 	char		**f_map;
-
 	int			p_position[2];
 	int			rows;
 	int			columns;
@@ -155,6 +154,7 @@ void	map_checker(char **data_file, t_cub3d *cub3D);
 void	check_map_name(char *input, t_cub3d *cub3d);
 
 /**
+ * @brief
  *
  * @param map
  * @param cub3D
@@ -163,13 +163,7 @@ void	check_map_name(char *input, t_cub3d *cub3d);
 char	**extract_map_to_struct(char **map, t_cub3d *cub3D);
 
 /**
- *
- * @param cub3D
- * @param filled_map
- */
-void	find_player_position(t_cub3d *cub3D, char **filled_map);
-
-/**
+ * @brief
  *
  * @param map
  * @param cub3D
@@ -180,12 +174,48 @@ void	find_player_position(t_cub3d *cub3D, char **filled_map);
 bool	is_valid_map(char **map, t_cub3d *cub3D);
 
 /**
- *
+ * @brief
+ * 
  * @param map
  * @param cub3D
  * @return
  */
 char	**padding_map(char **map, t_cub3d *cub3D);
+
+/**
+ * @brief
+ * 
+ * @param map
+ * @param cub3D
+ * @return
+ */
+bool	initialize_visited(char **map, t_cub3d *cub3D);
+
+
+//	====================		map_checker_3.c		====================
+
+/**
+ * @brief
+ * 
+ * @param cub3D
+ * @param filled_map
+ */
+void	find_player_position(t_cub3d *cub3D, char **filled_map);
+/**
+ * @brief
+ * 
+ * @param map
+ * @param cub3D
+ * @param x
+ * @param y
+ */
+bool flood_fill(char **map, t_cub3d *cub3D, int x, int y);
+
+
+void	fill_textures_info(char **data_file, t_cub3d *cub3D);
+
+
+
 //	====================				cub3d.c				====================
 
 /**
@@ -319,6 +349,11 @@ int	key_hook(int keycode, t_cub3d *cub3D);
  */
 void	free_mlx(t_cub3d *cub3D);
 
-
+/**
+ * @brief Window closes on the X
+ * 
+ * @param cub3D Struct containing all the parameters for the program.
+ */
+int	close_window_x(t_cub3d *cub3D);
 
 #endif
