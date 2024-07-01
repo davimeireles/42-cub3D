@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-bool flood_fill(char **map, t_cub3d *cub3D, int x, int y)
+bool	flood_fill(char **map, t_cub3d *cub3D, int x, int y)
 {
 	if (x < 0 || x >= cub3D->map->rows || y < 0 || y >= cub3D->map->columns)
 		return (false);
@@ -15,18 +15,18 @@ bool flood_fill(char **map, t_cub3d *cub3D, int x, int y)
 	cub3D->map->textures->flood->l = flood_fill(map, cub3D, x, y - 1);
 	cub3D->map->textures->flood->r = flood_fill(map, cub3D, x, y + 1);
 	cub3D->map->textures->flood->u_l = flood_fill(map, cub3D,
-													x - 1, y - 1);
+			x - 1, y - 1);
 	cub3D->map->textures->flood->u_r = flood_fill(map, cub3D,
-													x - 1, y + 1);
+			x - 1, y + 1);
 	cub3D->map->textures->flood->d_l = flood_fill(map, cub3D,
-													x + 1, y - 1);
+			x + 1, y - 1);
 	cub3D->map->textures->flood->d_r = flood_fill(map, cub3D,
-													x + 1, y + 1);
+			x + 1, y + 1);
 	return (cub3D->map->textures->flood->u && cub3D->map->textures->flood->d
-			&& cub3D->map->textures->flood->l && cub3D->map->textures->flood->r
-			&& cub3D->map->textures->flood->u_l && cub3D->map->textures->flood->u_r
-			&& cub3D->map->textures->flood->d_l
-			&& cub3D->map->textures->flood->d_r);
+		&& cub3D->map->textures->flood->l && cub3D->map->textures->flood->r
+		&& cub3D->map->textures->flood->u_l && cub3D->map->textures->flood->u_r
+		&& cub3D->map->textures->flood->d_l
+		&& cub3D->map->textures->flood->d_r);
 }
 
 void	find_player_position(t_cub3d *cub3D, char **filled_map)
@@ -57,6 +57,7 @@ void	find_player_position(t_cub3d *cub3D, char **filled_map)
 		p_error(INVALID_MAP, cub3D);
 	}
 }
+
 void	fill_textures_info(char **data_file, t_cub3d *cub3D)
 {
 	int		i;

@@ -46,25 +46,27 @@ char	**extract_map_to_struct(char **map, t_cub3d *cub3D)
 bool	initialize_visited(char **map, t_cub3d *cub3D)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = -1;
-	cub3D->map->textures->flood->visited = ft_calloc(sizeof(bool *), cub3D->map->rows);
+	cub3D->map->textures->flood->visited = ft_calloc(sizeof(bool *),
+			cub3D->map->rows);
 	while (++i < cub3D->map->rows)
 	{
-		cub3D->map->textures->flood->visited[i] = ft_calloc(sizeof(bool), cub3D->map->columns);
+		cub3D->map->textures->flood->visited[i] = ft_calloc(sizeof(bool),
+				cub3D->map->columns);
 		j = -1;
 		while (++j < cub3D->map->columns)
 			cub3D->map->textures->flood->visited[i][j] = false;
 	}
-	return(is_valid_map(map, cub3D));
+	return (is_valid_map(map, cub3D));
 }
 
 bool	is_valid_map(char **map, t_cub3d *cub3D)
 {
-	int x;
-	int y;
-	int i;
+	int	x;
+	int	y;
+	int	i;
 
 	x = -1;
 	while (++x < cub3D->map->rows)
@@ -72,7 +74,9 @@ bool	is_valid_map(char **map, t_cub3d *cub3D)
 		y = -1;
 		while (++y <= cub3D->map->columns)
 		{
-			if (map[x][y] == '0' || map[x][y] == 'N' || map[x][y] == 'S' || map[x][y] == 'E' || map[x][y] == 'W' || map[x][y] == 'x')
+			if (map[x][y] == '0' || map[x][y] == 'N'
+				|| map[x][y] == 'S' || map[x][y] == 'E'
+				|| map[x][y] == 'W' || map[x][y] == 'x')
 			{
 				if (!flood_fill(map, cub3D, x, y))
 				{

@@ -14,13 +14,17 @@
 
 void	free_mlx(t_cub3d *cub3D)
 {
-	for (int i = 0; i < 6; i++)
+	int	i;
+
+	i = -1;
+	while (++i < 6)
 	{
 		if (cub3D->map->text_imgs[i].img_ptr)
-			mlx_destroy_image(cub3D->connection, cub3D->map->text_imgs[i].img_ptr);
+			mlx_destroy_image(cub3D->connection,
+				cub3D->map->text_imgs[i].img_ptr);
 	}
 	if (cub3D->window)
-		mlx_destroy_window(cub3D->connection,cub3D->window);
+		mlx_destroy_window(cub3D->connection, cub3D->window);
 	if (cub3D->connection)
 	{
 		mlx_destroy_display(cub3D->connection);
@@ -77,7 +81,7 @@ void	window_init(t_cub3d *cub3D)
 }
 
 t_img	load_texture(void *mlx, char *path, t_cub3d *cub3D)
-{ 
+{
 	t_img	texture;
 	int		bpp;
 	int		size_line;

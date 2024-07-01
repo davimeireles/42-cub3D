@@ -64,14 +64,14 @@ typedef struct s_flood_aux
 
 typedef struct s_textures
 {
-	int	no;
-	int	so;
-	int	we;
-	int	ea;
-	int	f;
-	int	c;
-	int	file_rows;
-	t_flood_aux *flood;
+	int			no;
+	int			so;
+	int			we;
+	int			ea;
+	int			f;
+	int			c;
+	int			file_rows;
+	t_flood_aux	*flood;
 }	t_textures;
 
 typedef struct s_img
@@ -106,7 +106,6 @@ typedef struct s_cub3d
 	void		*window;
 	t_map		*map;
 }	t_cub3d;
-
 
 /*******          FUNCTIONS          *******/
 
@@ -201,7 +200,6 @@ char	**padding_map(char **map, t_cub3d *cub3D);
  */
 bool	initialize_visited(char **map, t_cub3d *cub3D);
 
-
 //	====================		map_checker_3.c		====================
 
 /**
@@ -219,8 +217,7 @@ void	find_player_position(t_cub3d *cub3D, char **filled_map);
  * @param x
  * @param y
  */
-bool flood_fill(char **map, t_cub3d *cub3D, int x, int y);
-
+bool	flood_fill(char **map, t_cub3d *cub3D, int x, int y);
 /**
  * @brief
  * 
@@ -228,8 +225,6 @@ bool flood_fill(char **map, t_cub3d *cub3D, int x, int y);
  * @param cub3D Struct containing all the parameters for the program.
  */
 void	fill_textures_info(char **data_file, t_cub3d *cub3D);
-
-
 
 //	====================				cub3d.c				====================
 
@@ -248,14 +243,12 @@ void	initialize_cub(t_cub3d **cub3d);
  * @param cub3D Struct containing all the parameters for the program.
  */
 void	free_memory(t_cub3d *cub3D);
-
 /**
  * @brief Will split the *array[] passed by parameter.
  *
  * @param split *array[] with the info to be freed.
  */
 void	free_splits(char **split);
-
 /**
  * @brief Used to compare two strings.
  *
@@ -264,7 +257,6 @@ void	free_splits(char **split);
  * @return Returns 1 if the string was different or 0 if its equal.
  */
 int		ft_strcmp(char *s1, char *s2);
-
 /**
  * @brief Will print on the terminal *array[] passed by parameter.
  *
@@ -281,7 +273,6 @@ void	print_colored_matrix(char *matrix[]);
  * @return Returns the number of words inside the row.
  */
 int		count_words(char *row);
-
 /**
  * @brief Check how many rows the file passed by parameter has.
  *
@@ -289,7 +280,6 @@ int		count_words(char *row);
  * @param textures Struct containing all the textures for the program.
  */
 void	count_file_rows(int fd, t_textures *textures);
-
 /**
  * @brief Fill the file opened and creat a new *array[] with the information.
  *
@@ -298,7 +288,6 @@ void	count_file_rows(int fd, t_textures *textures);
  * @return Returns the new *array[] with the information extracted from the file.
  */
 char	**pass_data_array(int fd, t_textures *textures);
-
 /**
  * @brief Find the position where the configs finished and start the map.
  *
@@ -307,7 +296,6 @@ char	**pass_data_array(int fd, t_textures *textures);
  * skipping the configuration.
  */
 int		find_map_start(char **data_info);
-
 /**
  * @brief Will freed the memory from the information
  * passed by parameter.
@@ -338,7 +326,8 @@ char	*padding_aux(char *map, char *line, t_cub3d *cub3D);
  * @param cub3D
  * @param s_rgb
  */
-void	check_rgb_character(char **data_file, char **s_line, t_cub3d *cub3D, char **s_rgb);
+void	check_rgb_character(char **data_file, char **s_line,
+			t_cub3d *cub3D, char **s_rgb);
 bool	initialize_visited(char **map, t_cub3d *cub3D);
 
 //	====================		window_init.c		====================
@@ -355,22 +344,19 @@ void	window_init(t_cub3d *cub3D);
  * @param cub3D Struct containing all the parameters for the program.
  * @return Simples return 0.
  */
-int	key_hook(int keycode, t_cub3d *cub3D);
-
+int		key_hook(int keycode, t_cub3d *cub3D);
 /**
  * @brief Free memory from mlx scenes.
  *
  * @param cub3D Struct containing all the parameters for the program.
  */
 void	free_mlx(t_cub3d *cub3D);
-
 /**
  * @brief Window closes on the X
  * 
  * @param cub3D Struct containing all the parameters for the program.
  */
-int	close_window_x(t_cub3d *cub3D);
-
+int		close_window_x(t_cub3d *cub3D);
 t_img	load_texture(void *mlx, char *path, t_cub3d *cub3D);
 
 #endif

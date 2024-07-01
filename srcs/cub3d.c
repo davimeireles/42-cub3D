@@ -15,7 +15,7 @@
 static void	initialize_map(t_cub3d **cub3d);
 static void	initialize_textures(t_cub3d **cub3d);
 static void	initialize_flood_aux(t_cub3d **cub3D);
-static void initialize_image_struct(t_cub3d **cub3D);
+static void	initialize_image_struct(t_cub3d **cub3D);
 
 void	initialize_cub(t_cub3d **cub3d)
 {
@@ -26,7 +26,8 @@ void	initialize_cub(t_cub3d **cub3d)
 	(*cub3d)->connection = NULL;
 	(*cub3d)->window = NULL;
 	initialize_map(cub3d);
-	(*cub3d)->map->text_imgs = ft_calloc(sizeof(t_img), (*cub3d)->map->n_textures);
+	(*cub3d)->map->text_imgs = ft_calloc(sizeof(t_img),
+			(*cub3d)->map->n_textures);
 	initialize_textures(cub3d);
 	initialize_flood_aux(cub3d);
 	initialize_image_struct(cub3d);
@@ -71,10 +72,10 @@ static void	initialize_flood_aux(t_cub3d **cub3D)
 	(*cub3D)->map->textures->flood->d_l = false;
 }
 
-static void initialize_image_struct(t_cub3d **cub3D)
+static void	initialize_image_struct(t_cub3d **cub3D)
 {
-		(*cub3D)->map->text_imgs->data = NULL;
-		(*cub3D)->map->text_imgs->img_ptr = NULL;
-		(*cub3D)->map->text_imgs->width = 0;
-		(*cub3D)->map->text_imgs->height = 0;
+	(*cub3D)->map->text_imgs->data = NULL;
+	(*cub3D)->map->text_imgs->img_ptr = NULL;
+	(*cub3D)->map->text_imgs->width = 0;
+	(*cub3D)->map->text_imgs->height = 0;
 }
