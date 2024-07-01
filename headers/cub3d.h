@@ -74,6 +74,14 @@ typedef struct s_textures
 	t_flood_aux *flood;
 }	t_textures;
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	int		*data;
+	int		width;
+	int		height;
+}	t_img;
+
 typedef struct s_map
 {
 	char		*north;
@@ -87,7 +95,9 @@ typedef struct s_map
 	int			rows;
 	int			columns;
 	int			start_map;
+	int			n_textures;
 	t_textures	*textures;
+	t_img		*text_imgs;
 }	t_map;
 
 typedef struct s_cub3d
@@ -157,7 +167,7 @@ void	check_map_name(char *input, t_cub3d *cub3d);
  * @brief
  *
  * @param map
- * @param cub3D
+ * @param cub3D Struct containing all the parameters for the program.
  * @return
  */
 char	**extract_map_to_struct(char **map, t_cub3d *cub3D);
@@ -166,7 +176,7 @@ char	**extract_map_to_struct(char **map, t_cub3d *cub3D);
  * @brief
  *
  * @param map
- * @param cub3D
+ * @param cub3D Struct containing all the parameters for the program.
  * @param x
  * @param y
  * @return
@@ -177,7 +187,7 @@ bool	is_valid_map(char **map, t_cub3d *cub3D);
  * @brief
  * 
  * @param map
- * @param cub3D
+ * @param cub3D Struct containing all the parameters for the program.
  * @return
  */
 char	**padding_map(char **map, t_cub3d *cub3D);
@@ -186,7 +196,7 @@ char	**padding_map(char **map, t_cub3d *cub3D);
  * @brief
  * 
  * @param map
- * @param cub3D
+ * @param cub3D Struct containing all the parameters for the program.
  * @return
  */
 bool	initialize_visited(char **map, t_cub3d *cub3D);
@@ -197,7 +207,7 @@ bool	initialize_visited(char **map, t_cub3d *cub3D);
 /**
  * @brief
  * 
- * @param cub3D
+ * @param cub3D Struct containing all the parameters for the program.
  * @param filled_map
  */
 void	find_player_position(t_cub3d *cub3D, char **filled_map);
@@ -205,13 +215,18 @@ void	find_player_position(t_cub3d *cub3D, char **filled_map);
  * @brief
  * 
  * @param map
- * @param cub3D
+ * @param cub3D Struct containing all the parameters for the program.
  * @param x
  * @param y
  */
 bool flood_fill(char **map, t_cub3d *cub3D, int x, int y);
 
-
+/**
+ * @brief
+ * 
+ * @param data_file Array with the information extracted from opened input file.
+ * @param cub3D Struct containing all the parameters for the program.
+ */
 void	fill_textures_info(char **data_file, t_cub3d *cub3D);
 
 
@@ -355,5 +370,7 @@ void	free_mlx(t_cub3d *cub3D);
  * @param cub3D Struct containing all the parameters for the program.
  */
 int	close_window_x(t_cub3d *cub3D);
+
+t_img	load_texture(void *mlx, char *path, t_cub3d *cub3D);
 
 #endif
