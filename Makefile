@@ -1,31 +1,32 @@
 #	====================		Directories		====================
 
-INC = headers
-
+INCLUDES = headers
 SRC = srcs
+_SUBFOLDERS = checker initializer keys main map player raycaster \
+				screen utils free
+VPATH = $(SRCS) $(addprefix $(SRC)/, $(_SUBFOLDERS))
 OBJ_DIR = objs
 
 #	====================		Files      		====================
 
 NAME = cub3d
-FILES = main.c cub3d.c \
-		file_checker.c map_checker.c map_checker_2.c map_checker_3.c \
-		utils.c utils_2.c utils_3.c error.c \
-		window_init.c
 
-OBJ = $(FILES:.c=.o)
-TARGET = $(addprefix $(OBJ_DIR)/, $(OBJ))
+_FILES = file_checker.c flood.c map_checker.c padding.c cub_init.c \
+		game_init.c texture_init.c window_init.c close.c cub3d.c \
+		main.c screen.c error.c utils.c utils_2.c utils_3.c free_mlx.c
 
-#	====================		Commands   		====================
+OBJS = $(_FILES:%.c=%.o)
+TARGET = $(addprefix $(OBJ_DIR)/, $(OBJS))
+
+#	====================		Flags      		====================
 
 CC = cc
 RM = rm
 
-#	====================		Flags      		====================
-
-W = -Wall -Wextra -Werror -g
+W = -Wall -Wextra -Werror
+I = -I $(INCLUDES)
 O = -c
-I = -I $(INC)
+
 WBLOCK = --no-print-directory
 
 LIBFT = -L ./libft -lft
@@ -72,7 +73,7 @@ $(NAME): $(OBJ_DIR) $(TARGET)
 	@echo "$(COLOR_RESET)"
 	@echo "\e[?25h"
 
-$(OBJ_DIR)/%.o: $(SRC)/%.c
+$(OBJ_DIR)/%.o: %.c
 	$(eval COMPTEUR=$(shell echo $$(($(COMPTEUR)+1))))
 	@printf "\e[?25l"
 	@if test $(COMPTEUR) -eq 1;then \
@@ -85,12 +86,13 @@ $(OBJ_DIR):
 
 clean:
 	@make $(WBLOCK) clean -C ./libft
-	@make $(WBLOCK) fclean -C ./minilibx-linux
+	@make $(WBLOCK) clean -C ./minilibx-linux
 	@$(RM) -rf $(OBJ_DIR)
 	@echo "$(B_YELLOW)$(NAME)$(RESET):$(YELLOW) binary files deleted$(RESET)"
 
 fclean:
 	@make $(WBLOCK) fclean -C ./libft
+	@make $(WBLOCK) clean -C ./minilibx-linux
 	@$(RM) -rf $(OBJ_DIR)
 	@echo "$(B_YELLOW)$(NAME)$(RESET):$(YELLOW) binary files deleted$(RESET)"
 	@$(RM) -rf $(NAME)
@@ -106,16 +108,5 @@ norm:
 leak: all
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) maps/valid/map.cub
 
-display:
-	@clear
-	@echo "\e[38;2;255;0;0m==================================================================="
-	@echo "\e[5m             ██████╗██╗   ██╗██████╗   ██████╗ ██████╗ "
-	@echo "            ██╔════╝██║   ██║██╔══██╗  ╚════██╗██╔══██╗"
-	@echo "            ██║     ██║   ██║██████╔╝   █████╔╝██║  ██║"
-	@echo "            ██║     ██║   ██║██╔══██╗   ╚═══██╗██║  ██║"
-	@echo "            ╚██████╗╚██████╔╝██████╔╝  ██████╔╝██████╔╝"
-	@echo "             ╚═════╝ ╚═════╝ ╚═════╝   ╚═════╝ ╚═════╝\e[0;38;2;255;0;0m"
-	@echo "==================================================================="
-	@echo "\e[0m        Thales Xisto (txisto-d) - Davi Meireles (dmeirele)"
-	@echo "$(COLOR_RESET)"
-	@echo "\e[?25h"
+test: all
+	./$(NAME) maps/valid/map.cub

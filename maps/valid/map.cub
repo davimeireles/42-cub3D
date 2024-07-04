@@ -1,9 +1,9 @@
-WE ./images/south.xpm
-NO ./images/north.xpm
-SO ./images/west.xpm
-EA ./images/east.xpm
-C 0,0,120
-F 0,56,17
+WE ./textures/west.xpm
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+EA ./textures/east.xpm
+C 255,255,0
+F 0,255,255
 
 11111
 100N1
