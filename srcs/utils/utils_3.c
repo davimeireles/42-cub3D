@@ -91,3 +91,10 @@ int	get_color(char *str)
 	free_splits(rgb);
 	return (color);
 }
+
+double	ft_abs(double n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
+}

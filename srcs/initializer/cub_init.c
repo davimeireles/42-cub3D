@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 23:12:04 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/08 18:05:45 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:32:58 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void	initialize_cub(t_cub3d **cub3d)
 	(*cub3d)->screen = ft_calloc(sizeof(t_screen), 1);
     (*cub3d)->player = ft_calloc(sizeof(t_player), 1);
 	(*cub3d)->minimap = ft_calloc(sizeof(t_minimap), 1);
+	(*cub3d)->raycaster = ft_calloc(sizeof(t_raycaster), 1);
 }

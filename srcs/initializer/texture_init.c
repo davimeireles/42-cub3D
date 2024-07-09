@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:47:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/08 17:40:30 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:22:58 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    init_textures(t_cub3d * cub3d)
 
 static void	background_init(t_cub3d *cub3d)
 {
-	cub3d->screen->heigh = SCREEN_Y;
+	cub3d->screen->height = SCREEN_Y;
 	cub3d->screen->width = SCREEN_X;
 	cub3d->screen->ceiling = ft_calloc(1, sizeof(t_img));
 	cub3d->screen->floor = ft_calloc(1, sizeof(t_img));
@@ -39,11 +39,11 @@ static void	cf_init(t_cub3d *cub3d, t_img *image, char *color)
 
 	color_int = get_color(color);
 	image->img_ptr = mlx_new_image(cub3d->connection,
-		cub3d->screen->width, cub3d->screen->heigh / 2);
+		cub3d->screen->width, cub3d->screen->height / 2);
 	image->data = mlx_get_data_addr(image->img_ptr, &image->bits_per_pixel,
 		&image->size_line, &image->endian);
 	ft_pixelset(image->data, color_int,
-		(cub3d->screen->width * cub3d->screen->heigh / 2));
+		(cub3d->screen->width * cub3d->screen->height / 2));
 }
 
 t_img	*load_image(t_cub3d *cub3d, char *path)

@@ -14,7 +14,8 @@ NAME = cub3d
 _FILES = file_checker.c flood.c map_checker.c padding.c cub_init.c \
 		game_init.c texture_init.c window_init.c close.c cub3d.c \
 		main.c screen.c error.c utils.c utils_2.c utils_3.c \
-		free_mlx.c player_init.c minimap_init.c minimap.c raycaster.c
+		free_mlx.c player_init.c minimap_init.c minimap.c raycaster.c \
+		raycaster_init.c
 
 OBJS = $(_FILES:%.c=%.o)
 TARGET = $(addprefix $(OBJ_DIR)/, $(OBJS))

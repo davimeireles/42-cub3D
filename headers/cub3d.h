@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/08 21:10:19 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:46:22 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,16 @@
 #  define SCREEN_X 1280
 # endif
 
-# define WHITE INT_MAX
+# define WHITE 0xFFFFFF
 # define BLACK 0
-# define GREY 128 << 16 | 128 << 8 | 128
-# define BLUE 255
-# define GREEN 255 << 8
-# define RED 255 << 16
+# define GREY 0x808080
+# define BLUE 0x0000FF
+# define GREEN 0x00FF00
+# define RED 0xFF0000
 
 # define M_PI 3.14159265358979323846
-
+# define X 0
+# define Y 1
 /*
 ██      ██ ██████  ██████   █████  ██████  ██ ███████ ███████ 
 ██      ██ ██   ██ ██   ██ ██   ██ ██   ██ ██ ██      ██      
@@ -132,10 +133,11 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
-	float	dir;
-	float	speed;
+	double	x;
+	double	y;
+	double	dir_x;
+	double	dir_y;
+	double	speed;
 	int		fov;
 }	t_player;
 
@@ -147,7 +149,7 @@ typedef struct	s_screen
 	t_img	*east;
 	t_img	*south;
 	t_img	*west;
-	int		heigh;
+	int		height;
 	int		width;	
 }	t_screen;
 
@@ -159,6 +161,29 @@ typedef struct s_minimap
 	t_img	*floor;
 }	t_minimap;
 
+typedef struct s_ray
+{
+	int		tile[2];
+	double	pos[2];
+	double	dir[2];
+	double	plane[2];
+	double	ray_dir[2];
+	double	delta_distance[2];
+	double	side_distance[2];
+	double	step[2];
+	double	perp_wall_distance;
+	double	camera_x;
+	int		hit;
+	int		side;
+}	t_ray;
+
+typedef struct s_raycaster
+{
+	t_ray	ray;
+	double	time;
+	double	old_time;
+}	t_raycaster;
+
 typedef struct s_cub3d
 {
 	void		*connection;
@@ -167,6 +192,7 @@ typedef struct s_cub3d
 	t_map		*map;
 	t_player	*player;
 	t_minimap	*minimap;
+	t_raycaster	*raycaster;
 }	t_cub3d;
 
 

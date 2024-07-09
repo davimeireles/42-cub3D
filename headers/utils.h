@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:14:57 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/04 18:33:32 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:38:27 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,10 @@ int	get_color(char *str);
  * @brief Will set the pixels of the image passed by parameter with the color passed by parameter.
  */
 void	*ft_pixelset(void *s, int c, size_t n);
+
+/**
+ * @brief Returns the absolute value in double.
+ */
+double	ft_abs(double n);
 
 #endif
