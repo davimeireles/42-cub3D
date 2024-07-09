@@ -13,7 +13,8 @@ NAME = cub3d
 
 _FILES = file_checker.c flood.c map_checker.c padding.c cub_init.c \
 		game_init.c texture_init.c window_init.c close.c cub3d.c \
-		main.c screen.c error.c utils.c utils_2.c utils_3.c free_mlx.c
+		main.c screen.c error.c utils.c utils_2.c utils_3.c \
+		free_mlx.c player_init.c minimap_init.c minimap.c raycaster.c
 
 OBJS = $(_FILES:%.c=%.o)
 TARGET = $(addprefix $(OBJ_DIR)/, $(OBJS))
@@ -31,6 +32,7 @@ WBLOCK = --no-print-directory
 
 LIBFT = -L ./libft -lft
 MLX = -L ./minilibx-linux -lmlx -lXext -lX11
+MATH =-lm
 
 #	====================		Colors     		====================
 
@@ -58,7 +60,7 @@ all: $(NAME)
 $(NAME): $(OBJ_DIR) $(TARGET)
 	@make $(WBLOCK) -C ./libft
 	@make $(WBLOCK) -C ./minilibx-linux
-	@$(CC) $(W) $(TARGET) $(LIBFT) $(MLX) -o $(NAME)
+	@$(CC) $(W) $(TARGET) $(LIBFT) $(MLX) -o $(NAME) $(MATH) 
 	@echo "$(B_GREEN)$(NAME) created$(RESET)"
 	@clear
 	@echo "\e[38;2;255;0;0m==================================================================="

@@ -6,12 +6,20 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/04 18:11:21 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:10:19 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+/*
+███    ███  █████   ██████ ██████   ██████  ███████ 
+████  ████ ██   ██ ██      ██   ██ ██    ██ ██      
+██ ████ ██ ███████ ██      ██████  ██    ██ ███████ 
+██  ██  ██ ██   ██ ██      ██   ██ ██    ██      ██ 
+██      ██ ██   ██  ██████ ██   ██  ██████  ███████ 
+*/
 
 # ifndef FOV
 #  define FOV 90
@@ -23,6 +31,23 @@
 #  define SCREEN_X 1280
 # endif
 
+# define WHITE INT_MAX
+# define BLACK 0
+# define GREY 128 << 16 | 128 << 8 | 128
+# define BLUE 255
+# define GREEN 255 << 8
+# define RED 255 << 16
+
+# define M_PI 3.14159265358979323846
+
+/*
+██      ██ ██████  ██████   █████  ██████  ██ ███████ ███████ 
+██      ██ ██   ██ ██   ██ ██   ██ ██   ██ ██ ██      ██      
+██      ██ ██████  ██████  ███████ ██████  ██ █████   ███████ 
+██      ██ ██   ██ ██   ██ ██   ██ ██   ██ ██ ██           ██ 
+███████ ██ ██████  ██   ██ ██   ██ ██   ██ ██ ███████ ███████
+*/
+
 # include "libft.h"
 # include "mlx.h"
 # include <stdio.h>
@@ -30,6 +55,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <signal.h>
+# include <math.h>
 
 /*
 ███████ ████████ ██████  ██    ██  ██████ ████████ ███████ 
@@ -95,6 +121,7 @@ typedef struct s_map
 	char		*ceiling;
 	char		**f_map;
 	int			p_position[2];
+	char		p_direction;
 	int			rows;
 	int			columns;
 	int			start_map;
@@ -105,10 +132,10 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
-	double	dir;
-	double	speed;
+	float	x;
+	float	y;
+	float	dir;
+	float	speed;
 	int		fov;
 }	t_player;
 
@@ -124,6 +151,14 @@ typedef struct	s_screen
 	int		width;	
 }	t_screen;
 
+typedef struct s_minimap
+{
+	t_img	*bkg;
+	t_img	*player;
+	t_img	*wall;
+	t_img	*floor;
+}	t_minimap;
+
 typedef struct s_cub3d
 {
 	void		*connection;
@@ -131,6 +166,7 @@ typedef struct s_cub3d
 	t_screen	*screen;
 	t_map		*map;
 	t_player	*player;
+	t_minimap	*minimap;
 }	t_cub3d;
 
 
@@ -178,5 +214,8 @@ typedef enum e_error
  * @return Return Success.
  */
 int		main(int argc, char **argv);
+
+
+void    raycaster(t_cub3d *cub3d);
 
 #endif

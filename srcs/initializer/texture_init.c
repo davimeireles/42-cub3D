@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:47:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/04 23:36:31 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:40:30 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 static void	background_init(t_cub3d *cub3D);
 static void	cf_init(t_cub3d *cub3d, t_img *image, char *color);
+static void	load_texture(t_cub3d *cub3d);
 
 void    init_textures(t_cub3d * cub3d)
 {
 	background_init(cub3d);
-	background_loader(cub3d);
+	load_texture(cub3d);
 }
 
 static void	background_init(t_cub3d *cub3d)
@@ -37,25 +38,40 @@ static void	cf_init(t_cub3d *cub3d, t_img *image, char *color)
 	
 
 	color_int = get_color(color);
-	image->img_ptr = mlx_new_image(cub3d->connection, cub3d->screen->width, cub3d->screen->heigh / 2);
-	image->data = mlx_get_data_addr(image->img_ptr, &image->bits_per_pixel, &image->size_line, &image->endian);
-	ft_pixelset(image->data, color_int, (cub3d->screen->width * cub3d->screen->heigh / 2));
+	image->img_ptr = mlx_new_image(cub3d->connection,
+		cub3d->screen->width, cub3d->screen->heigh / 2);
+	image->data = mlx_get_data_addr(image->img_ptr, &image->bits_per_pixel,
+		&image->size_line, &image->endian);
+	ft_pixelset(image->data, color_int,
+		(cub3d->screen->width * cub3d->screen->heigh / 2));
 }
 
-t_img	load_texture(void *mlx, char *path, t_cub3d *cub3D)
+t_img	*load_image(t_cub3d *cub3d, char *path)
 {
-	t_img	texture;
-	int		bpp;
-	int		size_line;
-	int		endian;
+	t_img	*img;
 
-	texture.img_ptr = mlx_xpm_file_to_image(mlx, path, &texture.width, &texture.height);
-	if (!texture.img_ptr)
+	img = ft_calloc(1, sizeof(t_img));
+	path[ft_strlen(path) - 1] = '\0';
+	img->img_ptr = mlx_xpm_file_to_image(cub3d->connection, path, &img->width, &img->height);
+	if (img->img_ptr)
 	{
-		free(cub3D->connection);
-		free_mlx(cub3D);
-		exit(EXIT_FAILURE);
+		img->data = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel,
+			&img->size_line, &img->endian);
 	}
-	texture.data = mlx_get_data_addr(texture.img_ptr, &bpp, &size_line, &endian);
-	return (texture);
+	return (img);
+}
+
+static void	load_texture(t_cub3d *cub3d)
+{
+	cub3d->screen->north = load_image(cub3d, cub3d->map->north);
+	cub3d->screen->south = load_image(cub3d, cub3d->map->south);
+	cub3d->screen->east = load_image(cub3d, cub3d->map->east);
+	cub3d->screen->west = load_image(cub3d, cub3d->map->west);
+	if (!cub3d->screen->north->img_ptr || !cub3d->screen->south->img_ptr ||
+		!cub3d->screen->east->img_ptr || !cub3d->screen->west->img_ptr)
+	{
+		ft_putstr_fd("Error\nTexture not found\n", 2);
+		free_mlx(cub3d);
+		exit(1);
+	}
 }

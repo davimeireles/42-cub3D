@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:13:39 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/04 17:26:50 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/08 18:20:46 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,31 @@ void	initialize_cub(t_cub3d **cub3d);
  */
 void    game_init(t_cub3d *cub3d);
 
+/*
+███    ███ ██ ███    ██ ██ ███    ███  █████  ██████  
+████  ████ ██ ████   ██ ██ ████  ████ ██   ██ ██   ██ 
+██ ████ ██ ██ ██ ██  ██ ██ ██ ████ ██ ███████ ██████  
+██  ██  ██ ██ ██  ██ ██ ██ ██  ██  ██ ██   ██ ██      
+██      ██ ██ ██   ████ ██ ██      ██ ██   ██ ██ 
+*/
+
+/**
+ * @brief Initialize the minimap.
+ */
+void	minimap_init(t_cub3d *cub3d);
+
+/*
+██████  ██       █████  ██    ██ ███████ ██████  
+██   ██ ██      ██   ██  ██  ██  ██      ██   ██ 
+██████  ██      ███████   ████   █████   ██████  
+██      ██      ██   ██    ██    ██      ██   ██ 
+██      ███████ ██   ██    ██    ███████ ██   ██
+*/
+
+/**
+ * @brief Initialize the player.
+ */
+void    player_init(t_cub3d *cub3d);
 
 /*
 ████████ ███████ ██   ██ ████████ ██    ██ ██████  ███████
@@ -51,11 +76,6 @@ void    game_init(t_cub3d *cub3d);
    ██    ██       ██ ██     ██    ██    ██ ██   ██ ██       
    ██    ███████ ██   ██    ██     ██████  ██   ██ ███████
 */
-
-/**
- * @brief API loader.
- */
-t_img	load_texture(void *mlx, char *path, t_cub3d *cub3D);
 
 /**
  * @brief Load all the necessary textures.
@@ -76,5 +96,7 @@ void    init_textures(t_cub3d * cub3d);
  * @param cub3D Struct containing all the parameters for the program.
  */
 void	window_init(t_cub3d *cub3D);
+
+
 
 #endif

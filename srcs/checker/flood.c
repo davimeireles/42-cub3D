@@ -48,6 +48,7 @@ void	find_player_position(t_cub3d *cub3D, char **filled_map)
 				count++;
 				cub3D->map->p_position[0] = i;
 				cub3D->map->p_position[1] = j;
+				cub3D->map->p_direction = filled_map[i][j];
 			}
 		}
 	}
