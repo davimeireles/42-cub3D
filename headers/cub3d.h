@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/09 13:46:22 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:30:35 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@
 # define M_PI 3.14159265358979323846
 # define X 0
 # define Y 1
+
+# define NORTH 0
+# define SOUTH 1
+# define WEST 2
+# define EAST 3
+
 /*
 ██      ██ ██████  ██████   █████  ██████  ██ ███████ ███████ 
 ██      ██ ██   ██ ██   ██ ██   ██ ██   ██ ██ ██      ██      
@@ -173,6 +179,7 @@ typedef struct s_ray
 	double	step[2];
 	double	perp_wall_distance;
 	double	camera_x;
+	double	wall_x;
 	int		hit;
 	int		side;
 }	t_ray;

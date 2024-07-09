@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 20:33:42 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/09 14:44:08 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:31:44 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,31 @@ void    calculate_ray(t_ray *ray, int i);
 void    calculate_distance(t_ray *ray, int i);
 void    dda_algorithm(t_cub3d *cub3d, t_ray *ray);
 void    draw_ray(t_cub3d *cub3d, t_ray *ray, int x);
-void    vertical_line(t_cub3d *cub3d, int start, int end, int x, int color);
+void    vertical_line(t_cub3d *cub3d, int start, int end, int x);
 
 void    raycaster(t_cub3d *cub3d)
 {
     t_ray   *ray;
     int i;
 
-    i = -1;
+    i = 0;
     raycaster_init(cub3d);
     ray = &cub3d->raycaster->ray;
-    while (++i < SCREEN_X)
+    while (i < SCREEN_X)
     {
         ray->hit = 0;
         calculate_ray(ray, i);
         dda_algorithm(cub3d, ray);
         draw_ray(cub3d, ray, i);
+        i += 1;
     }
 }
 
 void    calculate_ray(t_ray *ray, int i)
 {
-    ray->camera_x = 2 * i / (double)SCREEN_X - 1;
+    ray->camera_x = 2 * i / (double) SCREEN_X - 1;
     ray->ray_dir[X] = ray->dir[X] + ray->plane[X] * ray->camera_x;
     ray->ray_dir[Y] = ray->dir[Y] + ray->plane[Y] * ray->camera_x;
-    printf("ray->ray_dir[X]: %f\n ray->ray_dir[Y]: %f\n", ray->ray_dir[X], ray->ray_dir[Y]);
     if (ray->ray_dir[X] == 0)
         ray->delta_distance[X] = 1e30;
     else
@@ -50,7 +50,6 @@ void    calculate_ray(t_ray *ray, int i)
         ray->delta_distance[Y] = 1e30;
     else
         ray->delta_distance[Y] = ft_abs(1 / ray->ray_dir[Y]);
-    printf("ray->delta_distance[X]: %f\n ray->delta_distance[Y]: %f\n", ray->delta_distance[X], ray->delta_distance[Y]);
     calculate_distance(ray, X);
     calculate_distance(ray, Y);
 }
@@ -86,7 +85,7 @@ void    dda_algorithm(t_cub3d *cub3d, t_ray *ray)
             ray->tile[Y] += ray->step[Y];
             ray->side = 1;
         }
-        if (cub3d->map->f_map[ray->tile[X]][ray->tile[1]] > 0)
+        if (cub3d->map->f_map[ray->tile[X]][ray->tile[Y]] == '1')
             ray->hit = 1;
     }
     if (ray->side == 0)
@@ -102,6 +101,7 @@ void    draw_ray(t_cub3d *cub3d, t_ray *ray, int x)
     int draw_end;
     int color;
 
+    color = RED;
     line_height = (int)(SCREEN_Y / ray->perp_wall_distance);
     draw_start = -line_height / 2 + SCREEN_Y / 2;
     if (draw_start < 0)
@@ -109,18 +109,37 @@ void    draw_ray(t_cub3d *cub3d, t_ray *ray, int x)
     draw_end = line_height / 2 + SCREEN_Y / 2;
     if (draw_end >= SCREEN_Y)
         draw_end = SCREEN_Y - 1;
-    color = RED;
-    vertical_line(cub3d, draw_start, draw_end, x, color);
+    if (ray->side == 0)
+        ray->wall_x = ray->pos[Y] + ray->perp_wall_distance * ray->ray_dir[Y];
+    else
+        ray->wall_x = ray->pos[X] + ray->perp_wall_distance * ray->ray_dir[X];
+    ray->wall_x -= floor(ray->wall_x);
+    vertical_line(cub3d, draw_start, draw_end, x);
 }
 
-void    vertical_line(t_cub3d *cub3d, int start, int end, int x, int color)
+void    get_texture_side(t_cub3d *cub3d, t_ray *ray)
 {
-    int i;
-
-    i = start;
-    while (i < end)
+    if (ray->side == 0)
     {
-        mlx_pixel_put(cub3d->connection, cub3d->window, x, i, color);
-        i++;
+        if (ray->dir[X] > 0)
+            ray->side = NORTH;
+        else
+            ray->side = SOUTH;
     }
+    else
+    {
+        if (ray->dir[Y] > 0)
+            ray->side = EAST;
+        else
+            ray->side = WEST;
+    }
+}
+
+void    vertical_line(t_cub3d *cub3d, int start, int end, int x)
+{
+    int y;
+    int color;
+
+    get_texture_side(cub3d, &cub3d->raycaster->ray);
+    
 }

@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:09:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/09 14:15:40 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:48:20 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	screen_loader(t_cub3d *cub3d)
 	background_loader(cub3d);
 	raycaster(cub3d);
 	minimap_loader(cub3d);
+	mlx_put_image_to_window(cub3d->connection, cub3d->window,
+		cub3d->screen->north->img_ptr, 50, 50);
 }
 
 void    background_loader(t_cub3d *cub3d)
