@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:47:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/09 12:22:58 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/10 04:02:20 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	background_init(t_cub3d *cub3D);
 static void	cf_init(t_cub3d *cub3d, t_img *image, char *color);
 static void	load_texture(t_cub3d *cub3d);
 
-void    init_textures(t_cub3d * cub3d)
+void	init_textures(t_cub3d * cub3d)
 {
 	background_init(cub3d);
 	load_texture(cub3d);
@@ -63,6 +63,7 @@ t_img	*load_image(t_cub3d *cub3d, char *path)
 
 static void	load_texture(t_cub3d *cub3d)
 {
+	ft_printf("%s\n", cub3d->map->north);
 	cub3d->screen->north = load_image(cub3d, cub3d->map->north);
 	cub3d->screen->south = load_image(cub3d, cub3d->map->south);
 	cub3d->screen->east = load_image(cub3d, cub3d->map->east);

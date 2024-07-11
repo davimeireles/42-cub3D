@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/09 18:30:35 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/11 00:34:31 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@
 # define BLUE 0x0000FF
 # define GREEN 0x00FF00
 # define RED 0xFF0000
+
+#define MOVE_SPEED 0.05
+#define ROT_SPEED 0.05
+
+#define L_ARROW 65361
+#define R_ARROW 65363
+#define U_ARROW 65362
+#define D_ARROW 65364
 
 # define M_PI 3.14159265358979323846
 # define X 0
@@ -104,6 +112,13 @@ typedef struct s_textures
 	int			f;
 	int			c;
 	int			file_rows;
+	void		*texture_img;
+	char		*texture_data;
+	int			texture_width;
+	int			texture_height;
+	int			texture_bits_per_pixel;
+	int			texture_line_length;
+	int			texture_endian;
 	t_flood_aux	*flood;
 }	t_textures;
 
@@ -169,11 +184,11 @@ typedef struct s_minimap
 
 typedef struct s_ray
 {
-	int		tile[2];
-	double	pos[2];
-	double	dir[2];
-	double	plane[2];
+	double	pos[2];  // ->
+	double	dir[2]; // ->
+	double	plane[2]; // ->
 	double	ray_dir[2];
+	int		tile[2];
 	double	delta_distance[2];
 	double	side_distance[2];
 	double	step[2];
@@ -250,5 +265,8 @@ int		main(int argc, char **argv);
 
 
 void    raycaster(t_cub3d *cub3d);
+
+int	move_directions(t_cub3d *cub3d, int keycode);
+
 
 #endif
