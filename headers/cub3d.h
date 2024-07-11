@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/11 00:34:31 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:28:47 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # define GREEN 0x00FF00
 # define RED 0xFF0000
 
-#define MOVE_SPEED 0.05
-#define ROT_SPEED 0.05
+#define MOVE_SPEED 0.25
+#define ROT_SPEED 0.1
 
 #define L_ARROW 65361
 #define R_ARROW 65363
