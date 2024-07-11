@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:42:09 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/11 18:04:34 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/11 22:19:49 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ int	esc_hook(int keycode, t_cub3d *cub3d)
 		double oldDirX = cub3d->player->dir_x;
 		cub3d->player->dir_x = cub3d->player->dir_x * cos(-cub3d->player->rotation) - cub3d->player->dir_y * sin(-cub3d->player->rotation);
 		cub3d->player->dir_y = oldDirX * sin(-cub3d->player->rotation) + cub3d->player->dir_y * cos(-cub3d->player->rotation);
-		double oldPlaneX = cub3d->raycaster->ray.plane[X];
-		cub3d->raycaster->ray.plane[X] = cub3d->raycaster->ray.plane[X] * cos(-cub3d->player->rotation) - cub3d->raycaster->ray.plane[Y] * sin(-cub3d->player->rotation);
-		cub3d->raycaster->ray.plane[Y] = oldPlaneX * sin(-cub3d->player->rotation) + cub3d->raycaster->ray.plane[Y] * cos(-cub3d->player->rotation);
+		double oldPlaneX = cub3d->player->plane_x;
+		cub3d->player->plane_x = cub3d->player->plane_x * cos(-cub3d->player->rotation) - cub3d->player->plane_y * sin(-cub3d->player->rotation);
+		cub3d->player->plane_y = oldPlaneX * sin(-cub3d->player->rotation) + cub3d->player->plane_y * cos(-cub3d->player->rotation);
 	}
 	if (keycode == L_ARROW)
 	{
 		double oldDirX = cub3d->player->dir_x;
 		cub3d->player->dir_x = cub3d->player->dir_x * cos(cub3d->player->rotation) - cub3d->player->dir_y * sin(cub3d->player->rotation);
 		cub3d->player->dir_y = oldDirX * sin(cub3d->player->rotation) + cub3d->player->dir_y * cos(cub3d->player->rotation);
-		double oldPlaneX = cub3d->raycaster->ray.plane[X];
-		cub3d->raycaster->ray.plane[X] = cub3d->raycaster->ray.plane[X] * cos(cub3d->player->rotation) - cub3d->raycaster->ray.plane[Y] * sin(cub3d->player->rotation);
-		cub3d->raycaster->ray.plane[Y] = oldPlaneX * sin(cub3d->player->rotation) + cub3d->raycaster->ray.plane[Y] * cos(cub3d->player->rotation);
+		double oldPlaneX = cub3d->player->plane_x;
+		cub3d->player->plane_x = cub3d->player->plane_x * cos(cub3d->player->rotation) - cub3d->player->plane_y * sin(cub3d->player->rotation);
+		cub3d->player->plane_y = oldPlaneX * sin(cub3d->player->rotation) + cub3d->player->plane_y * cos(cub3d->player->rotation);
 	}
 	screen_loader(cub3d);
 	return (0);

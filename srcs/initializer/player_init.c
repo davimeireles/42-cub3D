@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:40:53 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/11 18:05:33 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/11 22:10:27 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,28 @@ static void    player_direction(t_cub3d *cub3d)
     {
         cub3d->player->dir_x = -1;
         cub3d->player->dir_y = 0;
+        cub3d->player->plane_x = 0;
+        cub3d->player->plane_y = 0.66;
     }
     else if (cub3d->map->p_direction == 'E')
     {
         cub3d->player->dir_x = 0;
         cub3d->player->dir_y = 1;
+        cub3d->player->plane_x = 0.66;
+        cub3d->player->plane_y = 0;
     }
     else if (cub3d->map->p_direction == 'S')
     {
         cub3d->player->dir_x = 1;
         cub3d->player->dir_y = 0;
+        cub3d->player->plane_x = 0;
+        cub3d->player->plane_y = -0.66;
     }
     else if (cub3d->map->p_direction == 'W')
     {
         cub3d->player->dir_x = 0;
-        cub3d->player->dir_y = 0;
+        cub3d->player->dir_y = -1;
+        cub3d->player->plane_x = -0.66;
+        cub3d->player->plane_y = 0;
     }
 }

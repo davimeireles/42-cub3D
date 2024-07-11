@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/11 18:03:25 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/11 22:09:39 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,8 @@ typedef struct s_player
 	double	y;
 	double	dir_x;
 	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 	double	speed;
 	double	rotation;
 	int		fov;
@@ -176,6 +178,7 @@ typedef struct s_minimap
 	t_img	*player;
 	t_img	*wall;
 	t_img	*floor;
+	t_img	*dir;
 }	t_minimap;
 
 typedef struct s_ray
