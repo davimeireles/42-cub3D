@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:40:53 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/11 00:03:25 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:05:33 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void    player_init(t_cub3d *cub3d)
     cub3d->player->y = (double) cub3d->map->p_position[1] + 0.5;
     cub3d->player->fov = FOV;
     cub3d->player->speed = 0.1;
+    cub3d->player->rotation = 0.025;
     player_direction(cub3d);
 }
 

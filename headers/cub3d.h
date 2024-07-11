@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/11 14:28:47 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:03:25 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@
 ██      ██ ██   ██  ██████ ██   ██  ██████  ███████ 
 */
 
-# ifndef FOV
-#  define FOV 90
-# endif
-# ifndef SCREEN_Y
-#  define SCREEN_Y 720
-# endif
-# ifndef SCREEN_X
-#  define SCREEN_X 1280
-# endif
+# define FOV 90
+# define SCREEN_Y 720
+# define SCREEN_X 1280
+# define FULL_XY 921600
+# define HALF_XY 460800
+
 
 # define WHITE 0xFFFFFF
 # define BLACK 0
@@ -37,9 +34,6 @@
 # define BLUE 0x0000FF
 # define GREEN 0x00FF00
 # define RED 0xFF0000
-
-#define MOVE_SPEED 0.25
-#define ROT_SPEED 0.1
 
 #define L_ARROW 65361
 #define R_ARROW 65363
@@ -128,7 +122,7 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
-	char	*data;
+	int		*data;
 	int		width;
 	int		height;
 }	t_img;
@@ -159,19 +153,21 @@ typedef struct s_player
 	double	dir_x;
 	double	dir_y;
 	double	speed;
+	double	rotation;
 	int		fov;
 }	t_player;
 
 typedef struct	s_screen
 {
-	t_img	*ceiling;
-	t_img	*floor;
+	t_img	*screen;
 	t_img	*north;
 	t_img	*east;
 	t_img	*south;
 	t_img	*west;
+	int		ceiling;
+	int		floor;
 	int		height;
-	int		width;	
+	int		width;
 }	t_screen;
 
 typedef struct s_minimap

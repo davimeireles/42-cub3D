@@ -1,24 +1,24 @@
-	/* ************************************************************************** */
-	/*                                                                            */
-	/*                                                        :::      ::::::::   */
-	/*   raycaster.c                                        :+:      :+:    :+:   */
-	/*                                                    +:+ +:+         +:+     */
-	/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
-	/*                                                +#+#+#+#+#+   +#+           */
-	/*   Created: 2024/07/08 20:33:42 by txisto-d          #+#    #+#             */
-	/*   Updated: 2024/07/10 04:01:34 by dmeirele         ###   ########.fr       */
-	/*                                                                            */
-	/* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycaster.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/08 20:33:42 by txisto-d          #+#    #+#             */
+/*   Updated: 2024/07/11 17:54:44 by txisto-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	#include "cub3d.h"
-	#include <math.h>
+#include "cub3d.h"
+#include <math.h>
 
-	void	calculate_ray(t_ray *ray, int i);
-	void	calculate_distance(t_ray *ray, int i);
-	void	dda_algorithm(t_cub3d *cub3d, t_ray *ray);
-	void	draw_ray(t_cub3d *cub3d, t_ray *ray, int x);
-	void	vertical_line(t_cub3d *cub3d, int start, int end, int x);
-	int		get_texture_color(t_cub3d *cub3d, int tex_x, int tex_y);
+void	calculate_ray(t_ray *ray, int i);
+void	calculate_distance(t_ray *ray, int i);
+void	dda_algorithm(t_cub3d *cub3d, t_ray *ray);
+void	draw_ray(t_cub3d *cub3d, t_ray *ray, int x);
+t_img	*vertical_line(t_cub3d *cub3d);
+void	put_column(t_cub3d *cub3d, int x, int height, t_img texture);
 
 void	raycaster(t_cub3d *cub3d)
 {
@@ -34,7 +34,7 @@ void	raycaster(t_cub3d *cub3d)
 		calculate_ray(ray, i);
 		dda_algorithm(cub3d, ray);
 		draw_ray(cub3d, ray, i);
-		i += 1;
+		i++;
 	}
 }
 
@@ -98,56 +98,67 @@ void    dda_algorithm(t_cub3d *cub3d, t_ray *ray)
 void    draw_ray(t_cub3d *cub3d, t_ray *ray, int x)
 {
 	int line_height;
+	
+	line_height = (int)(SCREEN_Y / ray->perp_wall_distance);
+	put_column(cub3d, x, line_height, *vertical_line(cub3d));
+}
+
+t_img *vertical_line(t_cub3d *cub3d)
+{
+	t_img	*texture;
+
+	if (cub3d->raycaster->ray.ray_dir[X] > 0)
+	{
+		if (cub3d->raycaster->ray.side == 1)
+		{
+			if (cub3d->raycaster->ray.ray_dir[Y] <= 0)
+				texture = cub3d->screen->south;
+			else
+				texture = cub3d->screen->north;
+		}
+		else
+			texture = cub3d->screen->east;
+	}
+	else
+	{
+		if (cub3d->raycaster->ray.side == 1)
+		{
+			if (cub3d->raycaster->ray.ray_dir[Y] <= 0)
+				texture = cub3d->screen->south;
+			else
+				texture = cub3d->screen->north;
+		}
+		else
+			texture = cub3d->screen->west;
+	}
+	return (texture);
+}
+
+ void	put_column(t_cub3d *cub3d, int x, int height, t_img texture)
+{
+	int	screen_y;
+	int	tex_y;
 	int draw_start;
 	int draw_end;
+	int	tex_x;
 
-	line_height = (int)(SCREEN_Y / ray->perp_wall_distance);
-	draw_start = -line_height / 2 + SCREEN_Y / 2;
+	draw_start = -height / 2 + SCREEN_Y / 2;
 	if (draw_start < 0)
 		draw_start = 0;
-	draw_end = line_height / 2 + SCREEN_Y / 2;
+	draw_end = height / 2 + SCREEN_Y / 2;
 	if (draw_end >= SCREEN_Y)
 		draw_end = SCREEN_Y - 1;
-	if (ray->side == 0)
-		ray->wall_x = ray->pos[Y] + ray->perp_wall_distance * ray->ray_dir[Y];
+	if (cub3d->raycaster->ray.side == 0)
+		cub3d->raycaster->ray.wall_x = cub3d->raycaster->ray.pos[Y] + cub3d->raycaster->ray.perp_wall_distance * cub3d->raycaster->ray.ray_dir[Y];
 	else
-		ray->wall_x = ray->pos[X] + ray->perp_wall_distance * ray->ray_dir[X];
-	ray->wall_x -= floor(ray->wall_x);
-	vertical_line(cub3d, draw_start, draw_end, x);
-}
-
-void vertical_line(t_cub3d *cub3d, int start, int end, int x)
-{
-	int	y;
-	int	color;
-
-	for (y = start; y <= end; y++)
+		cub3d->raycaster->ray.wall_x = cub3d->raycaster->ray.pos[X] + cub3d->raycaster->ray.perp_wall_distance * cub3d->raycaster->ray.ray_dir[X];
+	cub3d->raycaster->ray.wall_x -= floor(cub3d->raycaster->ray.wall_x);
+	tex_x = (int)(cub3d->raycaster->ray.wall_x * (double)64);
+	while (draw_start < draw_end)
 	{
-		color = 0xFFFFFF;
-		mlx_pixel_put(cub3d->connection, cub3d->window, x, y, color);
+		screen_y = draw_start - SCREEN_Y / 2 + height / 2;
+		tex_y = screen_y * 64 / height;
+		cub3d->screen->screen->data[x + draw_start * (cub3d->screen->screen->size_line / 4)] = texture.data[tex_x + tex_y * 64];
+		draw_start++;
 	}
 }
-
-/* int get_texture_color(t_cub3d *cub3d, int tex_x, int tex_y)
-{
-	char	*pixel;
-	int		color;
-	
-	// Verificação de ponteiro nulo
-	if (!cub3d || !cub3d->map || !cub3d->map->text_imgs || !cub3d->map->text_imgs->data)
-	{
-		ft_putstr_fd("Error: Null pointer in get_texture_color\n", 2);
-		return 0;
-	}
-
-	// Verificação de limites
-	if (tex_x < 0 || tex_x >= cub3d->map->text_imgs->width || tex_y < 0 || tex_y >= cub3d->map->text_imgs->height)
-	{
-		ft_putstr_fd("Error: Texture coordinates out of bounds\n", 2);
-		return 0;
-	}
-
-	pixel = cub3d->map->text_imgs->data + (tex_y * cub3d->map->text_imgs->size_line + tex_x * (cub3d->map->text_imgs->bits_per_pixel / 8));
-	color = *(int *)pixel;
-	return (color);
-} */

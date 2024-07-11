@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:18:51 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/08 20:17:38 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:44:30 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ static void	create_minimap(t_cub3d *cub3d)
 	floor->img_ptr = mlx_new_image(cub3d->connection, 20, 20);
 	wall->img_ptr = mlx_new_image(cub3d->connection, 20, 20);
 	player->img_ptr = mlx_new_image(cub3d->connection, 10, 10);
-	bkg->data = mlx_get_data_addr(bkg->img_ptr, &bkg->bits_per_pixel,
+	bkg->data = (int *) mlx_get_data_addr(bkg->img_ptr, &bkg->bits_per_pixel,
         &bkg->size_line, &bkg->endian);
-    floor->data = mlx_get_data_addr(floor->img_ptr, &floor->bits_per_pixel,
+    floor->data = (int *) mlx_get_data_addr(floor->img_ptr, &floor->bits_per_pixel,
         &floor->size_line, &floor->endian);
-    wall->data = mlx_get_data_addr(wall->img_ptr, &wall->bits_per_pixel,
+    wall->data = (int *) mlx_get_data_addr(wall->img_ptr, &wall->bits_per_pixel,
         &wall->size_line, &wall->endian);
-    player->data = mlx_get_data_addr(player->img_ptr, &player->bits_per_pixel,
+    player->data = (int *) mlx_get_data_addr(player->img_ptr, &player->bits_per_pixel,
         &player->size_line, &player->endian);
 }
