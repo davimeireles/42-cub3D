@@ -49,6 +49,7 @@ bool	initialize_visited(char **map, t_cub3d *cub3D)
 	int	j;
 
 	i = -1;
+
 	cub3D->map->textures->flood->visited = ft_calloc(sizeof(bool *),
 			cub3D->map->rows);
 	while (++i < cub3D->map->rows)
@@ -65,6 +66,7 @@ bool	initialize_visited(char **map, t_cub3d *cub3D)
 bool	is_valid_map(char **map, t_cub3d *cub3D)
 {
 	int	x;
+
 	int	y;
 	int	i;
 

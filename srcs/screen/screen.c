@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:09:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/11 22:02:27 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:35:23 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,4 @@ void	minimap_loader(t_cub3d *cub3d)
 		mlx_put_image_to_window(cub3d->connection, cub3d->window,
 			cub3d->minimap->dir->img_ptr, SCREEN_X - 135 + 58, 25 + 50); //SE
 	}
-	
-		
-	printf("player dir x: %f\n", cub3d->player->dir_x);
-	printf("player dir y: %f\n", cub3d->player->dir_y);
 }

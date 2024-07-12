@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:01:52 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/06/10 18:01:52 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:17:13 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ static void	check_number_args_config(char **data_file, t_cub3d *cub3D,
 				int i, int error);
 static void	check_if_configs_above(char **data_file, t_cub3d *cub3D);
 static void	check_rgb_config(char **data_file, char **s_line, t_cub3d *cub3D);
+
+
+
 
 void	check_file_config(char *input, t_cub3d *cub3d)
 {
@@ -72,22 +75,25 @@ static void	check_number_args_config(char **data_file, t_cub3d *cub3D,
 						int i, int error)
 {
 	char	**s_line;
+	char	*trimmed;
 
 	while (data_file[++i])
 	{
-		s_line = ft_split(data_file[i], ' ');
-		if (!ft_strcmp(s_line[0], "NO") && count_words(data_file[i]) != 2)
+		trimmed = trim_spaces_around_commas(data_file[i]);
+		s_line = ft_split(trimmed, ' ');
+		if (!ft_strcmp(s_line[0], "NO") && count_words(trimmed) != 2)
 			error = 1;
-		else if (!ft_strcmp(s_line[0], "SO") && count_words(data_file[i]) != 2)
+		else if (!ft_strcmp(s_line[0], "SO") && count_words(trimmed) != 2)
 			error = 1;
-		else if (!ft_strcmp(s_line[0], "WE") && count_words(data_file[i]) != 2)
+		else if (!ft_strcmp(s_line[0], "WE") && count_words(trimmed) != 2)
 			error = 1;
-		else if (!ft_strcmp(s_line[0], "EA") && count_words(data_file[i]) != 2)
+		else if (!ft_strcmp(s_line[0], "EA") && count_words(trimmed) != 2)
 			error = 1;
-		else if (!ft_strcmp(s_line[0], "F") && count_words(data_file[i]) != 2)
+		else if (!ft_strcmp(s_line[0], "F") && count_words(trimmed) != 2)
 			error = 1;
-		else if (!ft_strcmp(s_line[0], "C") && count_words(data_file[i]) != 2)
+		else if (!ft_strcmp(s_line[0], "C") && count_words(trimmed) != 2)
 			error = 1;
+		free(trimmed);
 		check_rgb_config(data_file, s_line, cub3D);
 		free_splits(s_line);
 	}
@@ -137,6 +143,8 @@ static void	check_rgb_config(char **data_file, char **s_line, t_cub3d *cub3D)
 	i = -1;
 	flag = 0;
 	v_flag = 0;
+
+	// nao pode ser o s_rgb porque esta ficando so com o primeiro caractere mas ja esta salvando no formato x,x,x
 	if (!ft_strcmp(s_line[0], "F") || !ft_strcmp(s_line[0], "C"))
 	{
 		s_rgb = ft_split(s_line[1], ',');
@@ -153,4 +161,32 @@ static void	check_rgb_config(char **data_file, char **s_line, t_cub3d *cub3D)
 		if (flag != 3 || v_flag == 1)
 			free_arrays(data_file, s_line, cub3D);
 	}
+}
+
+char *trim_spaces_around_commas(char *str)
+{
+	size_t	len;
+	size_t	i;
+	int		j;
+	char	*ret;
+
+	i = -1;
+	j = 0;
+	len = ft_strlen(str);
+	ret = ft_calloc(sizeof(char), len + 1);
+	while (++i < len)
+	{
+		if (str[i] == ',')
+		{
+			while (j > 0 && (ret[j - 1] == ' ' || ret[j - 1] == '\t'))
+				j--;
+			ret[j++] = ',';
+			while (i + 1 < len && (str[i + 1] == ' ' || str[i + 1] == '\t'))
+				i++;
+		}
+		else
+			ret[j++] = str[i];
+	}
+	ret[j] = '\0';
+	return (ret);
 }

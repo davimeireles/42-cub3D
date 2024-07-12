@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:47:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/11 17:43:49 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/12 17:06:54 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,11 @@ t_img	*load_image(t_cub3d *cub3d, char *path)
 
 static void	load_texture(t_cub3d *cub3d)
 {
-	ft_printf("%s\n", cub3d->map->north);
 	cub3d->screen->north = load_image(cub3d, cub3d->map->north);
 	cub3d->screen->south = load_image(cub3d, cub3d->map->south);
 	cub3d->screen->east = load_image(cub3d, cub3d->map->east);
 	cub3d->screen->west = load_image(cub3d, cub3d->map->west);
 	if (!cub3d->screen->north->img_ptr || !cub3d->screen->south->img_ptr ||
 		!cub3d->screen->east->img_ptr || !cub3d->screen->west->img_ptr)
-	{
-		ft_putstr_fd("Error\nTexture not found\n", 2);
-		free_mlx(cub3d);
-		exit(1);
-	}
+		p_error(TEXTURES, cub3d);
 }

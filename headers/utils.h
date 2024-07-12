@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:14:57 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/09 14:38:27 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:01:22 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,8 @@ void	*ft_pixelset(void *s, int c, size_t n);
  * @brief Returns the absolute value in double.
  */
 double	ft_abs(double n);
+
+
+char *trim_spaces_around_commas(char *str);
 
 #endif

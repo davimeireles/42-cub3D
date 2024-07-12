@@ -4,7 +4,7 @@ bool	flood_fill(char **map, t_cub3d *cub3D, int x, int y)
 {
 	if (x < 0 || x >= cub3D->map->rows || y < 0 || y >= cub3D->map->columns)
 		return (false);
-	if (map[x][y] == '1' || cub3D->map->textures->flood->visited[x][y])
+	if (map[x][y] == '1' || map[x][y] == 'x' || cub3D->map->textures->flood->visited[x][y])
 		return (true);
 	if (x == 0 || x == cub3D->map->rows
 		|| y == 0 || y == cub3D->map->columns)
@@ -63,11 +63,13 @@ void	fill_textures_info(char **data_file, t_cub3d *cub3D)
 {
 	int		i;
 	char	**s_line;
+	char	*trimmed;
 
 	i = -1;
 	while (data_file[++i])
 	{
-		s_line = ft_split(data_file[i], ' ');
+		trimmed = trim_spaces_around_commas(data_file[i]);
+		s_line = ft_split(trimmed, ' ');
 		if (!ft_strcmp(s_line[0], "NO"))
 			cub3D->map->north = ft_strdup(s_line[1]);
 		else if (!ft_strcmp(s_line[0], "SO"))
@@ -80,6 +82,7 @@ void	fill_textures_info(char **data_file, t_cub3d *cub3D)
 			cub3D->map->ceiling = ft_strdup(s_line[1]);
 		else if (!ft_strcmp(s_line[0], "F"))
 			cub3D->map->floor = ft_strdup(s_line[1]);
+		free(trimmed);
 		free_splits(s_line);
 	}
 }

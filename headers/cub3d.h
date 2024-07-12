@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/11 22:09:39 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/12 15:15:51 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,8 @@ typedef enum e_error
 	CONFIGS,
 	MEMORY,
 	INVALID_MAP,
-	RGB
+	RGB,
+	TEXTURES
 }	t_error;
 
 /*
