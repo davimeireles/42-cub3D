@@ -1,14 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flood.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/14 05:31:24 by dmeirele          #+#    #+#             */
+/*   Updated: 2024/07/14 05:35:16 by dmeirele         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
+static bool	flood_fill_recursive(char **map, t_cub3d *cub3D, int x, int y);
 
 bool	flood_fill(char **map, t_cub3d *cub3D, int x, int y)
 {
 	if (x < 0 || x >= cub3D->map->rows || y < 0 || y >= cub3D->map->columns)
 		return (false);
-	if (map[x][y] == '1' || map[x][y] == 'x' || cub3D->map->textures->flood->visited[x][y])
+	if (map[x][y] == '1' || map[x][y] == 'x' ||
+		cub3D->map->textures->flood->visited[x][y])
 		return (true);
 	if (x == 0 || x == cub3D->map->rows
 		|| y == 0 || y == cub3D->map->columns)
 		return (false);
+	return (flood_fill_recursive(map, cub3D, x, y));
+}
+
+static bool	flood_fill_recursive(char **map, t_cub3d *cub3D, int x, int y)
+{
 	cub3D->map->textures->flood->visited[x][y] = true;
 	cub3D->map->textures->flood->u = flood_fill(map, cub3D, x - 1, y);
 	cub3D->map->textures->flood->d = flood_fill(map, cub3D, x + 1, y);
@@ -29,13 +49,11 @@ bool	flood_fill(char **map, t_cub3d *cub3D, int x, int y)
 		&& cub3D->map->textures->flood->d_r);
 }
 
-void	find_player_position(t_cub3d *cub3D, char **filled_map)
+void	find_player_position(t_cub3d *cub3D, char **filled_map, int i)
 {
-	int	i;
 	int	j;
 	int	count;
 
-	i = -1;
 	count = 0;
 	while (filled_map[++i])
 	{

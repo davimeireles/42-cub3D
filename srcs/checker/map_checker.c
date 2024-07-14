@@ -30,7 +30,7 @@ void	map_checker(char **data_file, t_cub3d *cub3D)
 	check_invalid_character(map, cub3D);
 	filled_map = padding_map(map, cub3D);
 	free_splits(map);
-	find_player_position(cub3D, filled_map);
+	find_player_position(cub3D, filled_map, -1);
 	cub3D->map->f_map = extract_map_to_struct(filled_map, cub3D);
 	if (!initialize_visited(filled_map, cub3D))
 	{

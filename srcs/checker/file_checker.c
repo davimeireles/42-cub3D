@@ -6,20 +6,17 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:01:52 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/12 23:56:55 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/14 06:01:19 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	check_has_configs(char **data_file, t_cub3d *cub3d);
-static void	check_number_args_config(char **data_file, t_cub3d *cub3D,
+static int	check_number_args_config(char **data_file, t_cub3d *cub3D,
 				int i, int error);
 static void	check_if_configs_above(char **data_file, t_cub3d *cub3D);
 static void	check_rgb_config(char **data_file, char **s_line, t_cub3d *cub3D);
-
-
-
 
 void	check_file_config(char *input, t_cub3d *cub3d)
 {
@@ -40,7 +37,11 @@ void	check_file_config(char *input, t_cub3d *cub3d)
 		free_splits(data_file);
 		p_error(CONFIGS, cub3d);
 	}
-	check_number_args_config(data_file, cub3d, -1, 0);
+	if (check_number_args_config(data_file, cub3d, -1, 0))
+	{
+		free_splits(data_file);
+		p_error(CONFIGS, cub3d);
+	}
 	check_if_configs_above(data_file, cub3d);
 	cub3d->map->start_map = find_map_start(data_file);
 	map_checker(data_file, cub3d);
@@ -71,7 +72,7 @@ static void	check_has_configs(char **data_file, t_cub3d *cub3d)
 	}
 }
 
-static void	check_number_args_config(char **data_file, t_cub3d *cub3D,
+static int	check_number_args_config(char **data_file, t_cub3d *cub3D,
 						int i, int error)
 {
 	char	**s_line;
@@ -81,27 +82,18 @@ static void	check_number_args_config(char **data_file, t_cub3d *cub3D,
 	{
 		trimmed = trim_spaces_around_commas(data_file[i]);
 		s_line = ft_split(trimmed, ' ');
-		if (!ft_strcmp(s_line[0], "NO") && count_words(trimmed) != 2)
-			error = 1;
-		else if (!ft_strcmp(s_line[0], "SO") && count_words(trimmed) != 2)
-			error = 1;
-		else if (!ft_strcmp(s_line[0], "WE") && count_words(trimmed) != 2)
-			error = 1;
-		else if (!ft_strcmp(s_line[0], "EA") && count_words(trimmed) != 2)
-			error = 1;
-		else if (!ft_strcmp(s_line[0], "F") && count_words(trimmed) != 2)
-			error = 1;
-		else if (!ft_strcmp(s_line[0], "C") && count_words(trimmed) != 2)
+		if (count_words(trimmed) != 2 && (!ft_strcmp(s_line[0], "NO")
+				|| !ft_strcmp(s_line[0], "SO") || !ft_strcmp(s_line[0], "WE")
+				|| !ft_strcmp(s_line[0], "EA") || !ft_strcmp(s_line[0], "F")
+				|| !ft_strcmp(s_line[0], "C")))
 			error = 1;
 		free(trimmed);
 		check_rgb_config(data_file, s_line, cub3D);
 		free_splits(s_line);
 	}
 	if (error == 1)
-	{
-		free_splits(data_file);
-		p_error(CONFIGS, cub3D);
-	}
+		return (1);
+	return (0);
 }
 
 static void	check_if_configs_above(char **data_file, t_cub3d *cub3D)
@@ -143,8 +135,6 @@ static void	check_rgb_config(char **data_file, char **s_line, t_cub3d *cub3D)
 	i = -1;
 	flag = 0;
 	v_flag = 0;
-
-	// nao pode ser o s_rgb porque esta ficando so com o primeiro caractere mas ja esta salvando no formato x,x,x
 	if (!ft_strcmp(s_line[0], "F") || !ft_strcmp(s_line[0], "C"))
 	{
 		s_rgb = ft_split(s_line[1], ',');
@@ -163,7 +153,7 @@ static void	check_rgb_config(char **data_file, char **s_line, t_cub3d *cub3D)
 	}
 }
 
-char *trim_spaces_around_commas(char *str)
+char	*trim_spaces_around_commas(char *str)
 {
 	size_t	len;
 	size_t	i;

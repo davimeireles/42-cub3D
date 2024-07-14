@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:11:53 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/04 17:21:08 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/14 05:30:59 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "cub3d.h"
 
 /*
-███████ ██ ██      ███████ 
-██      ██ ██      ██      
-█████   ██ ██      █████   
-██      ██ ██      ██      
+███████ ██ ██      ███████
+██      ██ ██      ██
+█████   ██ ██      █████
+██      ██ ██      ██
 ██      ██ ███████ ███████
 */
 
@@ -33,11 +33,11 @@
 void	check_file_config(char *input, t_cub3d *cub3d);
 
 /*
-███    ███  █████  ██████  
-████  ████ ██   ██ ██   ██ 
-██ ████ ██ ███████ ██████  
-██  ██  ██ ██   ██ ██      
-██      ██ ██   ██ ██                                                                                
+███    ███  █████  ██████
+████  ████ ██   ██ ██   ██
+██ ████ ██ ███████ ██████
+██  ██  ██ ██   ██ ██
+██      ██ ██   ██ ██
 */
 
 /**
@@ -50,11 +50,11 @@ void	check_file_config(char *input, t_cub3d *cub3d);
 void	map_checker(char **data_file, t_cub3d *cub3D);
 
 /*
-██████   █████  ██████  ██████  ██ ███    ██  ██████  
-██   ██ ██   ██ ██   ██ ██   ██ ██ ████   ██ ██       
-██████  ███████ ██   ██ ██   ██ ██ ██ ██  ██ ██   ███ 
-██      ██   ██ ██   ██ ██   ██ ██ ██  ██ ██ ██    ██ 
-██      ██   ██ ██████  ██████  ██ ██   ████  ██████ 
+██████   █████  ██████  ██████  ██ ███    ██  ██████
+██   ██ ██   ██ ██   ██ ██   ██ ██ ████   ██ ██
+██████  ███████ ██   ██ ██   ██ ██ ██ ██  ██ ██   ███
+██      ██   ██ ██   ██ ██   ██ ██ ██  ██ ██ ██    ██
+██      ██   ██ ██████  ██████  ██ ██   ████  ██████
 */
 
 /**
@@ -87,7 +87,7 @@ bool	is_valid_map(char **map, t_cub3d *cub3D);
 
 /**
  * @brief
- * 
+ *
  * @param map
  * @param cub3D Struct containing all the parameters for the program.
  * @return
@@ -96,7 +96,7 @@ char	**padding_map(char **map, t_cub3d *cub3D);
 
 /**
  * @brief
- * 
+ *
  * @param map
  * @param cub3D Struct containing all the parameters for the program.
  * @return
@@ -104,23 +104,23 @@ char	**padding_map(char **map, t_cub3d *cub3D);
 bool	initialize_visited(char **map, t_cub3d *cub3D);
 
 /*
-███████ ██       ██████   ██████  ██████  
-██      ██      ██    ██ ██    ██ ██   ██ 
-█████   ██      ██    ██ ██    ██ ██   ██ 
-██      ██      ██    ██ ██    ██ ██   ██ 
-██      ███████  ██████   ██████  ██████  
+███████ ██       ██████   ██████  ██████
+██      ██      ██    ██ ██    ██ ██   ██
+█████   ██      ██    ██ ██    ██ ██   ██
+██      ██      ██    ██ ██    ██ ██   ██
+██      ███████  ██████   ██████  ██████
 */
 
 /**
  * @brief
- * 
+ *
  * @param cub3D Struct containing all the parameters for the program.
  * @param filled_map
  */
-void	find_player_position(t_cub3d *cub3D, char **filled_map);
+void	find_player_position(t_cub3d *cub3D, char **filled_map, int i);
 /**
  * @brief
- * 
+ *
  * @param map
  * @param cub3D Struct containing all the parameters for the program.
  * @param x
@@ -129,7 +129,7 @@ void	find_player_position(t_cub3d *cub3D, char **filled_map);
 bool	flood_fill(char **map, t_cub3d *cub3D, int x, int y);
 /**
  * @brief
- * 
+ *
  * @param data_file Array with the information extracted from opened input file.
  * @param cub3D Struct containing all the parameters for the program.
  */

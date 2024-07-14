@@ -12,6 +12,8 @@
 
 #include "cub3d.h"
 
+static bool	check_valid_fill(char **map, t_cub3d *cub3D, int x, int y);
+
 void	check_map_name(char *input, t_cub3d *cub3d)
 {
 	int		fd;
@@ -49,7 +51,6 @@ bool	initialize_visited(char **map, t_cub3d *cub3D)
 	int	j;
 
 	i = -1;
-
 	cub3D->map->textures->flood->visited = ft_calloc(sizeof(bool *),
 			cub3D->map->rows);
 	while (++i < cub3D->map->rows)
@@ -66,7 +67,6 @@ bool	initialize_visited(char **map, t_cub3d *cub3D)
 bool	is_valid_map(char **map, t_cub3d *cub3D)
 {
 	int	x;
-
 	int	y;
 	int	i;
 
@@ -76,25 +76,34 @@ bool	is_valid_map(char **map, t_cub3d *cub3D)
 		y = -1;
 		while (++y <= cub3D->map->columns)
 		{
-			if (map[x][y] == '0' || map[x][y] == 'N'
-				|| map[x][y] == 'S' || map[x][y] == 'E'
-				|| map[x][y] == 'W' || map[x][y] == 'x')
-			{
-				if (!flood_fill(map, cub3D, x, y))
-				{
-					i = -1;
-					while (++i < cub3D->map->rows)
-						free(cub3D->map->textures->flood->visited[i]);
-					free(cub3D->map->textures->flood->visited);
-					return (false);
-				}
-			}
+			if (!check_valid_fill(map, cub3D, x, y))
+				return (false);
 		}
 	}
 	i = -1;
 	while (++i < cub3D->map->rows)
 		free(cub3D->map->textures->flood->visited[i]);
 	free(cub3D->map->textures->flood->visited);
+	return (true);
+}
+
+bool	check_valid_fill(char **map, t_cub3d *cub3D, int x, int y)
+{
+	int	i;
+
+	if (map[x][y] == '0' || map[x][y] == 'N'
+		|| map[x][y] == 'S' || map[x][y] == 'E'
+		|| map[x][y] == 'W' || map[x][y] == 'x')
+	{
+		if (!flood_fill(map, cub3D, x, y))
+		{
+			i = -1;
+			while (++i < cub3D->map->rows)
+				free(cub3D->map->textures->flood->visited[i]);
+			free(cub3D->map->textures->flood->visited);
+			return (false);
+		}
+	}
 	return (true);
 }
 

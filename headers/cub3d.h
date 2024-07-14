@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/14 03:32:23 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/14 06:38:18 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define CUB3D_H
 
 /*
-███    ███  █████   ██████ ██████   ██████  ███████ 
-████  ████ ██   ██ ██      ██   ██ ██    ██ ██      
-██ ████ ██ ███████ ██      ██████  ██    ██ ███████ 
-██  ██  ██ ██   ██ ██      ██   ██ ██    ██      ██ 
-██      ██ ██   ██  ██████ ██   ██  ██████  ███████ 
+███    ███  █████   ██████ ██████   ██████  ███████
+████  ████ ██   ██ ██      ██   ██ ██    ██ ██
+██ ████ ██ ███████ ██      ██████  ██    ██ ███████
+██  ██  ██ ██   ██ ██      ██   ██ ██    ██      ██
+██      ██ ██   ██  ██████ ██   ██  ██████  ███████
 */
 
 # define FOV 90
@@ -26,7 +26,6 @@
 # define SCREEN_X 1280
 # define FULL_XY 921600
 # define HALF_XY 460800
-
 
 # define WHITE 0xFFFFFF
 # define BLACK 0
@@ -45,30 +44,30 @@
 # define EAST 3
 
 /*
-██      ██ ██████  ██████   █████  ██████  ██ ███████ ███████ 
-██      ██ ██   ██ ██   ██ ██   ██ ██   ██ ██ ██      ██      
-██      ██ ██████  ██████  ███████ ██████  ██ █████   ███████ 
-██      ██ ██   ██ ██   ██ ██   ██ ██   ██ ██ ██           ██ 
+██      ██ ██████  ██████   █████  ██████  ██ ███████ ███████
+██      ██ ██   ██ ██   ██ ██   ██ ██   ██ ██ ██      ██
+██      ██ ██████  ██████  ███████ ██████  ██ █████   ███████
+██      ██ ██   ██ ██   ██ ██   ██ ██   ██ ██ ██           ██
 ███████ ██ ██████  ██   ██ ██   ██ ██   ██ ██ ███████ ███████
 */
 
 # include "libft.h"
 # include "mlx.h"
+# include <fcntl.h>
+# include <math.h>
+# include <signal.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <sys/wait.h>
-# include <fcntl.h>
-# include <stdbool.h>
-# include <signal.h>
-# include <math.h>
+
 
 /*
-███████ ████████ ██████  ██    ██  ██████ ████████ ███████ 
-██         ██    ██   ██ ██    ██ ██         ██    ██      
-███████    ██    ██████  ██    ██ ██         ██    ███████ 
-     ██    ██    ██   ██ ██    ██ ██         ██         ██ 
+███████ ████████ ██████  ██    ██  ██████ ████████ ███████
+██         ██    ██   ██ ██    ██ ██         ██    ██
+███████    ██    ██████  ██    ██ ██         ██    ███████
+		██    ██    ██   ██ ██    ██ ██         ██         ██
 ███████    ██    ██   ██  ██████   ██████    ██    ███████
 */
-
 
 /*
  * NO -> North Texture
@@ -77,20 +76,20 @@
  * EA -> East Texture
  * F -> Floor color
  * C -> Ceiling color
-*/
+ */
 
 typedef struct s_flood_aux
 {
-	bool	u;
-	bool	d;
-	bool	l;
-	bool	r;
-	bool	u_l;
-	bool	u_r;
-	bool	d_l;
-	bool	d_r;
-	bool	**visited;
-}	t_flood_aux;
+	bool		u;
+	bool		d;
+	bool		l;
+	bool		r;
+	bool		u_l;
+	bool		u_r;
+	bool		d_l;
+	bool		d_r;
+	bool		**visited;
+}				t_flood_aux;
 
 typedef struct s_textures
 {
@@ -109,18 +108,18 @@ typedef struct s_textures
 	int			texture_line_length;
 	int			texture_endian;
 	t_flood_aux	*flood;
-}	t_textures;
+}				t_textures;
 
 typedef struct s_img
 {
-	void	*img_ptr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-	int		*data;
-	int		width;
-	int		height;
-}	t_img;
+	void		*img_ptr;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+	int			*data;
+	int			width;
+	int			height;
+}				t_img;
 
 typedef struct s_map
 {
@@ -136,73 +135,72 @@ typedef struct s_map
 	int			rows;
 	int			columns;
 	int			start_map;
-	int			n_textures;
 	t_textures	*textures;
 	t_img		*text_imgs;
-}	t_map;
+}				t_map;
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	speed;
-	double	rotation;
-	int		fov;
-	int		rotate;
-	int		move_x;
-	int		move_y;
-	int		moved;
-}	t_player;
+	double		x;
+	double		y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		speed;
+	double		rotation;
+	int			fov;
+	int			rotate;
+	int			move_x;
+	int			move_y;
+	int			moved;
+}				t_player;
 
-typedef struct	s_screen
+typedef struct s_screen
 {
-	t_img	*screen;
-	t_img	*north;
-	t_img	*east;
-	t_img	*south;
-	t_img	*west;
-	int		ceiling;
-	int		floor;
-	int		height;
-	int		width;
-}	t_screen;
+	t_img		*screen;
+	t_img		*north;
+	t_img		*east;
+	t_img		*south;
+	t_img		*west;
+	int			ceiling;
+	int			floor;
+	int			height;
+	int			width;
+}				t_screen;
 
 typedef struct s_minimap
 {
-	t_img	*bkg;
-	t_img	*player;
-	t_img	*wall;
-	t_img	*floor;
-	t_img	*dir;
-}	t_minimap;
+	t_img		*bkg;
+	t_img		*player;
+	t_img		*wall;
+	t_img		*floor;
+	t_img		*dir;
+}				t_minimap;
 
 typedef struct s_ray
 {
-	double	pos[2];
-	double	dir[2];
-	double	plane[2];
-	double	ray_dir[2];
-	int		tile[2];
-	double	delta_distance[2];
-	double	side_distance[2];
-	double	step[2];
-	double	perp_wall_distance;
-	double	camera_x;
-	double	wall_x;
-	int		hit;
-	int		side;
-}	t_ray;
+	double		pos[2];
+	double		dir[2];
+	double		plane[2];
+	double		ray_dir[2];
+	int			tile[2];
+	double		delta_distance[2];
+	double		side_distance[2];
+	double		step[2];
+	double		perp_wall_distance;
+	double		camera_x;
+	double		wall_x;
+	int			hit;
+	int			side;
+}				t_ray;
 
 typedef struct s_raycaster
 {
-	t_ray	ray;
-	double	time;
-	double	old_time;
-}	t_raycaster;
+	t_ray		ray;
+	double		time;
+	double		old_time;
+}				t_raycaster;
 
 typedef struct s_cub3d
 {
@@ -213,14 +211,13 @@ typedef struct s_cub3d
 	t_player	*player;
 	t_minimap	*minimap;
 	t_raycaster	*raycaster;
-}	t_cub3d;
-
+}				t_cub3d;
 
 /*
-███████ ███    ██ ██    ██ ███    ███ ███████ 
-██      ████   ██ ██    ██ ████  ████ ██      
-█████   ██ ██  ██ ██    ██ ██ ████ ██ ███████ 
-██      ██  ██ ██ ██    ██ ██  ██  ██      ██ 
+███████ ███    ██ ██    ██ ███    ███ ███████
+██      ████   ██ ██    ██ ████  ████ ██
+█████   ██ ██  ██ ██    ██ ██ ████ ██ ███████
+██      ██  ██ ██ ██    ██ ██  ██  ██      ██
 ███████ ██   ████  ██████  ██      ██ ███████
 */
 
@@ -234,24 +231,24 @@ typedef enum e_error
 	INVALID_MAP,
 	RGB,
 	TEXTURES
-}	t_error;
+}				t_error;
 
 /*
-███████ ██    ██ ███    ██  ██████ ████████ ██  ██████  ███    ██ ███████ 
-██      ██    ██ ████   ██ ██         ██    ██ ██    ██ ████   ██ ██      
-█████   ██    ██ ██ ██  ██ ██         ██    ██ ██    ██ ██ ██  ██ ███████ 
-██      ██    ██ ██  ██ ██ ██         ██    ██ ██    ██ ██  ██ ██      ██ 
-██       ██████  ██   ████  ██████    ██    ██  ██████  ██   ████ ███████ 
+███████ ██    ██ ███    ██  ██████ ████████ ██  ██████  ███    ██ ███████
+██      ██    ██ ████   ██ ██         ██    ██ ██    ██ ████   ██ ██
+█████   ██    ██ ██ ██  ██ ██         ██    ██ ██    ██ ██ ██  ██ ███████
+██      ██    ██ ██  ██ ██ ██         ██    ██ ██    ██ ██  ██ ██      ██
+██       ██████  ██   ████  ██████    ██    ██  ██████  ██   ████ ███████
 */
 
 # include "checker.h"
+# include "free.h"
 # include "initializer.h"
 # include "keys.h"
 # include "map.h"
 # include "player.h"
-# include "utils.h"
 # include "screen.h"
-# include "free.h"
+# include "utils.h"
 
 /**
  * @brief Main function, will call other functions for execution of the program.
@@ -260,12 +257,10 @@ typedef enum e_error
  * @param argv Arguments e.g(program name and map path).
  * @return Return Success.
  */
-int		main(int argc, char **argv);
+int				main(int argc, char **argv);
 
+void			raycaster(t_cub3d *cub3d);
 
-void    raycaster(t_cub3d *cub3d);
-
-int	move_directions(t_cub3d *cub3d, int keycode);
-
+int				move_directions(t_cub3d *cub3d, int keycode);
 
 #endif

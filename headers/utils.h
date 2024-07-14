@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:14:57 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/12 19:01:22 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/14 05:23:15 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "cub3d.h"
 
 /*
-███████ ██████  ██████   ██████  ██████  
-██      ██   ██ ██   ██ ██    ██ ██   ██ 
-█████   ██████  ██████  ██    ██ ██████  
-██      ██   ██ ██   ██ ██    ██ ██   ██ 
+███████ ██████  ██████   ██████  ██████
+██      ██   ██ ██   ██ ██    ██ ██   ██
+█████   ██████  ██████  ██    ██ ██████
+██      ██   ██ ██   ██ ██    ██ ██   ██
 ███████ ██   ██ ██   ██  ██████  ██   ██
 */
 
@@ -32,10 +32,10 @@
 void	p_error(t_error type, t_cub3d *cub3d);
 
 /*
-██    ██ ████████ ██ ██      ███████      ██ 
-██    ██    ██    ██ ██      ██          ███ 
-██    ██    ██    ██ ██      ███████      ██ 
-██    ██    ██    ██ ██           ██      ██ 
+██    ██ ████████ ██ ██      ███████      ██
+██    ██    ██    ██ ██      ██          ███
+██    ██    ██    ██ ██      ███████      ██
+██    ██    ██    ██ ██           ██      ██
  ██████     ██    ██ ███████ ███████      ██
 */
 
@@ -56,10 +56,10 @@ int		ft_strcmp(char *s1, char *s2);
 void	print_colored_matrix(char *matrix[]);
 
 /*
-██    ██ ████████ ██ ██      ███████     ██████  
-██    ██    ██    ██ ██      ██               ██ 
-██    ██    ██    ██ ██      ███████      █████  
-██    ██    ██    ██ ██           ██     ██      
+██    ██ ████████ ██ ██      ███████     ██████
+██    ██    ██    ██ ██      ██               ██
+██    ██    ██    ██ ██      ███████      █████
+██    ██    ██    ██ ██           ██     ██
  ██████     ██    ██ ███████ ███████     ███████
 */
 
@@ -82,7 +82,8 @@ void	count_file_rows(int fd, t_textures *textures);
  *
  * @param fd The file opened.
  * @param textures Struct containing all the textures for the program.
- * @return Returns the new *array[] with the information extracted from the file.
+
+* @return Returns the new *array[] with the information extracted from the file.
  */
 char	**pass_data_array(int fd, t_textures *textures);
 /**
@@ -105,11 +106,11 @@ int		find_map_start(char **data_info);
 void	free_arrays(char **data_file, char **s_line, t_cub3d *cub3D);
 
 /*
-██    ██ ████████ ██ ██      ███████     ██████  
-██    ██    ██    ██ ██      ██               ██ 
-██    ██    ██    ██ ██      ███████      █████  
-██    ██    ██    ██ ██           ██          ██ 
- ██████     ██    ██ ███████ ███████     ██████ 
+██    ██ ████████ ██ ██      ███████     ██████
+██    ██    ██    ██ ██      ██               ██
+██    ██    ██    ██ ██      ███████      █████
+██    ██    ██    ██ ██           ██          ██
+ ██████     ██    ██ ███████ ███████     ██████
 */
 
 /**
@@ -129,19 +130,23 @@ char	*padding_aux(char *map, char *line, t_cub3d *cub3D);
  * @param cub3D
  * @param s_rgb
  */
-void	check_rgb_character(char **data_file, char **s_line,
-			t_cub3d *cub3D, char **s_rgb);
+void	check_rgb_character(char **data_file, char **s_line, t_cub3d *cub3D,
+			char **s_rgb);
 bool	initialize_visited(char **map, t_cub3d *cub3D);
 
 /**
- * @brief Converts the string passed by parameter to a integer representing a color in RGB.
+
+* @brief Converts the string passed by parameter
+ to a integer representing a color in RGB.
  * @param str The string passed by parameter to be converted.
  * @return An integer representing the color in RGB.
  */
-int	get_color(char *str);
+int		get_color(char *str);
 
 /**
- * @brief Will set the pixels of the image passed by parameter with the color passed by parameter.
+
+* @brief Will set the pixels of the image passed by parameter
+with the color passed by parameter.
  */
 void	*ft_pixelset(void *s, int c, size_t n);
 
@@ -150,7 +155,6 @@ void	*ft_pixelset(void *s, int c, size_t n);
  */
 double	ft_abs(double n);
 
-
-char *trim_spaces_around_commas(char *str);
+char	*trim_spaces_around_commas(char *str);
 
 #endif
