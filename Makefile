@@ -16,7 +16,7 @@ _FILES = file_checker.c flood.c map_checker.c padding.c cub_init.c \
 		main.c screen.c error.c utils.c utils_2.c utils_3.c \
 		free_mlx.c player_init.c minimap_init.c minimap.c raycaster.c \
 		raycaster_init.c \
-		keys.c mouse.c movements.c rotations.c
+		keys.c mouse.c movements.c rotations.c free_cub3d.c
 
 OBJS = $(_FILES:%.c=%.o)
 TARGET = $(addprefix $(OBJ_DIR)/, $(OBJS))

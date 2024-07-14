@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/14 18:52:54 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/14 21:57:57 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,5 @@ typedef enum e_error
 int				main(int argc, char **argv);
 
 void			raycaster(t_cub3d *cub3d);
-
-int				move_directions(t_cub3d *cub3d, int keycode);
 
 #endif

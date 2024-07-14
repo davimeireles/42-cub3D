@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:09:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/14 20:32:13 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/14 21:17:44 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ int	screen_loader(t_cub3d *cub3d)
 	raycaster(cub3d);
 	mlx_put_image_to_window(cub3d->connection, cub3d->window,
 		cub3d->screen->screen->img_ptr, 0, 0);
+	if (cub3d->player->move_y == 1)
+		move_forward(cub3d);
+	if (cub3d->player->move_y == -1)
+		move_back(cub3d);
+	if (cub3d->player->move_x == 1)
+		move_right(cub3d);
+	if (cub3d->player->move_x == -1)
+		move_left(cub3d);
+	if (cub3d->player->rotate >= 1)
+		rotate_right(cub3d);
+	if (cub3d->player->rotate <= -1)
+		rotate_left(cub3d);
 	minimap_loader(cub3d);
 	return (0);
 }

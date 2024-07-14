@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:22:57 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/14 05:05:34 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/14 21:28:11 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	print_controls(void)
+{
+	printf("\n");
+	printf("\t░█▀▀░█░█░█▀▄░▀▀█░█▀▄░\n");
+	printf("\t░█░░░█░█░█▀▄░░▀▄░█░█░\n");
+	printf("\t░▀▀▀░▀▀▀░▀▀░░▀▀░░▀▀░░\n");
+	printf("\n");
+	printf("\tW" ": move forward\t");
+	printf("\tS" ": move backward\n");
+	printf("\tA" ": strafe left\t");
+	printf("\tD" ": strafe right\n");
+	printf("\t<" ": rotate left\t");
+	printf("\t>" ": rotate right\n");
+	printf("\tMouse" ": rotate view\n");
+	printf("\n");
+}
 
 int	main(int argc, char **argv)
 {
@@ -27,6 +44,7 @@ int	main(int argc, char **argv)
 		print_colored_matrix(cub3d->map->f_map);
 		minimap_init(cub3d);
 		game_init(cub3d);
+		print_controls();
 		mlx_loop_hook(cub3d->connection, screen_loader, cub3d);
 		mlx_loop(cub3d->connection);
 	}

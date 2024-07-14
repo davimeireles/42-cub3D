@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:14:30 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/04 17:28:34 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/14 21:59:46 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ void	free_memory(t_cub3d *cub3D);
  * @param split *array[] with the info to be freed.
  */
 void	free_splits(char **split);
+
+void	free_cub3d(t_cub3d *cub3d);
 
 #endif
