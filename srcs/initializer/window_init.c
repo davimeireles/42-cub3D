@@ -20,7 +20,8 @@ void	window_init(t_cub3d *cub3D)
 		free_memory(cub3D);
 		exit(EXIT_FAILURE);
 	}
-	cub3D->window = mlx_new_window(cub3D->connection, 1280, 720, "cub3d");
+	cub3D->window = mlx_new_window(cub3D->connection, SCREEN_X, SCREEN_Y,
+			"cub3d");
 	if (!cub3D->window)
 	{
 		free(cub3D->connection);

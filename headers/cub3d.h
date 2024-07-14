@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/14 06:38:18 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:52:54 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 */
 
 # define FOV 90
-# define SCREEN_Y 720
-# define SCREEN_X 1280
-# define FULL_XY 921600
-# define HALF_XY 460800
+# define SCREEN_Y 360 //720
+# define SCREEN_X 640 //1280
+# define FULL_XY 230400//921600
+# define HALF_XY 115200 //460800
 
 # define WHITE 0xFFFFFF
 # define BLACK 0

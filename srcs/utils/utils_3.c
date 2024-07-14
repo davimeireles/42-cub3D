@@ -76,7 +76,6 @@ void	*ft_pixelset(void *s, int c, size_t n)
 	return (s);
 }
 
-
 int	get_color(char *str)
 {
 	int		color;

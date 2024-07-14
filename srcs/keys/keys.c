@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:42:09 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/14 06:40:01 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/14 19:59:21 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	key_handler(int keycode, t_cub3d *cub3d)
 		free_mlx(cub3d);
 		exit(EXIT_SUCCESS);
 	}
-	if (keycode == U_ARROW || keycode == W_KEY)
+	if (keycode == W_KEY)
 		cub3d->player->move_x = move_forward(cub3d);
-	if (keycode == D_ARROW || keycode == S_KEY)
+	if (keycode == S_KEY)
 		cub3d->player->move_y = move_back(cub3d);
 	if (keycode == D_KEY)
 		cub3d->player->move_x = move_right(cub3d);
@@ -32,6 +32,8 @@ int	key_handler(int keycode, t_cub3d *cub3d)
 		cub3d->player->rotate += rotate_right(cub3d);
 	if (keycode == L_ARROW)
 		cub3d->player->rotate -= rotate_left(cub3d);
+	if (keycode == XK_Shift_L)
+		cub3d->player->speed = 0.05;
 	return (0);
 }
 
@@ -49,6 +51,8 @@ int	key_release(int key, t_cub3d *cub3d)
 		cub3d->player->rotate = 0;
 	if (key == L_ARROW && cub3d->player->rotate >= -1)
 		cub3d->player->rotate = 0;
+	if (key == XK_Shift_L)
+		cub3d->player->speed = 0.025;
 	return (0);
 }
 

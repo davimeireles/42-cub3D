@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 20:33:42 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/11 17:54:44 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/14 20:07:50 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	dda_algorithm(t_cub3d *cub3d, t_ray *ray);
 void	draw_ray(t_cub3d *cub3d, t_ray *ray, int x);
 t_img	*vertical_line(t_cub3d *cub3d);
 void	put_column(t_cub3d *cub3d, int x, int height, t_img texture);
+void	calculate_wall_x(t_cub3d *cub3d, int dimension);
 
 void	raycaster(t_cub3d *cub3d)
 {
@@ -38,7 +39,7 @@ void	raycaster(t_cub3d *cub3d)
 	}
 }
 
-void    calculate_ray(t_ray *ray, int i)
+void	calculate_ray(t_ray *ray, int i)
 {
 	ray->camera_x = 2 * i / (double) SCREEN_X - 1;
 	ray->ray_dir[X] = ray->dir[X] + ray->plane[X] * ray->camera_x;
@@ -55,22 +56,24 @@ void    calculate_ray(t_ray *ray, int i)
 	calculate_distance(ray, Y);
 }
 
-void    calculate_distance(t_ray *ray, int i)
+void	calculate_distance(t_ray *ray, int i)
 {
 	ray->tile[i] = (int) ray->pos[i];
 	if (ray->ray_dir[i] < 0)
 	{
 		ray->step[i] = -1;
-		ray->side_distance[i] = (ray->pos[i] - ray->tile[i]) * ray->delta_distance[i];
+		ray->side_distance[i] = (ray->pos[i] - ray->tile[i])
+			* ray->delta_distance[i];
 	}
 	else
 	{
 		ray->step[i] = 1;
-		ray->side_distance[i] = (ray->tile[i] + 1.0 - ray->pos[i]) * ray->delta_distance[i];
+		ray->side_distance[i] = (ray->tile[i] + 1.0 - ray->pos[i])
+			* ray->delta_distance[i];
 	}
 }
 
-void    dda_algorithm(t_cub3d *cub3d, t_ray *ray)
+void	dda_algorithm(t_cub3d *cub3d, t_ray *ray)
 {
 	while (!ray->hit)
 	{
@@ -90,75 +93,75 @@ void    dda_algorithm(t_cub3d *cub3d, t_ray *ray)
 			ray->hit = 1;
 	}
 	if (ray->side == 0)
-		ray->perp_wall_distance = (ray->side_distance[X] - ray->delta_distance[X]);
+		ray->perp_wall_distance = (ray->side_distance[X]
+				- ray->delta_distance[X]);
 	else
-		ray->perp_wall_distance = (ray->side_distance[Y] - ray->delta_distance[Y]);
+		ray->perp_wall_distance = (ray->side_distance[Y]
+				- ray->delta_distance[Y]);
 }
 
-void    draw_ray(t_cub3d *cub3d, t_ray *ray, int x)
+void	draw_ray(t_cub3d *cub3d, t_ray *ray, int x)
 {
-	int line_height;
-	
+	int	line_height;
+
 	line_height = (int)(SCREEN_Y / ray->perp_wall_distance);
 	put_column(cub3d, x, line_height, *vertical_line(cub3d));
 }
 
-t_img *vertical_line(t_cub3d *cub3d)
+t_img	*vertical_line(t_cub3d *cub3d)
 {
 	t_img	*texture;
 
-	if (cub3d->raycaster->ray.ray_dir[X] > 0)
+	if (cub3d->raycaster->ray.side == 1)
 	{
-		if (cub3d->raycaster->ray.side == 1)
-		{
-			if (cub3d->raycaster->ray.ray_dir[Y] <= 0)
-				texture = cub3d->screen->south;
-			else
-				texture = cub3d->screen->north;
-		}
+		if (cub3d->raycaster->ray.ray_dir[Y] <= 0)
+			texture = cub3d->screen->south;
 		else
-			texture = cub3d->screen->east;
+			texture = cub3d->screen->north;
 	}
 	else
 	{
-		if (cub3d->raycaster->ray.side == 1)
-		{
-			if (cub3d->raycaster->ray.ray_dir[Y] <= 0)
-				texture = cub3d->screen->south;
-			else
-				texture = cub3d->screen->north;
-		}
+		if (cub3d->raycaster->ray.ray_dir[X] > 0)
+			texture = cub3d->screen->east;
 		else
 			texture = cub3d->screen->west;
 	}
 	return (texture);
 }
 
- void	put_column(t_cub3d *cub3d, int x, int height, t_img texture)
+void	put_column(t_cub3d *cub3d, int x, int height, t_img texture)
 {
 	int	screen_y;
 	int	tex_y;
-	int draw_start;
-	int draw_end;
+	int	draw_start;
+	int	draw_end;
 	int	tex_x;
 
-	draw_start = -height / 2 + SCREEN_Y / 2;
+	draw_start = (-height / 2 + SCREEN_Y / 2) - 1;
 	if (draw_start < 0)
-		draw_start = 0;
+		draw_start = -1;
 	draw_end = height / 2 + SCREEN_Y / 2;
 	if (draw_end >= SCREEN_Y)
 		draw_end = SCREEN_Y - 1;
 	if (cub3d->raycaster->ray.side == 0)
-		cub3d->raycaster->ray.wall_x = cub3d->raycaster->ray.pos[Y] + cub3d->raycaster->ray.perp_wall_distance * cub3d->raycaster->ray.ray_dir[Y];
+		calculate_wall_x(cub3d, Y);
 	else
-		cub3d->raycaster->ray.wall_x = cub3d->raycaster->ray.pos[X] + cub3d->raycaster->ray.perp_wall_distance * cub3d->raycaster->ray.ray_dir[X];
-	cub3d->raycaster->ray.wall_x -= floor(cub3d->raycaster->ray.wall_x);
+		calculate_wall_x(cub3d, X);
 	tex_x = (int)(cub3d->raycaster->ray.wall_x * (double)64);
-	while (draw_start < draw_end)
+	while (++draw_start < draw_end)
 	{
 		screen_y = draw_start - SCREEN_Y / 2 + height / 2;
 		tex_y = screen_y * 64 / height;
-		cub3d->screen->screen->data[x + draw_start * (cub3d->screen->screen->size_line / 4)] = texture.data[tex_x + tex_y * 64];
-		draw_start++;
+		cub3d->screen->screen->data[x + draw_start
+			* (cub3d->screen->screen->size_line / 4)]
+			= texture.data[tex_x + tex_y * 64];
 	}
+}
+
+void	calculate_wall_x(t_cub3d *cub3d, int dimension)
+{
+	cub3d->raycaster->ray.wall_x = cub3d->raycaster->ray.pos[dimension]
+		+ cub3d->raycaster->ray.perp_wall_distance
+		* cub3d->raycaster->ray.ray_dir[dimension];
+	cub3d->raycaster->ray.wall_x -= floor(cub3d->raycaster->ray.wall_x);
 }
