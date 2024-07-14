@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:42:09 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/14 04:47:27 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/14 05:09:26 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	key_handler(int keycode, t_cub3d *cub3d)
 		cub3d->player->rotate += rotate_right(cub3d);
 	if (keycode == L_ARROW)
 		cub3d->player->rotate -= rotate_left(cub3d);
-	screen_loader(cub3d);
 	return (0);
 }
 
@@ -78,7 +77,6 @@ int	mouse_move(int x, int y, t_cub3d *cub3d)
 		rotate_left(cub3d);
 	else if (x > old_x)
 		rotate_right(cub3d);
-	screen_loader(cub3d);
 	old_x = x;
 	return (0);
 }

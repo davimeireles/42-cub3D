@@ -6,22 +6,23 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:09:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/12 15:35:23 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/14 05:06:02 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	screen_loader(t_cub3d *cub3d)
+int	screen_loader(t_cub3d *cub3d)
 {
 	background_loader(cub3d);
 	raycaster(cub3d);
 	mlx_put_image_to_window(cub3d->connection, cub3d->window,
 		cub3d->screen->screen->img_ptr, 0, 0);
 	minimap_loader(cub3d);
+	return (0);
 }
 
-void    background_loader(t_cub3d *cub3d)
+void	background_loader(t_cub3d *cub3d)
 {
 	ft_pixelset(cub3d->screen->screen->data, cub3d->screen->ceiling, HALF_XY);
 	ft_pixelset(&cub3d->screen->screen->data[HALF_XY], cub3d->screen->floor, HALF_XY);
