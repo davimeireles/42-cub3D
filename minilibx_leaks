@@ -1,0 +1,36 @@
+{
+    minilibx_leak_1
+    Memcheck:Leak
+    ...
+    fun:mlx_init
+}
+{
+    minilibx_leak_2
+    Memcheck:Leak
+    ...
+    fun:mlx_new_window
+}
+{
+    minilibx_leak_3
+    Memcheck:Leak
+    ...
+    fun:mlx_loop
+}
+{
+	minilibx_leak_4
+	Memcheck:Leak
+	...
+	fun:mlx_hook
+}
+{
+	minilibx_leak_5
+	Memcheck:Leak
+	...
+	fun:mlx_new_image
+}
+{
+	minilibx_leak_6
+	Memcheck:Leak
+	...
+	fun:mlx_xpm_file_to_image
+}

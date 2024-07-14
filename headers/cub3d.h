@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/12 15:15:51 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/14 03:32:23 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@
 # define BLUE 0x0000FF
 # define GREEN 0x00FF00
 # define RED 0xFF0000
-
-#define L_ARROW 65361
-#define R_ARROW 65363
-#define U_ARROW 65362
-#define D_ARROW 65364
 
 # define M_PI 3.14159265358979323846
 # define X 0
@@ -157,6 +152,10 @@ typedef struct s_player
 	double	speed;
 	double	rotation;
 	int		fov;
+	int		rotate;
+	int		move_x;
+	int		move_y;
+	int		moved;
 }	t_player;
 
 typedef struct	s_screen
@@ -183,9 +182,9 @@ typedef struct s_minimap
 
 typedef struct s_ray
 {
-	double	pos[2];  // ->
-	double	dir[2]; // ->
-	double	plane[2]; // ->
+	double	pos[2];
+	double	dir[2];
+	double	plane[2];
 	double	ray_dir[2];
 	int		tile[2];
 	double	delta_distance[2];

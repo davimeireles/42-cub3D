@@ -12,7 +12,7 @@ OBJ_DIR = objs
 NAME = cub3d
 
 _FILES = file_checker.c flood.c map_checker.c padding.c cub_init.c \
-		game_init.c texture_init.c window_init.c close.c cub3d.c \
+		game_init.c texture_init.c window_init.c movement.c cub3d.c \
 		main.c screen.c error.c utils.c utils_2.c utils_3.c \
 		free_mlx.c player_init.c minimap_init.c minimap.c raycaster.c \
 		raycaster_init.c
@@ -109,7 +109,8 @@ norm:
 	norminette -R CheckForbiddenSourceHeader headers/cub3d.h srcs/*.c
 
 leak: all
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) maps/valid/map.cub
+	valgrind --leak-check=full --show-leak-kinds=all \
+		--suppressions=minilibx_leaks ./$(NAME) maps/valid/library.cub
 
 test: all
 	./$(NAME) maps/valid/map.cub
