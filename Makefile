@@ -12,7 +12,7 @@ OBJ_DIR = objs
 NAME = cub3d
 
 _FILES = file_checker.c flood.c map_checker.c padding.c cub_init.c \
-		game_init.c texture_init.c window_init.c cub3d.c \
+		game_init.c texture_init.c window_init.c \
 		main.c screen.c error.c utils.c utils_2.c utils_3.c \
 		free_mlx.c player_init.c minimap_init.c minimap.c raycaster.c \
 		raycaster_init.c \
@@ -61,7 +61,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(TARGET)
 	@make $(WBLOCK) -C ./libft
-	@make $(WBLOCK) -C ./minilibx-linux
+	@make -s $(WBLOCK) -C ./minilibx-linux
 	@$(CC) $(W) $(TARGET) $(LIBFT) $(MLX) -o $(NAME) $(MATH) 
 	@echo "$(B_GREEN)$(NAME) created$(RESET)"
 	@clear
@@ -110,8 +110,8 @@ norm:
 	norminette -R CheckForbiddenSourceHeader headers/cub3d.h srcs/*.c
 
 leak: all
-	valgrind --leak-check=full --show-leak-kinds=all \
-		--suppressions=minilibx_leaks ./$(NAME) maps/valid/library.cub
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+		--suppressions=minilibx_leaks.supp ./$(NAME) maps/valid/cheese_maze.cub
 
 test: all
 	./$(NAME) maps/valid/map.cub

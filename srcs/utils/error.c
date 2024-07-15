@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 12:55:14 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/12 15:16:26 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/15 13:34:28 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	p_error(t_error type, t_cub3d *cub3d)
 		ft_putendl_fd("Error\nWrong RGB config.", 2);
 	else if (type == TEXTURES)
 		ft_putendl_fd("Error\nTexture not found.", 2);
-	free_memory(cub3d);
+	free_cub3d(cub3d);
 	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:01:52 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/14 06:01:19 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:30:25 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,32 +151,4 @@ static void	check_rgb_config(char **data_file, char **s_line, t_cub3d *cub3D)
 		if (flag != 3 || v_flag == 1)
 			free_arrays(data_file, s_line, cub3D);
 	}
-}
-
-char	*trim_spaces_around_commas(char *str)
-{
-	size_t	len;
-	size_t	i;
-	int		j;
-	char	*ret;
-
-	i = -1;
-	j = 0;
-	len = ft_strlen(str);
-	ret = ft_calloc(sizeof(char), len + 1);
-	while (++i < len)
-	{
-		if (str[i] == ',')
-		{
-			while (j > 0 && (ret[j - 1] == ' ' || ret[j - 1] == '\t'))
-				j--;
-			ret[j++] = ',';
-			while (i + 1 < len && (str[i + 1] == ' ' || str[i + 1] == '\t'))
-				i++;
-		}
-		else
-			ret[j++] = str[i];
-	}
-	ret[j] = '\0';
-	return (ret);
 }

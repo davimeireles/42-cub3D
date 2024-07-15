@@ -14,23 +14,6 @@
 
 static bool	check_valid_fill(char **map, t_cub3d *cub3D, int x, int y);
 
-void	check_map_name(char *input, t_cub3d *cub3d)
-{
-	int		fd;
-	size_t	i;
-
-	i = ft_strlen(input);
-	if (!(input[i - 1] == 'b' && input[i - 2] == 'u'
-			&& input[i - 3] == 'c' && input[i - 4] == '.'
-			&& input[i - 5]))
-		p_error(MAP_NAME, cub3d);
-	fd = open(input, O_RDONLY);
-	if (fd == -1)
-		p_error(OPEN_ERROR, cub3d);
-	count_file_rows(fd, cub3d->map->textures);
-	close(fd);
-}
-
 char	**extract_map_to_struct(char **map, t_cub3d *cub3D)
 {
 	int		i;

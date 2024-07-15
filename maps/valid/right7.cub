@@ -2,12 +2,12 @@
 F 0,120,0
 
 
-WE ./images/south.xpm
+WE ./textures/south.xpm
 C 0,0,120
-EA ./images/south.xpm
+EA ./textures/south.xpm
 
-NO ./images/west.xpm
-SO ./images/south.xpm
+NO ./textures/west.xpm
+SO ./textures/south.xpm
 
 
 1111111111111111111111111111111111111

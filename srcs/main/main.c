@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:22:57 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/14 21:28:11 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:10:51 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(int argc, char **argv)
 		print_controls();
 		mlx_loop_hook(cub3d->connection, screen_loader, cub3d);
 		mlx_loop(cub3d->connection);
+		free_cub3d(cub3d);
 	}
 	else
 		p_error(N_ARGS, NULL);

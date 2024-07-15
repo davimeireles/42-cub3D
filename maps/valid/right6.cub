@@ -3,10 +3,10 @@ C 0,0,120
 
 
 
-NO ./images/west.xpm
-SO ./images/south.xpm
-WE ./images/south.xpm
-EA ./images/south.xpm
+NO ./textures/west.xpm
+SO ./textures/south.xpm
+WE ./textures/south.xpm
+EA ./textures/south.xpm
 
 
 1111111111111111111111111111111111111
