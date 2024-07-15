@@ -6,16 +6,11 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:09:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/14 21:17:44 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:47:05 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	tile_n(t_player *player, t_cub3d *cub3d);
-void	tile_s(t_player *player, t_cub3d *cub3d);
-void	tile_w(t_player *player, t_cub3d *cub3d);
-void	tile_e(t_player *player, t_cub3d *cub3d);
 
 int	screen_loader(t_cub3d *cub3d)
 {
@@ -73,92 +68,4 @@ void	minimap_loader(t_cub3d *cub3d)
 	tile_s(player, cub3d);
 	tile_w(player, cub3d);
 	tile_e(player, cub3d);
-}
-
-void	tile_n(t_player *player, t_cub3d *cub3d)
-{
-	if (player->dir_x < -0.66 )
-	{
-		if (player->dir_y > -0.33 && player->dir_y < 0.33)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 54, 30 + 50);
-		if (player->dir_y > 0.33 && player->dir_y < 0.66)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 56, 30 + 50);
-		if (player->dir_y > 0.66 && player->dir_y < 1)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 58, 30 + 50);
-		if (player->dir_y < -0.33 && player->dir_y > -0.66)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 52, 30 + 50);
-		if (player->dir_y < -0.66 && player->dir_y > -1)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 50, 30 + 50);
-	}
-}
-
-void	tile_s(t_player *player, t_cub3d *cub3d)
-{
-	if (player->dir_x > 0.66)
-	{
-		if (player->dir_y > -0.33 && player->dir_y < 0.33)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 54, 30 + 58);
-		if (player->dir_y > 0.33 && player->dir_y < 0.66)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 56, 30 + 58);
-		if (player->dir_y > 0.66 && player->dir_y < 1)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 58, 30 + 58);
-		if (player->dir_y < -0.33 && player->dir_y > -0.66)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 52, 30 + 58);
-		if (player->dir_y < -0.66 && player->dir_y > -1)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 50, 30 + 58);
-	}
-}
-
-void	tile_w(t_player *player, t_cub3d *cub3d)
-{
-	if (player->dir_y < -0.66)
-	{
-		if (player->dir_x > -0.33 && player->dir_x < 0.33)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 50, 30 + 54);
-		if (player->dir_x > 0.33 && player->dir_x < 0.66)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 50, 30 + 56);
-		if (player->dir_x > 0.66 && player->dir_x < 1)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 50, 30 + 58);
-		if (player->dir_x < -0.33 && player->dir_x > -0.66)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 50, 30 + 52);
-		if (player->dir_x < -0.66 && player->dir_x > -1)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 50, 30 + 50);
-	}
-}
-
-void	tile_e(t_player *player, t_cub3d *cub3d)
-{
-	if (player->dir_y > 0.66)
-	{
-		if (player->dir_x > -0.33 && player->dir_x < 0.33)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 58, 30 + 54);
-		if (player->dir_x > 0.33 && player->dir_x < 0.66)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 58, 30 + 56);
-		if (player->dir_x > 0.66 && player->dir_x < 1)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 58, 30 + 58);
-		if (player->dir_x < -0.33 && player->dir_x > -0.66)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 58, 30 + 52);
-		if (player->dir_x < -0.66 && player->dir_x > -1)
-			mlx_put_image_to_window(cub3d->connection, cub3d->window,
-				cub3d->minimap->dir->img_ptr, SCREEN_X - 140 + 58, 30 + 50);
-	}
 }

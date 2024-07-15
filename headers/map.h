@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:15:09 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/14 19:39:16 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:47:28 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@
  * @param mm_y the y coordinate of the tile on the minimap.
  */
 void	print_tile(t_cub3d *cub3d, int x, int y, int *mm_pair);
-
+void	tile_n(t_player *player, t_cub3d *cub3d);
+void	tile_s(t_player *player, t_cub3d *cub3d);
+void	tile_w(t_player *player, t_cub3d *cub3d);
+void	tile_e(t_player *player, t_cub3d *cub3d);
 #endif
