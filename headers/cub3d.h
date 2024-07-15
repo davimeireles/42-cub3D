@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/15 17:51:05 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:53:31 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@
 # include "player.h"
 # include "screen.h"
 # include "utils.h"
+# include "raycaster.h"
 
 /**
  * @brief Main function, will call other functions for execution of the program.
