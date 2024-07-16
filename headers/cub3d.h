@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:23:29 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/15 17:53:31 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:43:20 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# include <sys/time.h>
 # include "structs.h"
 # include "enums.h"
 # include "checker.h"

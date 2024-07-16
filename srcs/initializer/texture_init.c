@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:47:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/15 15:16:33 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:55:29 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,15 @@ static void	screen_init(t_cub3d *cub3d)
 t_img	*load_image(t_cub3d *cub3d, char *path)
 {
 	t_img	*img;
+	char	*tmp;
 
 	img = ft_calloc(1, sizeof(t_img));
-	path[ft_strlen(path) - 1] = '\0';
-	img->img_ptr = mlx_xpm_file_to_image(cub3d->connection, path,
+	tmp = ft_strtrim(path, " \t\n");
+	img->img_ptr = mlx_xpm_file_to_image(cub3d->connection, tmp,
 			&img->width, &img->height);
+	printf("path1: [%s]\n", path);
+	printf("path2: [%s]\n", tmp);
+	free(tmp);
 	if (img->img_ptr)
 	{
 		img->data = (int *) mlx_get_data_addr(img->img_ptr,

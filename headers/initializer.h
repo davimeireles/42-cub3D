@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:13:39 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/09 12:44:08 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:51:37 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
  * @param cub3d Struct containing all the parameters for the program.
  */
 void	initialize_cub(t_cub3d **cub3d);
+
+void	init_timer(t_cub3d *cub3d);
 
 /*
  ██████   █████  ███    ███ ███████

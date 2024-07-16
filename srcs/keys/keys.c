@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:42:09 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/14 22:08:56 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:10:09 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	key_handler(int keycode, t_cub3d *cub3d)
 	if (keycode == XK_Left)
 		cub3d->player->rotate -= 1;
 	if (keycode == XK_Shift_L)
-		cub3d->player->speed = 0.025;
+		cub3d->player->sprint = 2;
 	return (0);
 }
 
@@ -52,7 +52,7 @@ int	key_release(int key, t_cub3d *cub3d)
 	if (key == XK_Left && cub3d->player->rotate >= -1)
 		cub3d->player->rotate = 0;
 	if (key == XK_Shift_L)
-		cub3d->player->speed = 0.01;
+		cub3d->player->sprint = 1;
 	return (0);
 }
 

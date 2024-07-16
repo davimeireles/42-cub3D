@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_cub3d.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 21:47:32 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/15 15:30:28 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:20:13 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	free_cub3d(t_cub3d *cub3d)
 		free_screen(cub3d);
 	if (cub3d->window)
 		mlx_destroy_window(cub3d->connection, cub3d->window);
+	free(cub3d->timer->tv);
+	free(cub3d->timer);
 	if (cub3d->connection)
 	{
 		mlx_destroy_display(cub3d->connection);

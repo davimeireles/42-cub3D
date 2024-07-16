@@ -6,7 +6,7 @@
 /*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:38:19 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/15 17:42:11 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:24:27 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,16 @@ typedef struct s_player
 	int			move_x;
 	int			move_y;
 	int			moved;
+	int			sprint;
 }				t_player;
+
+typedef struct s_timer
+{
+	struct timeval	*restrict tv;
+	double			time;
+	double			old_time;
+	double			frame_time;
+}				t_timer;
 
 typedef struct s_screen
 {
@@ -145,6 +154,7 @@ typedef struct s_cub3d
 	t_player	*player;
 	t_minimap	*minimap;
 	t_raycaster	*raycaster;
+	t_timer		*timer;
 }				t_cub3d;
 
 #endif
