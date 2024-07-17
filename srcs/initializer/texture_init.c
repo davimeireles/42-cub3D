@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:47:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/16 15:55:29 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/17 20:05:02 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ t_img	*load_image(t_cub3d *cub3d, char *path)
 	tmp = ft_strtrim(path, " \t\n");
 	img->img_ptr = mlx_xpm_file_to_image(cub3d->connection, tmp,
 			&img->width, &img->height);
-	printf("path1: [%s]\n", path);
-	printf("path2: [%s]\n", tmp);
 	free(tmp);
 	if (img->img_ptr)
 	{
@@ -58,13 +56,13 @@ t_img	*load_image(t_cub3d *cub3d, char *path)
 	return (img);
 }
 
-static void	load_texture(t_cub3d *cub3d)
+static void    load_texture(t_cub3d *cub3d)
 {
-	cub3d->screen->north = load_image(cub3d, cub3d->map->north);
-	cub3d->screen->south = load_image(cub3d, cub3d->map->south);
-	cub3d->screen->east = load_image(cub3d, cub3d->map->east);
-	cub3d->screen->west = load_image(cub3d, cub3d->map->west);
-	if (!cub3d->screen->north->img_ptr || !cub3d->screen->south->img_ptr
-		|| !cub3d->screen->east->img_ptr || !cub3d->screen->west->img_ptr)
-		p_error(TEXTURES, cub3d);
+    cub3d->screen->north = load_image(cub3d, cub3d->map->east);
+    cub3d->screen->south = load_image(cub3d, cub3d->map->west);
+    cub3d->screen->east = load_image(cub3d, cub3d->map->south);
+    cub3d->screen->west = load_image(cub3d, cub3d->map->north);
+    if (!cub3d->screen->north->img_ptr || !cub3d->screen->south->img_ptr
+        || !cub3d->screen->east->img_ptr || !cub3d->screen->west->img_ptr)
+        p_error(TEXTURES, cub3d);
 }

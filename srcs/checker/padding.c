@@ -53,19 +53,25 @@ bool	is_valid_map(char **map, t_cub3d *cub3D)
 	int	y;
 	int	i;
 
-	x = -1;
-	while (++x < cub3D->map->rows)
+	x = 0;
+	while (x < cub3D->map->rows)
 	{
-		y = -1;
-		while (++y <= cub3D->map->columns)
+		y = 0;
+		while (y < cub3D->map->columns)
 		{
-			if (!check_valid_fill(map, cub3D, x, y))
+			if ((map[x][y] == '0' || map[x][y] == 'N'
+		|| map[x][y] == 'S' || map[x][y] == 'E'
+		|| map[x][y] == 'W') && !check_valid_fill(map, cub3D, x, y))
 				return (false);
+			y++;
 		}
+		x++;
 	}
-	i = -1;
-	while (++i < cub3D->map->rows)
+	while (i < cub3D->map->rows)
+	{
 		free(cub3D->map->textures->flood->visited[i]);
+		i++;
+	}
 	free(cub3D->map->textures->flood->visited);
 	return (true);
 }
@@ -76,7 +82,7 @@ bool	check_valid_fill(char **map, t_cub3d *cub3D, int x, int y)
 
 	if (map[x][y] == '0' || map[x][y] == 'N'
 		|| map[x][y] == 'S' || map[x][y] == 'E'
-		|| map[x][y] == 'W' || map[x][y] == 'x')
+		|| map[x][y] == 'W')
 	{
 		if (!flood_fill(map, cub3D, x, y))
 		{

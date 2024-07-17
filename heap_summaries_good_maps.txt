@@ -1,0 +1,60 @@
+maps/good/cheese_maze.cub:
+
+==36855==   total heap usage: 6,439 allocs, 6,439 frees, 271,082 bytes allocated
+
+maps/good/creepy.cub:
+
+==36863==   total heap usage: 8,585 allocs, 8,585 frees, 1,380,899 bytes allocated
+
+maps/good/dungeon.cub:
+
+==36877==   total heap usage: 4,282 allocs, 4,282 frees, 479,036 bytes allocated
+
+maps/good/library.cub:
+
+==36885==   total heap usage: 7,471 allocs, 7,471 frees, 1,353,470 bytes allocated
+
+maps/good/matrix.cub:
+
+==36899==   total heap usage: 3,867 allocs, 3,867 frees, 203,548 bytes allocated
+
+maps/good/sad_face.cub:
+
+==36907==   total heap usage: 7,891 allocs, 7,891 frees, 1,362,226 bytes allocated
+
+maps/good/square_map.cub:
+
+==36915==   total heap usage: 6,426 allocs, 6,426 frees, 275,558 bytes allocated
+
+maps/good/test_map.cub:
+
+==36929==   total heap usage: 2,810 allocs, 2,810 frees, 183,530 bytes allocated
+
+maps/good/test_pos_bottom.cub:
+
+==36937==   total heap usage: 1,984 allocs, 1,984 frees, 150,343 bytes allocated
+
+maps/good/test_pos_left.cub:
+
+==36951==   total heap usage: 1,650 allocs, 1,650 frees, 147,357 bytes allocated
+
+maps/good/test_pos_right.cub:
+
+==36959==   total heap usage: 1,866 allocs, 1,866 frees, 152,857 bytes allocated
+
+maps/good/test_pos_top.cub:
+
+==36967==   total heap usage: 2,038 allocs, 2,038 frees, 151,718 bytes allocated
+
+maps/good/test_textures.cub:
+
+==36981==   total heap usage: 4,477 allocs, 4,477 frees, 218,024 bytes allocated
+
+maps/good/test_whitespace.cub:
+
+==36989==   total heap usage: 15,524 allocs, 15,524 frees, 483,965 bytes allocated
+
+maps/good/works.cub:
+
+==37003==   total heap usage: 5,326 allocs, 5,326 frees, 245,340 bytes allocated
+

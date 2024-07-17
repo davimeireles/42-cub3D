@@ -6,7 +6,7 @@
 /*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:36:10 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/15 12:35:54 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/17 18:48:37 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	print_colored_char(char c)
 	else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		ft_printf("\033[42m \033[0m");
 	else
-		ft_printf("\033[41m \033[0m");
+		ft_printf("\033[100m \033[0m");
 }
 
 void	print_colored_matrix(char *matrix[])

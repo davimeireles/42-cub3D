@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:15:09 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/15 17:47:28 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/17 20:07:40 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	tile_n(t_player *player, t_cub3d *cub3d);
 void	tile_s(t_player *player, t_cub3d *cub3d);
 void	tile_w(t_player *player, t_cub3d *cub3d);
 void	tile_e(t_player *player, t_cub3d *cub3d);
+void	ft_put_img(t_cub3d *cub3d, int pos[XY],int size[XY], int color);
 #endif

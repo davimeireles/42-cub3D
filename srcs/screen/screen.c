@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:09:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/16 16:25:19 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/17 20:08:47 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	minimap_loader(t_cub3d *cub3d)
 
 	player = cub3d->player;
 	mm_pair[0] = -6;
-	mlx_put_image_to_window(cub3d->connection, cub3d->window,
-		cub3d->minimap->bkg->img_ptr, SCREEN_X - 145, 25);
+	ft_put_img(cub3d, (int[2]) {145, 25}, (int[2]) {120, 120}, BLACK);
 	while (++mm_pair[0] <= 5)
 	{
 		mm_pair[1] = -6;
@@ -71,8 +70,7 @@ void	minimap_loader(t_cub3d *cub3d)
 				(int) cub3d->player->x + mm_pair[0], mm_pair);
 		}
 	}
-	mlx_put_image_to_window(cub3d->connection, cub3d->window,
-		cub3d->minimap->player->img_ptr, SCREEN_X - 140 + 50, 30 + 50);
+	ft_put_img(cub3d, (int[2]) {90, 81}, (int[2]) {10, 9}, RED);
 	tile_n(player, cub3d);
 	tile_s(player, cub3d);
 	tile_w(player, cub3d);
@@ -88,4 +86,14 @@ static void	time_frame(t_cub3d *cub3d)
 	cub3d->timer->frame_time = cub3d->timer->time - cub3d->timer->old_time;
 	cub3d->player->speed = cub3d->timer->frame_time * cub3d->player->sprint;
 	cub3d->player->rotation = cub3d->timer->frame_time * 2.0;
+}
+
+void	ft_put_img(t_cub3d *cub3d, int pos[XY],int size[XY], int color)
+{
+	int	i;
+
+	i = pos[Y] - 1;
+	while (++i <= pos[Y] + size[Y])
+		ft_pixelset(&cub3d->screen->screen->data[(i * SCREEN_X) - pos[X]],
+			color, size[X]);
 }

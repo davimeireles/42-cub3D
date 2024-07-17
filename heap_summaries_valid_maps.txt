@@ -1,99 +1,99 @@
 maps/valid/cheese_maze.cub:
-==16922==   total heap usage: 139,597 allocs, 139,597 frees, 3,775,553 bytes allocated
+==51973==   total heap usage: 2,211 allocs, 2,034 frees, 151,535 bytes allocated
 
 maps/valid/creepy.cub:
-==16964==   total heap usage: 13,989 allocs, 13,989 frees, 503,815 bytes allocated
+==51990==   total heap usage: 3,581 allocs, 3,581 frees, 180,177 bytes allocated
 
 maps/valid/dungeon.cub:
-==16974==   total heap usage: 2,738 allocs, 2,738 frees, 205,846 bytes allocated
+==52037==   total heap usage: 3,729 allocs, 3,729 frees, 186,670 bytes allocated
 
 maps/valid/file_letter_end.cub:
-==16981==   total heap usage: 14,459 allocs, 14,459 frees, 499,414 bytes allocated
+==52084==   total heap usage: 2,005 allocs, 1,823 frees, 140,433 bytes allocated
 
 maps/valid/inner_walls.cub:
-==16991==   total heap usage: 23,290 allocs, 23,290 frees, 748,536 bytes allocated
+==52095==   total heap usage: 4,852 allocs, 4,852 frees, 212,511 bytes allocated
 
 maps/valid/inner_walls_multi_sections.cub:
-==17001==   total heap usage: 11,580 allocs, 11,580 frees, 442,791 bytes allocated
+==52154==   total heap usage: 3,541 allocs, 3,541 frees, 184,870 bytes allocated
 
 maps/valid/library.cub:
-==17010==   total heap usage: 9,026 allocs, 9,026 frees, 382,224 bytes allocated
+==52189==   total heap usage: 4,161 allocs, 4,161 frees, 195,477 bytes allocated
 
 maps/valid/map.cub:
-==17015==   total heap usage: 2,654 allocs, 2,654 frees, 198,084 bytes allocated
+==52242==   total heap usage: 2,351 allocs, 2,351 frees, 159,133 bytes allocated
 
 maps/valid/map_whitespace_left.cub:
-==17024==   total heap usage: 6,923 allocs, 6,923 frees, 323,106 bytes allocated
+==52271==   total heap usage: 3,458 allocs, 3,458 frees, 182,281 bytes allocated
 
 maps/valid/matrix.cub:
-==17030==   total heap usage: 7,675 allocs, 7,675 frees, 330,301 bytes allocated
+==52306==   total heap usage: 4,059 allocs, 4,059 frees, 191,588 bytes allocated
 
 maps/valid/prova.cub:
-==17038==   total heap usage: 61,018 allocs, 61,018 frees, 1,735,852 bytes allocated
+==52353==   total heap usage: 3,263 allocs, 3,263 frees, 186,765 bytes allocated
 
 maps/valid/right1.cub:
-==17048==   total heap usage: 21,862 allocs, 21,862 frees, 716,594 bytes allocated
+==52364==   total heap usage: 1,455 allocs, 1,455 frees, 141,039 bytes allocated
 
 maps/valid/right2.cub:
-==17057==   total heap usage: 44,370 allocs, 44,370 frees, 1,291,344 bytes allocated
+==52369==   total heap usage: 1,913 allocs, 1,913 frees, 143,053 bytes allocated
 
 maps/valid/right3.cub:
-==17067==   total heap usage: 92,299 allocs, 92,299 frees, 2,546,289 bytes allocated
+==52380==   total heap usage: 1,436 allocs, 1,436 frees, 140,506 bytes allocated
 
 maps/valid/right4.cub:
-==17089==   total heap usage: 10,105 allocs, 10,105 frees, 411,242 bytes allocated
+==52385==   total heap usage: 1,433 allocs, 1,433 frees, 140,607 bytes allocated
 
 maps/valid/right5.cub:
-==17095==   total heap usage: 7,920 allocs, 7,920 frees, 350,238 bytes allocated
+==52396==   total heap usage: 1,633 allocs, 1,633 frees, 141,706 bytes allocated
 
 maps/valid/right6.cub:
-==17106==   total heap usage: 4,548 allocs, 4,548 frees, 266,138 bytes allocated
+==52401==   total heap usage: 1,469 allocs, 1,469 frees, 140,624 bytes allocated
 
 maps/valid/right7.cub:
-==17111==   total heap usage: 5,513 allocs, 5,513 frees, 290,295 bytes allocated
+==52409==   total heap usage: 1,523 allocs, 1,523 frees, 141,301 bytes allocated
 
 maps/valid/sad_face.cub:
-==17118==   total heap usage: 11,808 allocs, 11,808 frees, 466,511 bytes allocated
+==52417==   total heap usage: 1,303 allocs, 1,303 frees, 131,768 bytes allocated
 
 maps/valid/square_map.cub:
-==17126==   total heap usage: 16,343 allocs, 16,343 frees, 560,153 bytes allocated
+==52422==   total heap usage: 2,289 allocs, 2,289 frees, 151,186 bytes allocated
 
 maps/valid/subject_map.cub:
-==17138==   total heap usage: 7,326 allocs, 7,326 frees, 333,083 bytes allocated
+==52433==   total heap usage: 1,583 allocs, 1,583 frees, 141,872 bytes allocated
 
 maps/valid/test_map.cub:
-==17145==   total heap usage: 3,988 allocs, 3,988 frees, 233,873 bytes allocated
+==52438==   total heap usage: 839 allocs, 839 frees, 124,639 bytes allocated
 
 maps/valid/test_map_hole.cub:
-==17156==   total heap usage: 17,062 allocs, 17,062 frees, 579,933 bytes allocated
+==52449==   total heap usage: 1,053 allocs, 1,053 frees, 127,638 bytes allocated
 
 maps/valid/test_pos_bottom.cub:
-==17166==   total heap usage: 2,678 allocs, 2,678 frees, 195,114 bytes allocated
+==52454==   total heap usage: 1,119 allocs, 1,119 frees, 126,581 bytes allocated
 
 maps/valid/test_pos_left.cub:
-==17174==   total heap usage: 3,598 allocs, 3,598 frees, 225,020 bytes allocated
+==52459==   total heap usage: 899 allocs, 899 frees, 126,472 bytes allocated
 
 maps/valid/test_pos_right.cub:
-==17183==   total heap usage: 4,373 allocs, 4,373 frees, 246,056 bytes allocated
+==52470==   total heap usage: 899 allocs, 899 frees, 126,472 bytes allocated
 
 maps/valid/test_pos_top.cub:
-==17192==   total heap usage: 1,830 allocs, 1,830 frees, 173,162 bytes allocated
+==52475==   total heap usage: 1,125 allocs, 1,125 frees, 126,708 bytes allocated
 
 maps/valid/test_textures.cub:
-==17198==   total heap usage: 5,008 allocs, 5,008 frees, 259,078 bytes allocated
+==52486==   total heap usage: 1,181 allocs, 1,181 frees, 127,971 bytes allocated
 
 maps/valid/test_whitespace.cub:
-==17207==   total heap usage: 3,980 allocs, 3,980 frees, 213,480 bytes allocated
+==52491==   total heap usage: 2,224 allocs, 2,224 frees, 136,609 bytes allocated
 
 maps/valid/triangle.cub:
-==17212==   total heap usage: 2,738 allocs, 2,738 frees, 206,778 bytes allocated
+==52502==   total heap usage: 951 allocs, 951 frees, 126,476 bytes allocated
 
 maps/valid/triangle_multi.cub:
-==17218==   total heap usage: 3,136 allocs, 3,136 frees, 218,503 bytes allocated
+==52507==   total heap usage: 1,000 allocs, 1,000 frees, 127,655 bytes allocated
 
 maps/valid/triangle_multi_open.cub:
-==17228==   total heap usage: 3,636 allocs, 3,636 frees, 232,332 bytes allocated
+==52512==   total heap usage: 1,028 allocs, 1,028 frees, 127,919 bytes allocated
 
 maps/valid/works.cub:
-==17236==   total heap usage: 14,695 allocs, 14,695 frees, 514,450 bytes allocated
+==52523==   total heap usage: 1,325 allocs, 1,325 frees, 133,628 bytes allocated
 

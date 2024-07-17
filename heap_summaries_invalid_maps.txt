@@ -1,0 +1,395 @@
+maps/invalid/broken_xpm.cub:
+Error
+Texture not found.
+==36086==   total heap usage: 1,625 allocs, 1,625 frees, 114,988 bytes allocated
+
+maps/invalid/color_invalid_rgb.cub:
+Error
+Wrong RGB config.
+==36094==   total heap usage: 426 allocs, 426 frees, 4,782 bytes allocated
+
+maps/invalid/color_missing.cub:
+Error
+Missing/Wrong configuration in the file.
+==36102==   total heap usage: 369 allocs, 369 frees, 4,070 bytes allocated
+
+maps/invalid/color_missing_ceiling_rgb.cub:
+Error
+Wrong RGB config.
+==36110==   total heap usage: 430 allocs, 430 frees, 4,791 bytes allocated
+
+maps/invalid/color_missing_floor_rgb.cub:
+Error
+Wrong RGB config.
+==36124==   total heap usage: 421 allocs, 421 frees, 4,682 bytes allocated
+
+maps/invalid/color_none.cub:
+Error
+Missing/Wrong configuration in the file.
+==36132==   total heap usage: 360 allocs, 360 frees, 3,899 bytes allocated
+
+maps/invalid/duplicated_setting.cub:
+Error
+Missing/Wrong configuration in the file.
+==36140==   total heap usage: 445 allocs, 445 frees, 4,801 bytes allocated
+
+maps/invalid/empty.cub:
+Error
+Missing/Wrong configuration in the file.
+==36148==   total heap usage: 18 allocs, 18 frees, 784 bytes allocated
+
+maps/invalid/invalid_4_color.cub:
+Error
+Wrong RGB config.
+==36156==   total heap usage: 454 allocs, 454 frees, 4,956 bytes allocated
+
+maps/invalid/invalid_map.cub:
+Error
+Missing/Wrong configuration in the file.
+==36164==   total heap usage: 735 allocs, 735 frees, 9,115 bytes allocated
+
+maps/invalid/invalid_map_char.cub:
+Error
+Invalid map.
+==36178==   total heap usage: 726 allocs, 726 frees, 8,180 bytes allocated
+
+maps/invalid/map_first.cub:
+Error
+Missing/Wrong configuration in the file.
+==36186==   total heap usage: 497 allocs, 497 frees, 5,449 bytes allocated
+
+maps/invalid/map_middle.cub:
+Error
+Missing/Wrong configuration in the file.
+==36194==   total heap usage: 566 allocs, 566 frees, 5,948 bytes allocated
+
+maps/invalid/map_missing.cub:
+Error
+Invalid map.
+==36202==   total heap usage: 359 allocs, 359 frees, 5,110 bytes allocated
+
+maps/invalid/map_only.cub:
+Error
+Missing/Wrong configuration in the file.
+==36210==   total heap usage: 200 allocs, 200 frees, 2,006 bytes allocated
+
+maps/invalid/map_too_small.cub:
+Error
+Invalid map.
+==36224==   total heap usage: 414 allocs, 414 frees, 5,487 bytes allocated
+
+maps/invalid/player_multiple.cub:
+Error
+Invalid map.
+==36232==   total heap usage: 726 allocs, 726 frees, 7,999 bytes allocated
+
+maps/invalid/player_none.cub:
+Error
+Invalid map.
+==36240==   total heap usage: 726 allocs, 726 frees, 7,999 bytes allocated
+
+maps/invalid/player_on_edge.cub:
+Error
+Invalid map.
+==36248==   total heap usage: 754 allocs, 754 frees, 8,371 bytes allocated
+
+maps/invalid/subject_map.cub:
+Error
+Invalid map.
+==36256==   total heap usage: 1,255 allocs, 1,255 frees, 26,839 bytes allocated
+
+maps/invalid/test_map_hole.cub:
+Error
+Invalid map.
+==36270==   total heap usage: 740 allocs, 740 frees, 11,939 bytes allocated
+
+maps/invalid/textures_dir.cub:
+Error
+Texture not found.
+==36278==   total heap usage: 1,022 allocs, 1,022 frees, 100,935 bytes allocated
+
+maps/invalid/textures_dir2.cub:
+Error
+Texture not found.
+==36286==   total heap usage: 1,046 allocs, 1,046 frees, 101,054 bytes allocated
+
+maps/invalid/textures_duplicates.cub:
+Error
+Missing/Wrong configuration in the file.
+==36294==   total heap usage: 421 allocs, 421 frees, 4,694 bytes allocated
+
+maps/invalid/textures_forbidden.cub:
+Error
+Texture not found.
+==36302==   total heap usage: 1,052 allocs, 1,052 frees, 101,370 bytes allocated
+
+maps/invalid/textures_invalid.cub:
+Error
+Texture not found.
+==36316==   total heap usage: 1,016 allocs, 1,016 frees, 100,839 bytes allocated
+
+maps/invalid/textures_missing.cub:
+Error
+Missing/Wrong configuration in the file.
+==36324==   total heap usage: 383 allocs, 383 frees, 3,925 bytes allocated
+
+maps/invalid/textures_multiple_words.cub:
+Error
+Missing/Wrong configuration in the file.
+==36332==   total heap usage: 496 allocs, 496 frees, 5,468 bytes allocated
+
+maps/invalid/textures_none.cub:
+Error
+Missing/Wrong configuration in the file.
+==36340==   total heap usage: 256 allocs, 256 frees, 2,498 bytes allocated
+
+maps/invalid/textures_not_xpm.cub:
+Error
+Texture not found.
+==36354==   total heap usage: 1,044 allocs, 1,044 frees, 101,042 bytes allocated
+
+maps/invalid/textures_value_missing.cub:
+Error
+Missing/Wrong configuration in the file.
+==36362==   total heap usage: 371 allocs, 371 frees, 3,888 bytes allocated
+
+maps/invalid/triangle_open.cub:
+Error
+Invalid map.
+==36370==   total heap usage: 536 allocs, 536 frees, 7,118 bytes allocated
+
+maps/invalid/ultimate.cub:
+Error
+Invalid map.
+==36378==   total heap usage: 1,421 allocs, 1,421 frees, 27,504 bytes allocated
+
+maps/invalid/wall_hole_east.cub:
+Error
+Invalid map.
+==36386==   total heap usage: 754 allocs, 754 frees, 8,371 bytes allocated
+
+maps/invalid/wall_hole_north.cub:
+Error
+Invalid map.
+==36400==   total heap usage: 754 allocs, 754 frees, 8,371 bytes allocated
+
+maps/invalid/wall_hole_south.cub:
+Error
+Invalid map.
+==36408==   total heap usage: 754 allocs, 754 frees, 8,371 bytes allocated
+
+maps/invalid/wall_hole_west.cub:
+Error
+Invalid map.
+==36416==   total heap usage: 754 allocs, 754 frees, 8,371 bytes allocated
+
+maps/invalid/wall_none.cub:
+Error
+Invalid map.
+==36424==   total heap usage: 754 allocs, 754 frees, 8,371 bytes allocated
+
+maps/invalid/wrong1.cub:
+Error
+Texture not found.
+==36432==   total heap usage: 1,355 allocs, 1,355 frees, 108,403 bytes allocated
+
+maps/invalid/wrong10.cub:
+Error
+Texture not found.
+==36446==   total heap usage: 1,331 allocs, 1,331 frees, 108,317 bytes allocated
+
+maps/invalid/wrong11.cub:
+Error
+Missing/Wrong configuration in the file.
+==36454==   total heap usage: 836 allocs, 836 frees, 14,912 bytes allocated
+
+maps/invalid/wrong12.cub:
+Error
+Missing/Wrong configuration in the file.
+==36462==   total heap usage: 732 allocs, 732 frees, 12,960 bytes allocated
+
+maps/invalid/wrong13.cub:
+Error
+Wrong RGB config.
+==36470==   total heap usage: 789 allocs, 789 frees, 13,864 bytes allocated
+
+maps/invalid/wrong14.cub:
+Error
+Wrong RGB config.
+==36478==   total heap usage: 789 allocs, 789 frees, 13,864 bytes allocated
+
+maps/invalid/wrong15.cub:
+Error
+Wrong RGB config.
+==36492==   total heap usage: 772 allocs, 772 frees, 13,563 bytes allocated
+
+maps/invalid/wrong16.cub:
+Error
+Wrong RGB config.
+==36500==   total heap usage: 767 allocs, 767 frees, 13,488 bytes allocated
+
+maps/invalid/wrong17.cub:
+Error
+Missing/Wrong configuration in the file.
+==36508==   total heap usage: 753 allocs, 753 frees, 13,328 bytes allocated
+
+maps/invalid/wrong18.cub:
+Error
+Missing/Wrong configuration in the file.
+==36516==   total heap usage: 732 allocs, 732 frees, 13,025 bytes allocated
+
+maps/invalid/wrong19.cub:
+Error
+Wrong RGB config.
+==36524==   total heap usage: 789 allocs, 789 frees, 13,775 bytes allocated
+
+maps/invalid/wrong2.cub:
+Error
+Missing/Wrong configuration in the file.
+==36532==   total heap usage: 846 allocs, 846 frees, 15,060 bytes allocated
+
+maps/invalid/wrong20.cub:
+Error
+Wrong RGB config.
+==36546==   total heap usage: 799 allocs, 799 frees, 13,969 bytes allocated
+
+maps/invalid/wrong21.cub:
+Error
+Wrong RGB config.
+==36554==   total heap usage: 786 allocs, 786 frees, 13,722 bytes allocated
+
+maps/invalid/wrong22.cub:
+Error
+Wrong RGB config.
+==36562==   total heap usage: 779 allocs, 779 frees, 13,607 bytes allocated
+
+maps/invalid/wrong23.cub:
+Error
+Missing/Wrong configuration in the file.
+==36570==   total heap usage: 753 allocs, 753 frees, 13,328 bytes allocated
+
+maps/invalid/wrong24.cub:
+Error
+Missing/Wrong configuration in the file.
+==36578==   total heap usage: 734 allocs, 734 frees, 13,039 bytes allocated
+
+maps/invalid/wrong25.cub:
+Error
+Missing/Wrong configuration in the file.
+==36592==   total heap usage: 567 allocs, 567 frees, 11,029 bytes allocated
+
+maps/invalid/wrong26.cub:
+Error
+Invalid map.
+==36600==   total heap usage: 1,130 allocs, 1,130 frees, 21,244 bytes allocated
+
+maps/invalid/wrong27.cub:
+Error
+Invalid map.
+==36608==   total heap usage: 1,098 allocs, 1,098 frees, 20,139 bytes allocated
+
+maps/invalid/wrong28.cub:
+Error
+Invalid map.
+==36616==   total heap usage: 335 allocs, 335 frees, 4,879 bytes allocated
+
+maps/invalid/wrong29.cub:
+Error
+Missing/Wrong configuration in the file.
+==36624==   total heap usage: 18 allocs, 18 frees, 784 bytes allocated
+
+maps/invalid/wrong3.cub:
+Error
+Missing/Wrong configuration in the file.
+==36638==   total heap usage: 718 allocs, 718 frees, 12,723 bytes allocated
+
+maps/invalid/wrong30.cub:
+Error
+Missing/Wrong configuration in the file.
+==36646==   total heap usage: 708 allocs, 708 frees, 14,134 bytes allocated
+
+maps/invalid/wrong31.cub:
+Error
+Missing/Wrong configuration in the file.
+==36654==   total heap usage: 660 allocs, 660 frees, 13,010 bytes allocated
+
+maps/invalid/wrong32.cub:
+Error
+Missing/Wrong configuration in the file.
+==36662==   total heap usage: 662 allocs, 662 frees, 13,036 bytes allocated
+
+maps/invalid/wrong33.cub:
+Error
+Missing/Wrong configuration in the file.
+==36670==   total heap usage: 664 allocs, 664 frees, 13,062 bytes allocated
+
+maps/invalid/wrong34.cub:
+Error
+Missing/Wrong configuration in the file.
+==36678==   total heap usage: 664 allocs, 664 frees, 13,026 bytes allocated
+
+maps/invalid/wrong35.cub:
+Error
+Missing/Wrong configuration in the file.
+==36692==   total heap usage: 662 allocs, 662 frees, 13,012 bytes allocated
+
+maps/invalid/wrong36.cub:
+Error
+Missing/Wrong configuration in the file.
+==36700==   total heap usage: 692 allocs, 692 frees, 13,386 bytes allocated
+
+maps/invalid/wrong37.cub:
+Error
+Missing/Wrong configuration in the file.
+==36708==   total heap usage: 720 allocs, 720 frees, 13,268 bytes allocated
+
+maps/invalid/wrong38.cub:
+Error
+Missing/Wrong configuration in the file.
+==36716==   total heap usage: 702 allocs, 702 frees, 13,390 bytes allocated
+
+maps/invalid/wrong39.cub:
+Error
+Missing/Wrong configuration in the file.
+==36724==   total heap usage: 670 allocs, 670 frees, 12,956 bytes allocated
+
+maps/invalid/wrong4.cub:
+Error
+Texture not found.
+==36738==   total heap usage: 1,331 allocs, 1,331 frees, 108,317 bytes allocated
+
+maps/invalid/wrong5.cub:
+Error
+Missing/Wrong configuration in the file.
+==36746==   total heap usage: 832 allocs, 832 frees, 14,878 bytes allocated
+
+maps/invalid/wrong6.cub:
+Error
+Missing/Wrong configuration in the file.
+==36754==   total heap usage: 732 allocs, 732 frees, 12,940 bytes allocated
+
+maps/invalid/wrong7.cub:
+Error
+Texture not found.
+==36762==   total heap usage: 1,321 allocs, 1,321 frees, 108,097 bytes allocated
+
+maps/invalid/wrong8.cub:
+Error
+Missing/Wrong configuration in the file.
+==36770==   total heap usage: 846 allocs, 846 frees, 15,042 bytes allocated
+
+maps/invalid/wrong9.cub:
+Error
+Missing/Wrong configuration in the file.
+==36784==   total heap usage: 718 allocs, 718 frees, 12,743 bytes allocated
+
+maps/invalid/wrong_setting.cub:
+Error
+Missing/Wrong configuration in the file.
+==36792==   total heap usage: 418 allocs, 418 frees, 4,483 bytes allocated
+
+maps/invalid/xpm_wrong_size.cub:
+Error
+Texture not found.
+==36800==   total heap usage: 819 allocs, 819 frees, 98,963 bytes allocated
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:38:19 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/16 16:24:27 by txisto-d         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:00:57 by dmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,11 @@ typedef struct s_player
 
 typedef struct s_timer
 {
-	struct timeval	*restrict tv;
-	double			time;
-	double			old_time;
-	double			frame_time;
-}				t_timer;
+	struct timeval	*restrict	tv;
+	double						time;
+	double						old_time;
+	double						frame_time;
+}								t_timer;
 
 typedef struct s_screen
 {
