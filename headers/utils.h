@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 18:14:57 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/15 12:32:36 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/17 21:29:00 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,6 @@ double	ft_abs(double n);
 
 char	*trim_spaces_around_commas(char *str);
 void	check_map_name(char *input, t_cub3d *cub3d);
+void	free_row(t_cub3d *cub3d, int row, char **map);
 
 #endif

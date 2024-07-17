@@ -111,7 +111,7 @@ norm:
 
 leak: all
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
-		--suppressions=minilibx_leaks.supp ./$(NAME) maps/valid/cheese_maze.cub
+	./$(NAME) maps/valid/cheese_maze.cub
 
 test: all
 	./$(NAME) maps/valid/map.cub

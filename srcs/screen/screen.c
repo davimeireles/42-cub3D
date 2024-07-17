@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:09:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/17 20:08:47 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/17 21:22:42 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,17 @@ void	minimap_loader(t_cub3d *cub3d)
 
 	player = cub3d->player;
 	mm_pair[0] = -6;
-	ft_put_img(cub3d, (int[2]) {145, 25}, (int[2]) {120, 120}, BLACK);
+	ft_put_img(cub3d, (int [2]){145, 25}, (int [2]){120, 120}, BLACK);
 	while (++mm_pair[0] <= 5)
 	{
 		mm_pair[1] = -6;
 		while (++mm_pair[1] <= 5)
 		{
-			mm_pair[1] = mm_pair[1];
-			mm_pair[0] = mm_pair[0];
 			print_tile(cub3d, (int) cub3d->player->y + mm_pair[1],
 				(int) cub3d->player->x + mm_pair[0], mm_pair);
 		}
 	}
-	ft_put_img(cub3d, (int[2]) {90, 81}, (int[2]) {10, 9}, RED);
+	ft_put_img(cub3d, (int [2]){90, 81}, (int [2]){10, 9}, RED);
 	tile_n(player, cub3d);
 	tile_s(player, cub3d);
 	tile_w(player, cub3d);
@@ -88,7 +86,7 @@ static void	time_frame(t_cub3d *cub3d)
 	cub3d->player->rotation = cub3d->timer->frame_time * 2.0;
 }
 
-void	ft_put_img(t_cub3d *cub3d, int pos[XY],int size[XY], int color)
+void	ft_put_img(t_cub3d *cub3d, int pos[XY], int size[XY], int color)
 {
 	int	i;
 

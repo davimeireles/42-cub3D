@@ -60,18 +60,16 @@ bool	is_valid_map(char **map, t_cub3d *cub3D)
 		while (y < cub3D->map->columns)
 		{
 			if ((map[x][y] == '0' || map[x][y] == 'N'
-		|| map[x][y] == 'S' || map[x][y] == 'E'
-		|| map[x][y] == 'W') && !check_valid_fill(map, cub3D, x, y))
+				|| map[x][y] == 'S' || map[x][y] == 'E'
+				|| map[x][y] == 'W') && !check_valid_fill(map, cub3D, x, y))
 				return (false);
 			y++;
 		}
 		x++;
 	}
-	while (i < cub3D->map->rows)
-	{
+	i = -1;
+	while (++i < cub3D->map->rows)
 		free(cub3D->map->textures->flood->visited[i]);
-		i++;
-	}
 	free(cub3D->map->textures->flood->visited);
 	return (true);
 }

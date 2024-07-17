@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 22:47:52 by txisto-d          #+#    #+#             */
-/*   Updated: 2024/07/17 20:05:02 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/17 21:26:02 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ t_img	*load_image(t_cub3d *cub3d, char *path)
 	return (img);
 }
 
-static void    load_texture(t_cub3d *cub3d)
+static void	load_texture(t_cub3d *cub3d)
 {
-    cub3d->screen->north = load_image(cub3d, cub3d->map->east);
-    cub3d->screen->south = load_image(cub3d, cub3d->map->west);
-    cub3d->screen->east = load_image(cub3d, cub3d->map->south);
-    cub3d->screen->west = load_image(cub3d, cub3d->map->north);
-    if (!cub3d->screen->north->img_ptr || !cub3d->screen->south->img_ptr
-        || !cub3d->screen->east->img_ptr || !cub3d->screen->west->img_ptr)
-        p_error(TEXTURES, cub3d);
+	cub3d->screen->north = load_image(cub3d, cub3d->map->east);
+	cub3d->screen->south = load_image(cub3d, cub3d->map->west);
+	cub3d->screen->east = load_image(cub3d, cub3d->map->south);
+	cub3d->screen->west = load_image(cub3d, cub3d->map->north);
+	if (!cub3d->screen->north->img_ptr || !cub3d->screen->south->img_ptr
+		|| !cub3d->screen->east->img_ptr || !cub3d->screen->west->img_ptr)
+		p_error(TEXTURES, cub3d);
 }

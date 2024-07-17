@@ -54,6 +54,7 @@ static char	**extract_map_from_file(char **data_file, t_cub3d *cub3D)
 	int		i;
 	int		row;
 	char	**map;
+	char	end;
 
 	i = -1;
 	row = 0;
@@ -64,10 +65,15 @@ static char	**extract_map_from_file(char **data_file, t_cub3d *cub3D)
 	{
 		if (i >= cub3D->map->start_map)
 		{
+			end = data_file[i][ft_strlen(data_file[i]) - 1];
+			if (end == '\n')
+				data_file[i][ft_strlen(data_file[i]) - 1] = '\0';
 			map[row] = ft_strdup(data_file[i]);
 			row++;
 		}
 	}
+	if (map[row - 1][0] == '\0')
+		free_row(cub3D, row, map);
 	return (map);
 }
 

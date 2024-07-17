@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 12:55:14 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/15 13:34:28 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/17 21:30:05 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,11 @@ void	p_error(t_error type, t_cub3d *cub3d)
 		ft_putendl_fd("Error\nTexture not found.", 2);
 	free_cub3d(cub3d);
 	exit(EXIT_FAILURE);
+}
+
+void	free_row(t_cub3d *cub3d, int row, char **map)
+{
+	free(map[row - 1]);
+	map[row - 1] = NULL;
+	cub3d->map->rows--;
 }

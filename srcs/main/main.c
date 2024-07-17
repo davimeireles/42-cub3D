@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmeirele <dmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: txisto-d <txisto-d@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:22:57 by dmeirele          #+#    #+#             */
-/*   Updated: 2024/07/17 16:36:20 by dmeirele         ###   ########.fr       */
+/*   Updated: 2024/07/17 21:25:30 by txisto-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ int	main(int argc, char **argv)
 		window_init(cub3d);
 		player_init(cub3d);
 		init_textures(cub3d);
+		cub3d->window = mlx_new_window(cub3d->connection, SCREEN_X, SCREEN_Y,
+				"cub3d");
+		if (!cub3d->window)
+			free_cub3d(cub3d);
 		print_colored_matrix(cub3d->map->f_map);
 		minimap_init(cub3d);
 		game_init(cub3d);
